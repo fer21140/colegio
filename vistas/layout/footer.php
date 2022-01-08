@@ -73,6 +73,9 @@
 
 <script src="../js/confirmacionEliminarContacto.js"></script>
 
+<script src="../js/confirmacionEliminarGrado.js"></script>
+<script src="../js/confirmacionReactivarGrado.js"></script>
+
 
 
 <script>
