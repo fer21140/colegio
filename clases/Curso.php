@@ -85,6 +85,188 @@
             $this->fechaCommit = $_fechaCommit;
         }
 
+        //---------------Función para guardar un curso------------------------
+
+        public function guardar($idProfesorg,$idGradog,$nombreg,$horaIniciog,$horaFing,$diasSemanag){
+        
+            //Instanciamos la clase conexión
+            $conexion = new Conexion();
+            //Conectamos a la base de datos
+            $conexion->conectar();
+            //Instrucción SQL
+            $sql = "insert into cursos(id_profesor,id_grado,nombre,hora_inicio,hora_fin,dias_semana) values(?,?,?,?,?,?)";
+            //Preparamos la instrucción sql
+            $stmt = $conexion->db->prepare($sql);
+            
+            //Enviamos los parámetros
+            //i = integer, s = string, d= double...se colocan segun el tamaño de parametros
+            $stmt->bind_param('iissss',$idProfesorg,$idGradog,$nombreg,$horaIniciog,$horaFing,$diasSemanag);
+              
+            //Ejecutamos instrucción
+            $stmt->execute();
+            
+            //Desconectamos la base de datos
+            $conexion->desconectar();
+    
+           }
+
+           //--------------Función para editar---------------------------------------
+
+           public function editar($idProfesore,$idGradoe,$nombree,$horaInicioe,$horaFine,$diasSemanae,$idEditare){
+        
+            //Instanciamos la clase conexión
+            $conexion = new Conexion();
+            //Conectamos a la base de datos
+            $conexion->conectar();
+            //Instrucción SQL
+            $sql = "update cursos set id_profesor=?,id_grado=?,nombre=?,hora_inicio=?,hora_fin=?,dias_semana=? where id=?";
+            //Preparamos la instrucción sql
+            $stmt = $conexion->db->prepare($sql);
+            
+            //Enviamos los parámetros
+            //i = integer, s = string, d= double...se colocan segun el tamaño de parametros
+            $stmt->bind_param('iissssi',$idProfesore,$idGradoe,$nombree,$horaInicioe,$horaFine,$diasSemanae,$idEditare);
+              
+            //Ejecutamos instrucción
+            $stmt->execute();
+            
+            //Desconectamos la base de datos
+            $conexion->desconectar();
+    
+           }
+
+           //---------------Función para desactivar un curso------------
+           public function desactivar($idDesactivar){
+            
+            //Instanciamos la clase conexión
+            $conexion = new Conexion();
+            //Conectamos a la base de datos
+            $conexion->conectar();
+            //Estado a enviar
+            $estado = 0;
+            //Instrucción SQL
+            $sql = "update cursos set estado=? where id=?";
+            //Preparamos la instrucción sql
+            $stmt = $conexion->db->prepare($sql);
+            
+            //i = integer, s = string, d= double...se colocan segun el tamaño de parametros
+            $stmt->bind_param('ii',$estado,$idDesactivar);
+            
+            //Ejecutamos instrucción
+            $stmt->execute();
+            
+            //Desconectamos la base de datos
+            $conexion->desconectar();
+    
+          }
+    
+          //--------------Función para reactivar un curso
+
+          public function reactivar($idReactivar){
+            
+            //Instanciamos la clase conexión
+            $conexion = new Conexion();
+            //Conectamos a la base de datos
+            $conexion->conectar();
+            //Estado a enviar
+            $estado = 1;
+            //Instrucción SQL
+            $sql = "update cursos set estado=? where id=?";
+            //Preparamos la instrucción sql
+            $stmt = $conexion->db->prepare($sql);
+            
+            //i = integer, s = string, d= double...se colocan segun el tamaño de parametros
+            $stmt->bind_param('ii',$estado,$idReactivar);
+            
+            //Ejecutamos instrucción
+            $stmt->execute();
+            
+            //Desconectamos la base de datos
+            $conexion->desconectar();
+    
+          }
+
+          //--------------------Función para buscar curso por id--------------------------------------
+
+          public function buscarPorId($idBusqueda){
+         
+            //Instanciamos la clase conexión
+             $conexion = new Conexion();
+             //Conectamos a la base de datos
+             $conexion->conectar();
+             //Declaramos el objeto contenedor del resultado
+             $resultadoCurso = new Curso();
+             
+             //Instrucción SQL
+            $sql = "select *from cursos where id='" . $idBusqueda . "'";
+            //Ejecución de instrucción     
+            $ejecutar = mysqli_query($conexion->db, $sql);
+    
+            while($fila = mysqli_fetch_array($ejecutar)){
+                
+                $resultadoCurso->setId($fila['id']);
+                $resultadoCurso->setIdProfesor($fila['id_profesor']);
+                $resultadoCurso->setIdGrado($fila['id_grado']);
+                $resultadoCurso->setNombre($fila['nombre']);
+                $resultadoCurso->setHoraInicio($fila['hora_inicio']);
+                $resultadoCurso->setHoraFin($fila['hora_fin']);
+                $resultadoCurso->setDiasSemana($fila['dias_semana']);
+                $resultadoCurso->setEstado($fila['estado']);
+                $resultadoCurso->setFechaCommit($fila['fecha_commit']);
+                
+                
+               
+            }
+                //Nos desconectamos de la base de datos
+                $conexion->desconectar();
+                //Devolvemos el usuario encontrado
+                return $resultadoCurso;
+           }
+    
+    
+
+          //--------------Función para obtener todos los cursos---------------------------------------
+
+          public function obtenerCursos(){
+            //Instanciamos la clase conexión
+        $conexion = new Conexion();
+        //Conectamos a la base de datos
+        $conexion->conectar();
+        //Array contenedor de resultados
+        $resultadoCursos = array();
+        //Instrucción SQL
+        $sql = "select *from cursos";
+        //Ejecución de instrucción     
+        $ejecutar = mysqli_query($conexion->db, $sql);
+    
+        while($fila = mysqli_fetch_array($ejecutar)){
+            
+            //Instanciamos objeto
+            $cursoIndex = new Curso();
+    
+                $cursoIndex->setId($fila['id']);
+                $cursoIndex->setIdProfesor($fila['id_profesor']);
+                $cursoIndex->setIdGrado($fila['id_grado']);
+                $cursoIndex->setNombre($fila['nombre']);
+                $cursoIndex->setHoraInicio($fila['hora_inicio']);
+                $cursoIndex->setHoraFin($fila['hora_fin']);
+                $cursoIndex->setDiasSemana($fila['dias_semana']);
+                $cursoIndex->setEstado($fila['estado']);
+                $cursoIndex->setFechaCommit($fila['fecha_commit']);
+                
+            //Llenamos el array de resultados de usuarios
+            array_push($resultadoCursos,$cursoIndex);
+           
+        }
+    
+        //Nos desconectamos de la base de datos
+        $conexion->desconectar();
+    
+        //Devolvemos los usuarios encontrados
+        return $resultadoCursos;
+        }
+    
+
     }
 
 

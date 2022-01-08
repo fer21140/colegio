@@ -76,6 +76,9 @@
 <script src="../js/confirmacionEliminarGrado.js"></script>
 <script src="../js/confirmacionReactivarGrado.js"></script>
 
+<script src="../js/confirmacionEliminarCurso.js"></script>
+<script src="../js/confirmacionReactivarCurso.js"></script>
+
 
 
 <script>
