@@ -3,8 +3,8 @@
     include("../clases/Usuario.php");
     include("../db/Conexion.php");
 
-    $nombres = $_POST['nombres'];
-    $apellidos = $_POST['apellidos'];
+    $nombres = mb_strtoupper($_POST['nombres']);
+    $apellidos = mb_strtoupper($_POST['apellidos']);
     $email = $_POST['email'];
     $password = $_POST['password'];
     $dpi = $_POST['dpi'];

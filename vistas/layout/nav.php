@@ -74,6 +74,7 @@
           
           include("../clases/Alumno.php");
           include("../clases/Usuario.php");
+          include("../clases/Contacto.php");
           
           
           session_start();

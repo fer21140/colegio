@@ -6,8 +6,8 @@ include("../db/Conexion.php");
 
 
 
-$nombres = $_POST['nombres'];
-$apellidos = $_POST['apellidos'];
+$nombres = mb_strtoupper($_POST['nombres']);
+$apellidos = mb_strtoupper($_POST['apellidos']);
 $email = $_POST['email'];
 $rol = $_POST['rol'];
 $telefono = $_POST['telefono'];

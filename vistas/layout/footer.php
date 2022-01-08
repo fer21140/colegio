@@ -71,6 +71,8 @@
 <script src="../js/confirmacionReactivarAlumno.js"></script>
 <script src="../js/confirmacionEliminarAlumno.js"></script>
 
+<script src="../js/confirmacionEliminarContacto.js"></script>
+
 
 
 <script>

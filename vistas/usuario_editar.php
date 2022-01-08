@@ -66,7 +66,7 @@ include ("layout/nav.php");
                     //Un usuario supervisor no podrá editar a otro usuario supervisor
                     
                     if($rol==1 && $miId !=$idBusqueda){
-                        echo "<script>alert('¡No puedes editar la información de un supervisor a menos que sea tu usuario!');
+                        echo "<script>alert('¡No puedes editar la información de un usuario con permisos de administrador a menos que sea tu usuario!');
                               window.location.href='../vistas/usuario.php';
                               </script>";    
                     }

@@ -16,7 +16,7 @@
     //Validar que no sea supervisor para que un supervisor no pueda desactivar a un supervisor
 
     if($rol==1 && $miId !=$idEliminar){
-        echo "<script>alert('¡No puedes eliminar un usuario con permisos de supervisor a menos que sea tu usuario!');
+        echo "<script>alert('¡No puedes dar de baja a un usuario con permisos de administrador a menos que sea tu usuario!');
               window.location.href='../vistas/usuario.php';
               </script>";    
     }else{
