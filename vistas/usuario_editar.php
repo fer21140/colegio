@@ -161,15 +161,6 @@ include ("layout/nav.php");
                       </div>
                     </div>
 
-                    <div class="col-sm-6">
-                      <!-- text input -->
-                      <div class="form-group">
-                        <label>Fotografía</label>
-                        <?php
-                        echo "<input type='file' class='form-control' placeholder='fotografia' name='fotografia' id='fotografia'>";
-                        ?>
-                     </div>
-                    </div>
                    
                   </div>  
                   <div class="">

@@ -7,6 +7,8 @@
     $apellidos = $_POST['apellidos'];
     $email = $_POST['email'];
     $password = $_POST['password'];
+    $dpi = $_POST['dpi'];
+    $telefono = $_POST['telefono'];
     $rol = $_POST['rol'];
 
     if(isset($_POST['btnGuardar'])){
@@ -17,7 +19,7 @@
             session_start();
             $usuarioSesion = $_SESSION['usuario'];
             $idUsuario = $usuarioSesion->getId();
-            $usuario->guardar($nombres,$apellidos,$rol,$email,$password,$idUsuario);
+            $usuario->guardar($rol,$dpi,$nombres,$apellidos,$email,$password,$telefono);
             header("Location: ../vistas/usuario.php");
         }else{
             echo "<script>alert('¡El correo electrónico ya existe!');

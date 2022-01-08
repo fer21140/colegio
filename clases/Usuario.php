@@ -107,20 +107,20 @@
 
         //-------------------------------Función para guardar un usuario----------------------------------------
 
-       public function guardar($idRolg,$dpig,$nombresg,$apellidosg,$emailg,$passwordg,$telefonog,$fotografiag){
+       public function guardar($idRolg,$dpig,$nombresg,$apellidosg,$emailg,$passwordg,$telefonog){
         
         //Instanciamos la clase conexión
         $conexion = new Conexion();
         //Conectamos a la base de datos
         $conexion->conectar();
         //Instrucción SQL
-        $sql = "insert into tblusuarios(id_rol,dpi,nombres,apellidos,email,password,telefono,fotografia) values(?,?,?,?,?,?,?,?)";
+        $sql = "insert into tblusuarios(id_rol,dpi,nombres,apellidos,email,password,telefono) values(?,?,?,?,?,?,?)";
         //Preparamos la instrucción sql
         $stmt = $conexion->db->prepare($sql);
         
         //Enviamos los parámetros
         //i = integer, s = string, d= double...se colocan segun el tamaño de parametros
-        $stmt->bind_param('isssssib',$idRolg,$dpig,$nombresg,$apellidosg,$emailg,$passwordg,$telefonog,$fotografiag);
+        $stmt->bind_param('isssssi',$idRolg,$dpig,$nombresg,$apellidosg,$emailg,$passwordg,$telefonog);
           
         //Ejecutamos instrucción
         $stmt->execute();
@@ -132,9 +132,9 @@
 
        //-----------------------------------Función para editar--------------------------------------------
 
-       public function editar($idRole,$dpie,$nombrese,$apellidose,$emaile,$passworde,$telefonoe,$fotografiae,$idEditare){
+       public function editar($idRole,$dpie,$nombrese,$apellidose,$emaile,$passworde,$telefonoe,$idEditare){
         
-        if ( is_uploaded_file( $fotografiae) ){
+        
         //Instanciamos la clase conexión
         $conexion = new Conexion();
         //Conectamos a la base de datos
@@ -142,8 +142,7 @@
         //Instrucción SQL
 
         
-
-        $sql = "update tblusuarios set id_rol=?,dpi=?,nombres=?,apellidos=?,email=?,password=?,telefono=?,fotografia=LOAD_FILE('$fotografiae') where id=?";
+        $sql = "update tblusuarios set id_rol=?,dpi=?,nombres=?,apellidos=?,email=?,password=?,telefono=? where id=?";
         //Preparamos la instrucción sql
         $stmt = $conexion->db->prepare($sql);
         
@@ -156,7 +155,7 @@
         
         //Desconectamos la base de datos
         $conexion->desconectar();
-        }
+        
        }
 
        //--------------Función para validar usuario existente--------------------------
