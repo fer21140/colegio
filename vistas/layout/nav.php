@@ -75,6 +75,8 @@
           include("../clases/Alumno.php");
           include("../clases/Usuario.php");
           include("../clases/Contacto.php");
+          include("../clases/Grado.php");
+          include("../clases/Curso.php");
           
           
           session_start();
@@ -121,27 +123,36 @@
 
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="municipio.php" class="nav-link ">
+                <a href="grado.php" class="nav-link ">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Municipios</p>
+                  <p>Grados académicos</p>
                 </a>
               </li>
             </ul>
 
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="clima.php" class="nav-link ">
+                <a href="curso.php" class="nav-link ">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Clima</p>
+                  <p>Cursos</p>
                 </a>
               </li>
             </ul>
 
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="iluminacion.php" class="nav-link ">
+                <a href="matricula.php" class="nav-link ">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Iluminación</p>
+                  <p>Inscripciones</p>
+                </a>
+              </li>
+            </ul>
+
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="nota.php" class="nav-link ">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Calificaciones</p>
                 </a>
               </li>
             </ul>
@@ -149,18 +160,36 @@
 
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="senal.php" class="nav-link ">
+                <a href="operacion.php" class="nav-link ">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Señales</p>
+                  <p>Operaciones monetarias</p>
                 </a>
               </li>
             </ul>
 
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="tipo_vehiculo.php" class="nav-link ">
+                <a href="movimiento.php" class="nav-link ">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Tipos de vehículos</p>
+                  <p>Transacciones</p>
+                </a>
+              </li>
+            </ul>
+
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="planilla.php" class="nav-link ">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Planilla</p>
+                </a>
+              </li>
+            </ul>
+
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="sueldo.php" class="nav-link ">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Sueldos</p>
                 </a>
               </li>
             </ul>
@@ -168,34 +197,12 @@
           </li>
           
           
-          <li class="nav-header">ACCIONES</li>
+          <li class="nav-header">ACCIONES DE ADMINISTRADOR</li>
           
           
-          <li class="nav-item">
-            <a href="seccion1_ingresar.php" class="nav-link">
-              <i class="nav-icon fas fa-toolbox"></i>
-              <p>
-                Ingreso de boleta
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="boleta.php" class="nav-link">
-              <i class="nav-icon fab fa-paypal"></i>
-              <p>
-                Búsqueda de boleta
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="boleta_manual_imprimir.php" class="nav-link">
-              <i class="nav-icon fas fa-user-cog"></i>
-              <p>
-                Imprimir forma manual
-              </p>
-            </a>
-          </li>
-          <
+         
+         
+          
           <li class="nav-item">
             <a href="usuario.php" class="nav-link">
               <i class="nav-icon fas fa-user-alt"></i>
