@@ -67,18 +67,11 @@
 
 <script src="../js/confirmacionEliminarUsuario.js"></script>
 <script src="../js/confirmacionReactivarUsuario.js"></script>
-<script src="../js/confirmacionEliminarDepartamento.js"></script>
-<script src="../js/confirmacionReactivarDepartamento.js"></script>
-<script src="../js/confirmacionEliminarMunicipio.js"></script>
-<script src="../js/confirmacionReactivarMunicipio.js"></script>
-<script src="../js/confirmacionEliminarClima.js"></script>
-<script src="../js/confirmacionReactivarclima.js"></script>
-<script src="../js/confirmacionEliminarIluminacion.js"></script>
-<script src="../js/confirmacionReactivarIluminacion.js"></script>
-<script src="../js/confirmacionEliminarSenal.js"></script>
-<script src="../js/confirmacionReactivarSenal.js"></script>
-<script src="../js/confirmacionEliminarTipoVehiculo.js"></script>
-<script src="../js/confirmacionReactivarTipoVehiculo.js"></script>
+
+<script src="../js/confirmacionReactivarAlumno.js"></script>
+<script src="../js/confirmacionEliminarAlumno.js"></script>
+
+
 
 <script>
   $(function () {

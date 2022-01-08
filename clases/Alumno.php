@@ -11,6 +11,8 @@
         public $segundoApellido;
         public $direccion;
         public $telefono;
+        public $estado;
+        public $fechaCommit;
         public $fotografia;
 
         //Obtener id
@@ -93,8 +95,212 @@
         public function setFotografia($_fotografia){
             $this->fotografia = $_fotografia;
         }
+        //Función para obtener estado
+        public function getEstado(){
+            return $this->estado;
+        }
+        //Función para setear estado
+        public function setEstado($_estado){
+            $this->estado = $_estado;
+        }
+        //Obtener fecha
+        public function getFechaCommit(){
+            return $this->fechaCommit;
+        }
+        //Setear fechaCommit
+        public function setFechaCommit($_fechaCommit){
+            $this->fechaCommit = $_fechaCommit;
+        }
+
 
         //Función para guardar un alumno
+
+        public function guardar($carnetg,$primerNombreg,$segundoNombreg,$tercerNombreg,$primerApellidog,$segundoApellidog,$direcciong,$telefonog){
+        
+            //Instanciamos la clase conexión
+            $conexion = new Conexion();
+            //Conectamos a la base de datos
+            $conexion->conectar();
+            //Instrucción SQL
+            $sql = "insert into alumnos(carnet,primerNombre,segundoNombre,tercerNombre,primerApellido,segundoApellido,direccion,telefono)values(?,?,?,?,?,?,?,?)";
+            //Preparamos la instrucción sql
+            $stmt = $conexion->db->prepare($sql);
+            
+            //Enviamos los parámetros
+            //i = integer, s = string, d= double...se colocan segun el tamaño de parametros
+            $stmt->bind_param('sssssssi',$carnetg,$primerNombreg,$segundoNombreg,$tercerNombreg,$primerApellidog,$segundoApellidog,$direcciong,$telefonog);
+              
+            //Ejecutamos instrucción
+            $stmt->execute();
+            
+            //Desconectamos la base de datos
+            $conexion->desconectar();
+    
+           }
+
+           //--------------------Función para editar alumno----------------------
+
+           public function editar($carnete,$primerNombree,$segundoNombree,$tercerNombree,$primerApellidoe,$segundoApellidoe,$direccione,$telefonoe,$idEditare){
+        
+            //Instanciamos la clase conexión
+            $conexion = new Conexion();
+            //Conectamos a la base de datos
+            $conexion->conectar();
+            //Instrucción SQL
+            $sql = "update alumnos set carnet=?,primerNombre=?,segundoNombre=?,tercerNombre=?,primerApellido=?,segundoApellido=?,direccion=?,telefono=? where id=?";
+            //Preparamos la instrucción sql
+            $stmt = $conexion->db->prepare($sql);
+            
+            //Enviamos los parámetros
+            //i = integer, s = string, d= double...se colocan segun el tamaño de parametros
+            $stmt->bind_param('sssssssii',$carnete,$primerNombree,$segundoNombree,$tercerNombree,$primerApellidoe,$segundoApellidoe,$direccione,$telefonoe,$idEditare);
+              
+            //Ejecutamos instrucción
+            $stmt->execute();
+            
+            //Desconectamos la base de datos
+            $conexion->desconectar();
+    
+           }
+
+
+   //Función para desactivar un alumno
+   
+   public function desactivar($idDesactivar){
+            
+    //Instanciamos la clase conexión
+    $conexion = new Conexion();
+    //Conectamos a la base de datos
+    $conexion->conectar();
+    //Estado a enviar
+    $estado = 0;
+    //Instrucción SQL
+    $sql = "update alumnos set estado=? where id=?";
+    //Preparamos la instrucción sql
+    $stmt = $conexion->db->prepare($sql);
+    
+    //i = integer, s = string, d= double...se colocan segun el tamaño de parametros
+    $stmt->bind_param('ii',$estado,$idDesactivar);
+    
+    //Ejecutamos instrucción
+    $stmt->execute();
+    
+    //Desconectamos la base de datos
+    $conexion->desconectar();
+
+  }
+
+  //------------------------Función para reactivar un alumno
+
+   //Función para desactivar un alumno
+   
+   public function reactivar($idReactivar){
+            
+    //Instanciamos la clase conexión
+    $conexion = new Conexion();
+    //Conectamos a la base de datos
+    $conexion->conectar();
+    //Estado a enviar
+    $estado = 1;
+    //Instrucción SQL
+    $sql = "update alumnos set estado=? where id=?";
+    //Preparamos la instrucción sql
+    $stmt = $conexion->db->prepare($sql);
+    
+    //i = integer, s = string, d= double...se colocan segun el tamaño de parametros
+    $stmt->bind_param('ii',$estado,$idReactivar);
+    
+    //Ejecutamos instrucción
+    $stmt->execute();
+    
+    //Desconectamos la base de datos
+    $conexion->desconectar();
+
+  }
+
+
+   //Obtener todos los alumnos
+
+    public function obtenerAlumnos(){
+            //Instanciamos la clase conexión
+        $conexion = new Conexion();
+        //Conectamos a la base de datos
+        $conexion->conectar();
+        //Array contenedor de resultados
+        $resultadoAlumnos = array();
+        //Instrucción SQL
+        $sql = "select *from alumnos";
+        //Ejecución de instrucción     
+        $ejecutar = mysqli_query($conexion->db, $sql);
+    
+        while($fila = mysqli_fetch_array($ejecutar)){
+            
+            //Instanciamos objeto
+            $alumnoIndex = new Alumno();
+    
+                $alumnoIndex->setId($fila['id']);
+                $alumnoIndex->setCarnet($fila['carnet']);
+                $alumnoIndex->setPrimerNombre($fila['primerNombre']);
+                $alumnoIndex->setSegundoNombre($fila['segundoNombre']);
+                $alumnoIndex->setTercerNombre($fila['tercerNombre']);
+                $alumnoIndex->setPrimerApellido($fila['primerApellido']);
+                $alumnoIndex->setSegundoApellido($fila['segundoApellido']);
+                $alumnoIndex->setDireccion($fila['direccion']);
+                $alumnoIndex->setTelefono($fila['telefono']);
+                $alumnoIndex->setEstado($fila['estado']);
+                $alumnoIndex->setFechaCommit($fila['fecha_commit']);
+    
+            //Llenamos el array de resultados de usuarios
+            array_push($resultadoAlumnos,$alumnoIndex);
+           
+        }
+    
+        //Nos desconectamos de la base de datos
+        $conexion->desconectar();
+    
+        //Devolvemos los usuarios encontrados
+        return $resultadoAlumnos;
+        }
+    
+        //--------------Función para buscar alumno por id
+
+        public function buscarPorId($idBusqueda){
+         
+            //Instanciamos la clase conexión
+             $conexion = new Conexion();
+             //Conectamos a la base de datos
+             $conexion->conectar();
+             //Declaramos el objeto contenedor del resultado
+             $resultadoAlumno = new Alumno();
+             
+             //Instrucción SQL
+            $sql = "select *from alumnos where id='" . $idBusqueda . "'";
+            //Ejecución de instrucción     
+            $ejecutar = mysqli_query($conexion->db, $sql);
+    
+            while($fila = mysqli_fetch_array($ejecutar)){
+                
+                $resultadoAlumno->setId($fila['id']);
+                $resultadoAlumno->setCarnet($fila['carnet']);
+                $resultadoAlumno->setPrimerNombre($fila['primerNombre']);
+                $resultadoAlumno->setSegundoNombre($fila['segundoNombre']);
+                $resultadoAlumno->setTercerNombre($fila['tercerNombre']);
+                $resultadoAlumno->setPrimerApellido($fila['primerApellido']);
+                $resultadoAlumno->setSegundoApellido($fila['segundoApellido']);
+                $resultadoAlumno->setDireccion($fila['direccion']);
+                $resultadoAlumno->setTelefono($fila['telefono']);
+                $resultadoAlumno->setEstado($fila['estado']);
+                $resultadoAlumno->setFechaCommit($fila['fecha_commit']);
+                
+               
+            }
+                //Nos desconectamos de la base de datos
+                $conexion->desconectar();
+                //Devolvemos el usuario encontrado
+                return $resultadoAlumno;
+           }
+    
+    
 
     }
 
