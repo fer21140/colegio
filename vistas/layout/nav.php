@@ -77,6 +77,8 @@
           include("../clases/Contacto.php");
           include("../clases/Grado.php");
           include("../clases/Curso.php");
+          include("../clases/Operacion.php");
+          include("../clases/Matricula.php");
           
           
           session_start();

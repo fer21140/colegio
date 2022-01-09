@@ -79,6 +79,12 @@
 <script src="../js/confirmacionEliminarCurso.js"></script>
 <script src="../js/confirmacionReactivarCurso.js"></script>
 
+<script src="../js/confirmacionEliminarOperacion.js"></script>
+<script src="../js/confirmacionReactivarOperacion.js"></script>
+
+<script src="../js/confirmacionEliminarMatricula.js"></script>
+<script src="../js/confirmacionReactivarMatricula.js"></script>
+
 
 
 <script>
