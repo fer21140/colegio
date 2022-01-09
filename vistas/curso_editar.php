@@ -118,7 +118,7 @@ include("layout/nav.php");
                                                     $dpi = $resultado[$i]->getDpi();
                                                     $nombreProfesor = "[" . $dpi . "] " . $resultado[$i]->getNombres() . " " . $resultado[$i]->getApellidos();
 
-                                                    if ($resultado[$i]->getIdRol() == 2) {
+                                                    if ($resultado[$i]->getIdRol() == 2 && $resultado[$i]->getEstado()==1) {
                                                         if($idProfesor!=$idProfe){
                                                          echo "<option value='$idProfe'>$nombreProfesor</option>";
                                                         }
