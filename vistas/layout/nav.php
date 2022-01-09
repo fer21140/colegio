@@ -79,6 +79,7 @@
           include("../clases/Curso.php");
           include("../clases/Operacion.php");
           include("../clases/Matricula.php");
+          include("../clases/Movimiento.php");
           
           
           session_start();
