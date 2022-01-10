@@ -253,6 +253,48 @@
         return $resultadoMatriculas;
         }
 
+        //------------Obtener matriculas por grado y año-------------------------------
+
+        public function obtenerMatriculasGradoAnio($idGradoBusqueda,$anioBusqueda){
+            //Instanciamos la clase conexión
+        $conexion = new Conexion();
+        //Conectamos a la base de datos
+        $conexion->conectar();
+        //Array contenedor de resultados
+        $resultadoMatriculas = array();
+        //Instrucción SQL
+        $sql = "select *from matricula where id_grado='" . $idGradoBusqueda . "' and anio='" . $anioBusqueda . "'";
+        //Ejecución de instrucción     
+        $ejecutar = mysqli_query($conexion->db, $sql);
+    
+        while($fila = mysqli_fetch_array($ejecutar)){
+            
+            //Instanciamos objeto
+            $matriculaIndex = new Matricula();
+    
+            $matriculaIndex->setId($fila['id']);
+            $matriculaIndex->setIdAlumno($fila['id_alumno']);
+            $matriculaIndex->setIdGrado($fila['id_grado']);
+            $matriculaIndex->setValorInscripcion($fila['valor_inscripcion']);
+            $matriculaIndex->setValorMensual($fila['valor_mensual']);
+            $matriculaIndex->setEstado($fila['estado']);
+            $matriculaIndex->setFechaCommit($fila['fecha_commit']);
+            $matriculaIndex->setAnio($fila['anio']);
+               
+                
+            //Llenamos el array de resultados de usuarios
+            array_push($resultadoMatriculas,$matriculaIndex);
+           
+        }
+    
+        //Nos desconectamos de la base de datos
+        $conexion->desconectar();
+    
+        //Devolvemos los usuarios encontrados
+        return $resultadoMatriculas;
+        }
+
+
         //---------------Validar si un alumno ya se encuentra inscrito--------------------
 
         public function validarInscripcionExistente($anioValidar,$idAlumnoValidar){
