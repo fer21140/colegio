@@ -265,7 +265,46 @@
         //Devolvemos los usuarios encontrados
         return $resultadoCursos;
         }
-    
+    //--------------Obtener cursos por grado-------------
+
+    public function obtenerCursosPorGrado($idGradoBuscar){
+        //Instanciamos la clase conexión
+    $conexion = new Conexion();
+    //Conectamos a la base de datos
+    $conexion->conectar();
+    //Array contenedor de resultados
+    $resultadoCursos = array();
+    //Instrucción SQL
+    $sql = "select *from cursos where id_grado='". $idGradoBuscar . "'";
+    //Ejecución de instrucción     
+    $ejecutar = mysqli_query($conexion->db, $sql);
+
+    while($fila = mysqli_fetch_array($ejecutar)){
+        
+        //Instanciamos objeto
+        $cursoIndex = new Curso();
+
+            $cursoIndex->setId($fila['id']);
+            $cursoIndex->setIdProfesor($fila['id_profesor']);
+            $cursoIndex->setIdGrado($fila['id_grado']);
+            $cursoIndex->setNombre($fila['nombre']);
+            $cursoIndex->setHoraInicio($fila['hora_inicio']);
+            $cursoIndex->setHoraFin($fila['hora_fin']);
+            $cursoIndex->setDiasSemana($fila['dias_semana']);
+            $cursoIndex->setEstado($fila['estado']);
+            $cursoIndex->setFechaCommit($fila['fecha_commit']);
+            
+        //Llenamos el array de resultados de usuarios
+        array_push($resultadoCursos,$cursoIndex);
+       
+    }
+
+    //Nos desconectamos de la base de datos
+    $conexion->desconectar();
+
+    //Devolvemos los usuarios encontrados
+    return $resultadoCursos;
+    }
 
     }
 
