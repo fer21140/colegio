@@ -245,12 +245,12 @@ include ("layout/nav.php");
 
 <script type="text/javascript">
 
-function filtrarPorCliente(){
+function filtrarPorAlumno(){
     
    
     $.ajax({
         type:"POST",
-        url:"busqueda_pago_cliente.php?id=" + $ ('#lista2').val() ,
+        url:"busqueda_movimiento_alumno.php?id=" + $ ('#lista2').val() ,
         //data:"id="+ $ ('#lista1').val(),
         success:function(r){
             $('#tablaresultados').html(r);
@@ -263,7 +263,7 @@ function filtrarPorCliente(){
 function filtrarPorFechas(){
   $.ajax({
         type:"POST",
-        url:"busqueda_pago_fechas.php?fechaInicio=" + $ ('#desde').val() +"&fechaFin="+ $ ('#hasta').val(),
+        url:"busqueda_movimiento_fechas.php?fechaInicio=" + $ ('#desde').val() +"&fechaFin="+ $ ('#hasta').val(),
         //data:"id="+ $ ('#lista1').val(),
         success:function(r){
             $('#tablaresultados').html(r);
@@ -272,10 +272,10 @@ function filtrarPorFechas(){
     });
 }
 
-function filtrarPorClienteFecha(){
+function filtrarPorAlumnoFecha(){
   $.ajax({
         type:"POST",
-        url:"busqueda_pago_cliente_fechas.php?fechaInicio=" + $ ('#desde').val() +"&fechaFin="+ $ ('#hasta').val() + "&idCliente=" + $ ('#lista2').val(),
+        url:"busqueda_movimiento_fechas_alumno.php?fechaInicio=" + $ ('#desde').val() +"&fechaFin="+ $ ('#hasta').val() + "&idAlumno=" + $ ('#lista2').val(),
         //data:"id="+ $ ('#lista1').val(),
         success:function(r){
             $('#tablaresultados').html(r);
@@ -287,7 +287,7 @@ function filtrarPorClienteFecha(){
 function mostrarTodos(){
   $.ajax({
         type:"POST",
-        url:"busqueda_pago_todos.php",
+        url:"busqueda_movimiento_todos.php",
         //data:"id="+ $ ('#lista1').val(),
         success:function(r){
             $('#tablaresultados').html(r);
@@ -306,7 +306,7 @@ function mostrarTodos(){
         $('#btnGenerar').click(function(){
         //Llamamos a la función
         //alert("haz hecho click en el boton generar");
-        var idCliente = document.getElementById('lista2').value;
+        var idAlumno = document.getElementById('lista2').value;
         var fechaInicio = document.getElementById('desde').value;
         var fechaFin = document.getElementById('hasta').value;
         var filtro = document.getElementById('filtro').value;
@@ -320,9 +320,9 @@ function mostrarTodos(){
        //------------Filtro solo por cliente--------------------------
       if(filtro==1){
         
-        if(idCliente!=0){
+        if(idAlumno!=0){
         
-          filtrarPorCliente();
+          filtrarPorAlumno();
         
         }else{
           
@@ -352,13 +352,13 @@ function mostrarTodos(){
       }
 
       if(filtro==3){
-        if(idCliente!=0){
+        if(idAlumno!=0){
         
           if(fechaInicio !=""){
           if(fechaFin !=""){
              //Validamos si la fecha de inicio es menor o igual a la fecha final
              if(Date.parse(fechaInicio)<=Date.parse(fechaFin)){
-                filtrarPorClienteFecha();
+                filtrarPorAlumnoFecha();
              }else{
                alert("La fecha de inicio no puede ser mayor a la fecha final");
              }
@@ -390,7 +390,7 @@ $(document).ready(function(){
     $('#btnExportar').click(function(){
     //Llamamos a la función
     //alert("haz hecho click en el boton generar");
-    var idCliente = document.getElementById('lista2').value;
+    var idAlumno = document.getElementById('lista2').value;
     var fechaInicio = document.getElementById('desde').value;
     var fechaFin = document.getElementById('hasta').value;
     var filtro = document.getElementById('filtro').value;
@@ -405,9 +405,9 @@ $(document).ready(function(){
    //------------Filtro solo por cliente--------------------------
   if(filtro==1){
     
-    if(idCliente!=0){
+    if(idAlumno!=0){
     
-      filtrarPorCliente();
+      filtrarPorAlumno();
       window.open('../reportes/reporte_pagos_pdf.php');
     
     }else{
@@ -439,13 +439,13 @@ $(document).ready(function(){
   }
 
   if(filtro==3){
-    if(idCliente!=0){
+    if(idAlumno!=0){
     
       if(fechaInicio !=""){
       if(fechaFin !=""){
          //Validamos si la fecha de inicio es menor o igual a la fecha final
          if(Date.parse(fechaInicio)<=Date.parse(fechaFin)){
-            filtrarPorClienteFecha();
+            filtrarPorAlumnoFecha();
             window.open('../reportes/reporte_pagos_pdf.php');
          }else{
            alert("La fecha de inicio no puede ser mayor a la fecha final");

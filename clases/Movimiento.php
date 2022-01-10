@@ -250,6 +250,130 @@
         //Devolvemos los usuarios encontrados
         return $resultadoMovimientos;
         }
+
+        //------------Obtener pagos por alumno-------------------
+
+        public function obtenerMovimientosPorAlumno($idAlumnoSearch){
+            //Instanciamos la clase conexión
+        $conexion = new Conexion();
+        //Conectamos a la base de datos
+        $conexion->conectar();
+        //Array contenedor de resultados
+        $resultadoMovimientos = array();
+        //Instrucción SQL
+        $sql = "select *from movimientos where id_usuario_receptor='" . $idAlumnoSearch . "'";
+        //Ejecución de instrucción     
+        $ejecutar = mysqli_query($conexion->db, $sql);
+
+        while($fila = mysqli_fetch_array($ejecutar)){
+            
+            //Instanciamos objeto
+            $movimientoIndex = new Movimiento();
+
+            $movimientoIndex->setId($fila['id']);
+            $movimientoIndex->setIdOperacion($fila['id_operacion']);
+            $movimientoIndex->setIdUsuarioReceptor($fila['id_usuario_receptor']);
+            $movimientoIndex->setIdUsuarioOperacion($fila['id_usuario_operacion']);
+            $movimientoIndex->setTotal($fila['total']);
+            $movimientoIndex->setNumeroComprobante($fila['numero_comprobante']);
+            $movimientoIndex->setEstado($fila['estado']);
+            $movimientoIndex->setFechaCommit($fila['fecha_commit']);
+            
+
+            //Llenamos el array de resultados de usuarios
+            array_push($resultadoMovimientos,$movimientoIndex);
+           
+        }
+
+        //Nos desconectamos de la base de datos
+        $conexion->desconectar();
+
+        //Devolvemos los usuarios encontrados
+        return $resultadoMovimientos;
+        }
+
+        //----------------Obtener movimientos por fechas--------------------------
+
+        public function obtenerMovimientosPorFechas($fechaInicioMovimiento,$fechaFinMovimiento){
+            //Instanciamos la clase conexión
+       $conexion = new Conexion();
+       //Conectamos a la base de datos
+       $conexion->conectar();
+       //Array contenedor de resultados
+       $resultadoMovimientos = array();
+       //Instrucción SQL
+       $sql = "select *from movimientos where fecha_commit between '" . $fechaInicioMovimiento . " 00:00:00'" ." and '". $fechaFinMovimiento . " 23:59:59'";
+       //Ejecución de instrucción     
+       $ejecutar = mysqli_query($conexion->db, $sql);
+
+       while($fila = mysqli_fetch_array($ejecutar)){
+           
+           //Instanciamos objeto
+           $movimientoIndex = new Movimiento();
+
+           $movimientoIndex->setId($fila['id']);
+           $movimientoIndex->setIdOperacion($fila['id_operacion']);
+           $movimientoIndex->setIdUsuarioReceptor($fila['id_usuario_receptor']);
+           $movimientoIndex->setIdUsuarioOperacion($fila['id_usuario_operacion']);
+           $movimientoIndex->setTotal($fila['total']);
+           $movimientoIndex->setNumeroComprobante($fila['numero_comprobante']);
+           $movimientoIndex->setEstado($fila['estado']);
+           $movimientoIndex->setFechaCommit($fila['fecha_commit']);
+           
+
+           //Llenamos el array de resultados de usuarios
+           array_push($resultadoMovimientos,$movimientoIndex);
+          
+       }
+
+       //Nos desconectamos de la base de datos
+       $conexion->desconectar();
+
+       //Devolvemos los usuarios encontrados
+       return $resultadoMovimientos;
+       }
+
+       //------------------Obtener movimientos por rango de fechas y alumno
+
+       public function obtenerMovimientosPorAlumnoFechas($fechaInicioMovimientoB,$fechaFinMovimientoB,$idAlumnoMovimientoB){
+        //Instanciamos la clase conexión
+   $conexion = new Conexion();
+   //Conectamos a la base de datos
+   $conexion->conectar();
+   //Array contenedor de resultados
+   $resultadoMovimientos = array();
+   //Instrucción SQL
+   $sql = "select *from movimientos where fecha_commit between '" . $fechaInicioMovimientoB . " 00:00:00'" ." and '". $fechaFinMovimientoB . " 23:59:59'" . " and id_usuario_receptor='" . $idAlumnoMovimientoB . "'";
+   //Ejecución de instrucción     
+   $ejecutar = mysqli_query($conexion->db, $sql);
+
+   while($fila = mysqli_fetch_array($ejecutar)){
+       
+       //Instanciamos objeto
+       $movimientoIndex = new Movimiento();
+
+       $movimientoIndex->setId($fila['id']);
+       $movimientoIndex->setIdOperacion($fila['id_operacion']);
+       $movimientoIndex->setIdUsuarioReceptor($fila['id_usuario_receptor']);
+       $movimientoIndex->setIdUsuarioOperacion($fila['id_usuario_operacion']);
+       $movimientoIndex->setTotal($fila['total']);
+       $movimientoIndex->setNumeroComprobante($fila['numero_comprobante']);
+       $movimientoIndex->setEstado($fila['estado']);
+       $movimientoIndex->setFechaCommit($fila['fecha_commit']);
+       
+
+       //Llenamos el array de resultados de usuarios
+       array_push($resultadoMovimientos,$movimientoIndex);
+      
+   }
+
+   //Nos desconectamos de la base de datos
+   $conexion->desconectar();
+
+   //Devolvemos los usuarios encontrados
+   return $resultadoMovimientos;
+   }
+
     }
 
 
