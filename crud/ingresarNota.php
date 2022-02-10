@@ -2,14 +2,20 @@
 
     include("../db/Conexion.php");
     include("../clases/Nota.php");
+    include("../clases/Curso.php");
 
     if(isset($_POST['btnGuardar'])){
 
-        $anio = $_POST['anio'];
-        $idAlumno = $_POST['id_alumno'];
-        $idCurso = $_POST['id_curso'];
+        $anio = $_REQUEST['anio'];
+        $idAlumno = $_REQUEST['id_alumno'];
+        $idCurso = $_REQUEST['id_curso'];
+
+        $curso = new Curso();
+        $resCurso = $curso->buscarPorId($idCurso);
+        $grado = $resCurso->getIdGrado();
+
         $nota = $_POST['nota'];
-        $bimestre = $_POST['bimestre'];
+        $bimestre = $_REQUEST['bimestre'];
 
         if($idAlumno>0){
             if($idCurso>0){
@@ -22,7 +28,7 @@
 
                         //Guardamos
                         $notaGuardar->guardar($idCurso,$idAlumno,$bimestre,$anio,$nota);
-                        echo "<script>window.history.back ();</script>";
+                        header("Location: ../vistas/nota.php?id_alumno=$idAlumno&anio=$anio&grado=$grado");
                         }else{
                             //Imprimimos que la nota ya existe
                             echo "<script>alert('¡La nota ya existe!');

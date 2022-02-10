@@ -80,6 +80,7 @@
           include("../clases/Operacion.php");
           include("../clases/Matricula.php");
           include("../clases/Movimiento.php");
+          include("../clases/Nota.php");
           
           
           session_start();
