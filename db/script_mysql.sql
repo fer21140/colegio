@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-12-2021 a las 22:01:06
+-- Tiempo de generación: 11-02-2022 a las 00:27:29
 -- Versión del servidor: 10.4.21-MariaDB
 -- Versión de PHP: 7.3.31
 
@@ -18,1085 +18,577 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `transito`
+-- Base de datos: `db_a6edc2_dbimp`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `asistente`
+-- Estructura de tabla para la tabla `alumnos`
 --
 
-CREATE TABLE `asistente` (
+CREATE TABLE `alumnos` (
   `id` int(10) UNSIGNED NOT NULL,
-  `id_boleta` int(10) UNSIGNED NOT NULL,
-  `nombre` varchar(200) DEFAULT NULL,
-  `chapa_identificacion` varchar(100) DEFAULT NULL,
-  `no_unidad` varchar(100) DEFAULT NULL,
-  `institucion` varchar(150) DEFAULT NULL,
-  `otra_institucion` varchar(150) DEFAULT NULL
+  `carnet` varchar(100) NOT NULL,
+  `primerNombre` varchar(100) NOT NULL,
+  `segundoNombre` varchar(100) DEFAULT NULL,
+  `tercerNombre` varchar(100) DEFAULT NULL,
+  `primerApellido` varchar(100) NOT NULL,
+  `segundoApellido` varchar(100) DEFAULT NULL,
+  `direccion` varchar(200) NOT NULL,
+  `telefono` int(11) DEFAULT NULL,
+  `fotografia` longblob DEFAULT NULL,
+  `estado` int(11) NOT NULL DEFAULT 1,
+  `fecha_commit` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `asistente`
+-- Volcado de datos para la tabla `alumnos`
 --
 
-INSERT INTO `asistente` (`id`, `id_boleta`, `nombre`, `chapa_identificacion`, `no_unidad`, `institucion`, `otra_institucion`) VALUES
-(19, 1, 'JOSÉ RODOLFO FLORES RUIZ', '1010', '101', 'PNC', 'NO INDICA'),
-(20, 1, 'MARIA DOLORES CASTRO FALLA', '401', '100', 'PNC', 'NO INDICA');
+INSERT INTO `alumnos` (`id`, `carnet`, `primerNombre`, `segundoNombre`, `tercerNombre`, `primerApellido`, `segundoApellido`, `direccion`, `telefono`, `fotografia`, `estado`, `fecha_commit`) VALUES
+(9, 'D258DMU', 'DANNY', 'JUNIOR', '', 'FLORES', 'SÁNCHEZ', 'BARRIO EL CEMENTERIO, SAN CRISTÓBAL ACASAGUASTLÁN', 41057813, '', 1, '2022-01-07 17:49:15'),
+(10, '3020DYMU', 'MARY', 'AN', 'JOHANA', 'HERNÁNDEZ', 'FLORES', 'ALDEA EL PASO DE LOS JALAPAS, EL JÍCARO', 30192812, 0xffd8ffdb004300080606070605080707070909080a0c140d0c0b0b0c1912130f141d1a1f1e1d1a1c1c20242e2720222c231c1c2837292c30313434341f27393d38323c2e333432ffdb0043010909090c0b0c180d0d1832211c213232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232ffc00014080096006404012200021101031101042200ffc4001f0000010501010101010100000000000000000102030405060708090a0bffc400b5100002010303020403050504040000017d01020300041105122131410613516107227114328191a1082342b1c11552d1f02433627282090a161718191a25262728292a3435363738393a434445464748494a535455565758595a636465666768696a737475767778797a838485868788898a92939495969798999aa2a3a4a5a6a7a8a9aab2b3b4b5b6b7b8b9bac2c3c4c5c6c7c8c9cad2d3d4d5d6d7d8d9dae1e2e3e4e5e6e7e8e9eaf1f2f3f4f5f6f7f8f9faffc4001f0100030101010101010101010000000000000102030405060708090a0bffc400b51100020102040403040705040400010277000102031104052131061241510761711322328108144291a1b1c109233352f0156272d10a162434e125f11718191a262728292a35363738393a434445464748494a535455565758595a636465666768696a737475767778797a82838485868788898a92939495969798999aa2a3a4a5a6a7a8a9aab2b3b4b5b6b7b8b9bac2c3c4c5c6c7c8c9cad2d3d4d5d6d7d8d9dae2e3e4e5e6e7e8e9eaf2f3f4f5f6f7f8f9faffda000e040100021103110400003f00f66a28a2803dfe8a28a28a28a0028a28a28a28a0028a28a28a28a0028a28a28a28a0028a28a28a28a0028a28a28a28a0028a28a28a28a0028a28a28a28a0028a28a28a2ac4568f2216276fa67bd0014514557a29594ab156182292800a28a28a28a2800a28a28a28a2800a28a28a28a2800a28a28a28a2800a28a28a96181a66c0e07734c4da6450e70a4e09ad6555450aa300500145145402ce20ea7070074f5ab145140051451505c5b899723871d3deb38820904608ad8aaf736fe68dcbf7c7eb4005145159d4549240f1aab30e0fe951d00145145145145001451451451450014514514514500145145046460f4ab3a55f8bb49a163fbeb7728c0f523b1fcaa9b481410a7e6efed5cf2dfbe95e2279864a12048beaa40cd0014514577b45363759635911832300548ee29d400514514514514005145148ca194ab0c8359b710185b23943d0d69d2328752ac320d0014514563d1534f0185bd54f4350d001451451451450014514514514500145145665e4ff0066d5602c711ce9e5b7b10783fafea6b175a006a2d8233b46e1e86b4fc47116b58a503211883ed9ff00f5573cf164bdd039f35bf79ece0633f8800fd7348028a28aeafc27aa6f43a7cadf32e5a227b8ee3fad7535e5b6f33dbceb3a31578c17523d40cd7a2d8ea76f7ba5adf07558f692e73c291d6aada5c028a28ab85d55954b005ba027ad2d78ff00897c537b79ae5bde58b320b7980b64f5fa8f7af4dd075a835ed262bd838278913ba30ea2a6e36828a28ad3a28a298828a28a4655752ac320d664f0185f1d54f435a959d7926f9b68e8bc7e34005145155e8a28a0028a28a28a28a0028a28a8e7856e20785feeb8c571e8861b896d26c2863b093d030e87fcf626bb4ae77c4369b644ba51c37caff5edfe7da800a28a2b18662970e99da70c8ddfd41aaf73349a6e952d85bccef692480951d4ae49c1fcf9fa55e9ff007d125c0fbdf724ff007bb1fc47ea0d529ae05aec9cc6b26c6c856e84e0e33ed9a69f7d8028a28ac098cb0cda6b5ee23915a169370c6de01e476e3b55af09ebd71e13d71adeec11012b0dca039c10a3e71f9fe22a09ac2ff5a599a1469a504cae4f563ce7f1f6ac8f3a5beb9b48a500b2058738e48cf19f5c0c0fa014b9b7d372ac1451457d188eb222ba3065619047714eac0d37578d354934e76182729cf46eebf8f5fc6b7e82428a28aaba8dd8b1b29263cb70a83d589c01f991543ad32fa54d4b5a874d43f25a917170de847dc5fcce7f0a78208ca9ca9e87d6800a28a28a28a2800a28a28a28a2800a28a28a86eedd6ead6485bf88707d0f635351400514515c541fba9e4b69be557f91f3fc27b1fc0fe99acad4dc2f9d6cc0acb1edc827dffc6ba5f105a79570b72a3e59386ff7ab2755b7b6d474f86e2790c6f18fb3cb228c9d87073f5f978f7cd356ea01451454fa4de5b695e1817ec0edf9e420f566f9401f9e2bce66ba966be7bb242caf21932a3186273c575ba9cf26a5a47d9628c411a92c91af4c71b57f203f1e6b92821f3a47562576a3b9fc013fcc62b09cad3d363a2104e0df50a28a2b4db549edda4d4619995ae8fcddca4dd4fe9920fe1dabd6bc37e2db7d5bc3af7b3b059ed53fd217dc0ea3eb5e2b653c714863b85dd6d2f122f71e8c3dc7f8fad74be0cd34dedeb59ac8489a5db2943c18970cc7f120015118cd55ba7eeb5f88e728ca9d9af793fc028a28aecda592c7c346694e350d76e5507aaab9c7e41327db35bf589aada5cea5e2ed3ae542ff0067589923007f7c2f27fefaf97fe03ef5b75d08e7614514514514531051451451451400514514514514005145155afad45e59c909ea4654fa1ed5c7c6a85a4b6b8e22946c7cff000f3c1fc0806bb9ae5b5eb4f22f3ce51f24bcff00c0bbd00145145717717325b6aaf1c80a8898c6cbe9cf350deda881eeae531b1e13ff007d1651fa839fceb4bc436be6c316a083e6188a6fa81f2b7e2063fe03ef54ad8aded93dac9d40c03eddab8936a6e12f90e9546a76614514573b5eade00b17d2fc3371ab347fe913931c0ac3fdac0fc0b633f4af3dd1b479753d7edf4dda72d2624f651d4fe5fcebdaaf02b5ec1691f115a2ef603a1720851f80dc48ff00694d6f4af63a2b25cd7414514536088410244093b46371ea4f727dcd494515b1ccf50a28a28a28a2800a28a28a28a2800a28a28a28a2800a28a28aa9a9da7db2c5e303e71f327d455ba2800a28a2b84558e4592de7e21997cb7e3eefa1fc0e0fe15c9b24da6ea0f148b8922628e3ae7d7f0aeef5bb4fb35f175188e5f987d7bff9f7ac2d5b4c935336b3dbae662eb6f2f1ff007c31fc320fd07ad736220da538ee889aea828a28aea7c13a65bc42e35d930b98f6ab9e814724ff009f4ad9b50e6369a518967632b83db3d07e0303f0a95ad60d3f49b5d215328c9b587aa81ce7f1207e34eade2ac8d5c9b41451451451455121451451451450014514514514500145145145145001451451451450014514567eb36cb71a7484f0d1fce0fd3ad739a6deb585f473a8ca82372fa8ce7fa514500145145762cfe7dedc4c7a06f2947a05ff00eb93fa53a8a2800a28a28a28a2800a28a28a28a2800a28a2bfffd9, 1, '2022-01-07 17:49:15'),
+(11, 'D438DYMU', 'FERNANDO', 'JOSÉ', 'ABELARDO', 'MARTÍNEZ', 'FLORES', 'BARRIO EL CEMENTERIO', 41392418, NULL, 1, '2022-01-07 18:48:19');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `boleta`
+-- Estructura de tabla para la tabla `contacto`
 --
 
-CREATE TABLE `boleta` (
-  `codigo_boleta` int(10) UNSIGNED NOT NULL,
-  `boletas_asociadas` varchar(300) DEFAULT NULL,
-  `fecha_commit` timestamp NOT NULL DEFAULT current_timestamp(),
-  `usuario_commit` int(10) UNSIGNED NOT NULL
+CREATE TABLE `contacto` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `id_alumno` int(10) UNSIGNED NOT NULL,
+  `nombres` varchar(100) NOT NULL,
+  `apellidos` varchar(100) NOT NULL,
+  `direccion` varchar(200) NOT NULL,
+  `telefonoCelular` int(11) NOT NULL,
+  `telefonoCasa` int(11) DEFAULT NULL,
+  `fecha_commit` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `boleta`
+-- Volcado de datos para la tabla `contacto`
 --
 
-INSERT INTO `boleta` (`codigo_boleta`, `boletas_asociadas`, `fecha_commit`, `usuario_commit`) VALUES
-(1, NULL, '2021-10-18 17:43:53', 1),
-(10010, NULL, '2021-10-23 19:58:44', 1),
-(20001, NULL, '2021-10-30 16:48:07', 1),
-(40000, NULL, '2021-10-30 16:58:20', 1);
+INSERT INTO `contacto` (`id`, `id_alumno`, `nombres`, `apellidos`, `direccion`, `telefonoCelular`, `telefonoCasa`, `fecha_commit`) VALUES
+(11, 9, 'NARLING ALDRINA', 'SÁNCHEZ PAIZ', 'BARRIO EL CEMENTERIO', 41392318, 43785790, '2022-01-08 04:19:17'),
+(12, 9, 'DANNY JOSÉ RODOLFO', 'FLORES CASTRO', 'BARRIO EL CEMENTERIO', 57125780, 33127131, '2022-01-08 04:22:23'),
+(14, 10, 'EDWIN JAVIER', 'HERNÁNDEZ MEJÍA', 'ALDEA EL PASO DE LOS JALAPAS', 40205762, 51728172, '2022-01-08 04:55:23'),
+(15, 10, 'DEIMY ADA NINETH', 'FLORES CASTRO', 'ALDEA EL PASO DE LOS JALAPAS', 42829191, 90812218, '2022-01-08 05:11:05');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `clima`
+-- Estructura de tabla para la tabla `cursos`
 --
 
-CREATE TABLE `clima` (
+CREATE TABLE `cursos` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `id_profesor` int(10) UNSIGNED NOT NULL,
+  `id_grado` int(10) UNSIGNED NOT NULL,
+  `nombre` varchar(100) NOT NULL,
+  `hora_inicio` varchar(45) NOT NULL,
+  `hora_fin` varchar(45) NOT NULL,
+  `dias_semana` varchar(45) NOT NULL,
+  `estado` int(11) NOT NULL DEFAULT 1,
+  `fecha_commit` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `cursos`
+--
+
+INSERT INTO `cursos` (`id`, `id_profesor`, `id_grado`, `nombre`, `hora_inicio`, `hora_fin`, `dias_semana`, `estado`, `fecha_commit`) VALUES
+(33, 8, 14, 'COMPUTACIÓN', '07:30', '08:00', '14', 1, '2021-03-14 23:54:12'),
+(34, 8, 14, 'MATEMÁTICA', '08:00', '08:30', '12345', 1, '2021-03-15 00:11:32'),
+(37, 6, 16, 'INGLÉS', '07:30', '08:30', '15', 1, '2022-01-08 20:05:36'),
+(38, 6, 14, 'CIENCIAS SOCIALES', '10:00', '10:45', '12345', 1, '2022-02-08 03:59:30'),
+(39, 8, 1, 'DIBUJO', '09:00', '10:00', '12345', 1, '2022-02-10 22:33:12');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `grados`
+--
+
+CREATE TABLE `grados` (
   `id` int(10) UNSIGNED NOT NULL,
   `nombre` varchar(100) NOT NULL,
-  `estado` int(11) DEFAULT 1,
+  `estado` int(11) NOT NULL DEFAULT 1,
   `fecha_commit` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `clima`
+-- Volcado de datos para la tabla `grados`
 --
 
-INSERT INTO `clima` (`id`, `nombre`, `estado`, `fecha_commit`) VALUES
-(1, 'SECO', 1, '2021-09-17 16:58:21'),
-(2, 'LLUVIOSO', 1, '2021-09-17 16:58:21'),
-(3, 'NEBLINA', 1, '2021-09-17 16:59:03'),
-(4, 'VIENTO FUERTE', 1, '2021-09-17 16:59:03');
+INSERT INTO `grados` (`id`, `nombre`, `estado`, `fecha_commit`) VALUES
+(1, 'PREPRIMARIA', 1, '2021-02-05 14:02:52'),
+(14, 'PRIMERO PRIMARIA', 1, '2021-03-14 23:52:21'),
+(15, 'SEGUNDO PRIMARIA', 1, '2022-01-08 15:33:35'),
+(16, 'TERCERO PRIMARIA', 1, '2022-01-08 15:57:26'),
+(17, 'CUARTO PRIMARIA', 1, '2022-01-08 15:57:35'),
+(18, 'QUINTO PRIMARIA', 1, '2022-01-08 15:57:43'),
+(19, 'SEXTO PRIMARIA', 1, '2022-01-08 15:57:50'),
+(20, 'PRIMERO BÁSICO', 1, '2022-01-08 15:57:57'),
+(21, 'SEGUNDO BÁSICO', 1, '2022-01-08 15:58:04'),
+(22, 'TERCERO BÁSICO', 1, '2022-01-08 15:58:14');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `conductor`
+-- Estructura de tabla para la tabla `matricula`
 --
 
-CREATE TABLE `conductor` (
+CREATE TABLE `matricula` (
   `id` int(10) UNSIGNED NOT NULL,
-  `id_boleta` int(10) UNSIGNED NOT NULL,
-  `nombre` varchar(250) DEFAULT NULL,
-  `edad` int(11) DEFAULT NULL,
-  `sexo` int(10) UNSIGNED DEFAULT NULL,
-  `domicilio` varchar(250) DEFAULT NULL,
-  `estado_conductor` varchar(100) DEFAULT NULL,
-  `conductor_consignado` int(11) DEFAULT NULL,
-  `lugar_de_traslado` varchar(200) DEFAULT NULL,
-  `sintomas_ebriedad` int(11) DEFAULT NULL,
-  `grados` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `conductor`
---
-
-INSERT INTO `conductor` (`id`, `id_boleta`, `nombre`, `edad`, `sexo`, `domicilio`, `estado_conductor`, `conductor_consignado`, `lugar_de_traslado`, `sintomas_ebriedad`, `grados`) VALUES
-(38, 1, 'Fernando José Martínez Flores', 22, 1, 'San Cristóbal Acasaguastlán, El Progreso', 'ILESO', 2, 'NINGUNO', 2, '10'),
-(39, 1, 'ADRIAN JOSUÉ MEJÍA GALDÁMEZ', 23, 1, 'Estanzuela, Zacapa', 'FUGADO', 2, 'NO INDICA', 2, '');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `departamento`
---
-
-CREATE TABLE `departamento` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `nombre` varchar(150) DEFAULT NULL,
+  `id_alumno` int(10) UNSIGNED NOT NULL,
+  `id_grado` int(10) UNSIGNED NOT NULL,
+  `valor_inscripcion` float NOT NULL,
+  `valor_mensual` float NOT NULL,
   `estado` int(11) NOT NULL DEFAULT 1,
   `fecha_commit` timestamp NOT NULL DEFAULT current_timestamp(),
-  `usuario_commit` int(10) UNSIGNED NOT NULL
+  `anio` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `departamento`
+-- Volcado de datos para la tabla `matricula`
 --
 
-INSERT INTO `departamento` (`id`, `nombre`, `estado`, `fecha_commit`, `usuario_commit`) VALUES
-(1, 'ZACAPA', 1, '2021-09-16 02:44:11', 1),
-(2, 'EL PROGRESO', 1, '2021-10-17 18:35:33', 1),
-(3, 'CHIQUIMULA', 1, '2021-10-17 23:01:24', 1),
-(4, 'IZABAL', 1, '2021-12-14 23:52:36', 1),
-(5, 'PETÉN', 1, '2021-12-14 23:54:26', 1),
-(6, 'QUICHÉ', 1, '2021-12-14 23:56:43', 1);
+INSERT INTO `matricula` (`id`, `id_alumno`, `id_grado`, `valor_inscripcion`, `valor_mensual`, `estado`, `fecha_commit`, `anio`) VALUES
+(22, 9, 14, 150, 160, 1, '2022-01-10 19:16:00', 2022),
+(23, 11, 14, 150, 160, 1, '2022-01-28 16:09:35', 2022),
+(24, 10, 1, 150, 150, 1, '2022-02-10 22:32:31', 2022);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `iluminacion`
+-- Estructura de tabla para la tabla `movimientos`
 --
 
-CREATE TABLE `iluminacion` (
+CREATE TABLE `movimientos` (
+  `id` int(10) NOT NULL,
+  `id_operacion` int(10) UNSIGNED NOT NULL,
+  `id_usuario_receptor` int(10) UNSIGNED NOT NULL,
+  `id_usuario_operacion` int(10) UNSIGNED NOT NULL,
+  `total` float NOT NULL,
+  `numero_comprobante` text NOT NULL,
+  `fotografia_comprobante` longblob NOT NULL,
+  `estado` int(11) NOT NULL DEFAULT 1,
+  `fecha_commit` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `movimientos`
+--
+
+INSERT INTO `movimientos` (`id`, `id_operacion`, `id_usuario_receptor`, `id_usuario_operacion`, `total`, `numero_comprobante`, `fotografia_comprobante`, `estado`, `fecha_commit`) VALUES
+(35, 9, 9, 1, 150, '2312310', '', 1, '2022-02-09 22:50:30');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `notas`
+--
+
+CREATE TABLE `notas` (
   `id` int(10) UNSIGNED NOT NULL,
+  `id_curso` int(10) UNSIGNED NOT NULL,
+  `id_alumno` int(10) UNSIGNED NOT NULL,
+  `bimestre` int(11) NOT NULL,
+  `anio` int(11) NOT NULL,
+  `nota` float NOT NULL,
+  `fecha_commit` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `notas`
+--
+
+INSERT INTO `notas` (`id`, `id_curso`, `id_alumno`, `bimestre`, `anio`, `nota`, `fecha_commit`) VALUES
+(45, 33, 9, 1, 2022, 23, '2022-01-10 19:18:19'),
+(46, 34, 9, 1, 2022, 23, '2022-01-10 19:21:05'),
+(47, 33, 9, 2, 2022, 21, '2022-02-07 18:06:12'),
+(48, 34, 9, 2, 2022, 18, '2022-02-07 18:06:38'),
+(49, 33, 9, 3, 2022, 25, '2022-02-08 03:31:48'),
+(50, 34, 9, 3, 2022, 19, '2022-02-08 03:56:22'),
+(51, 33, 9, 4, 2022, 21, '2022-02-08 03:56:45'),
+(52, 34, 9, 4, 2022, 24, '2022-02-08 03:57:15'),
+(54, 38, 9, 1, 2022, 24, '2022-02-09 21:29:09'),
+(55, 38, 9, 2, 2022, 18, '2022-02-09 21:33:17'),
+(56, 38, 9, 3, 2022, 23, '2022-02-09 21:50:33'),
+(57, 33, 11, 1, 2022, 24, '2022-02-09 21:59:07'),
+(58, 33, 11, 2, 2022, 23, '2022-02-09 21:59:16'),
+(59, 34, 11, 2, 2022, 17, '2022-02-09 21:59:22'),
+(60, 33, 11, 3, 2022, 19, '2022-02-09 21:59:39'),
+(61, 33, 11, 4, 2022, 12, '2022-02-09 21:59:46'),
+(62, 34, 11, 1, 2022, 21, '2022-02-09 21:59:55'),
+(63, 34, 11, 3, 2022, 25, '2022-02-09 22:00:01'),
+(64, 34, 11, 4, 2022, 15, '2022-02-09 22:00:08'),
+(65, 38, 11, 2, 2022, 19, '2022-02-09 22:00:15'),
+(66, 38, 11, 1, 2022, 21, '2022-02-09 22:00:22'),
+(67, 38, 9, 4, 2022, 21, '2022-02-09 22:10:43'),
+(68, 39, 10, 1, 2022, 19, '2022-02-10 23:04:40');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `operaciones`
+--
+
+CREATE TABLE `operaciones` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `id_usuario` int(10) UNSIGNED NOT NULL,
   `nombre` varchar(100) NOT NULL,
-  `estado` int(11) DEFAULT 1,
-  `fecha_commit` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `iluminacion`
---
-
-INSERT INTO `iluminacion` (`id`, `nombre`, `estado`, `fecha_commit`) VALUES
-(1, 'NATURAL', 1, '2021-09-17 16:57:42'),
-(2, 'ARTIFICIAL', 1, '2021-09-17 16:57:42');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `licencia`
---
-
-CREATE TABLE `licencia` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `id_boleta` int(10) UNSIGNED NOT NULL,
-  `porta_licencia` int(11) NOT NULL,
-  `estado_licencia` varchar(100) DEFAULT NULL,
-  `tipo_licencia` varchar(100) DEFAULT NULL,
-  `no_licencia` varchar(100) DEFAULT NULL,
-  `consignada` int(11) DEFAULT NULL,
-  `autoridad_consignadora` varchar(150) DEFAULT NULL,
-  `doc_consignado` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `licencia`
---
-
-INSERT INTO `licencia` (`id`, `id_boleta`, `porta_licencia`, `estado_licencia`, `tipo_licencia`, `no_licencia`, `consignada`, `autoridad_consignadora`, `doc_consignado`) VALUES
-(28, 1, 1, 'ALTERADA', 'C', '3053379550204', 2, 'NINGUNO', 'NINGUNO'),
-(29, 1, 2, 'NO PORTA LICENCIA', 'NO INDICA', 'NO INDICA', 2, 'NINGUNO', 'NINGUNO');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `municipio`
---
-
-CREATE TABLE `municipio` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `id_departamento` int(10) UNSIGNED NOT NULL,
-  `nombre` varchar(150) NOT NULL,
-  `estado` int(11) NOT NULL DEFAULT 1,
+  `descripcion` varchar(200) NOT NULL,
+  `costo` float NOT NULL,
   `fecha_commit` timestamp NOT NULL DEFAULT current_timestamp(),
-  `usuario_commit` int(10) UNSIGNED NOT NULL
+  `credito_debito` tinyint(4) NOT NULL DEFAULT 0,
+  `estado` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `municipio`
+-- Volcado de datos para la tabla `operaciones`
 --
 
-INSERT INTO `municipio` (`id`, `id_departamento`, `nombre`, `estado`, `fecha_commit`, `usuario_commit`) VALUES
-(3, 1, 'ZACAPA', 1, '2021-09-16 02:46:39', 1),
-(4, 1, 'TECULUTÁN', 1, '2021-10-17 23:10:45', 1),
-(5, 1, 'USUMATLÁN', 1, '2021-10-17 23:11:48', 1),
-(7, 2, 'SAN CRISTÓBAL ACASAGUASTLÁN', 1, '2021-12-15 02:56:26', 1);
+INSERT INTO `operaciones` (`id`, `id_usuario`, `nombre`, `descripcion`, `costo`, `fecha_commit`, `credito_debito`, `estado`) VALUES
+(9, 1, 'INSCRIPCIÓN PRIMARIA', 'PAGO DE INSCRIPCIÓN CORRESPONDIENTE AL NIVEL ACADÉMICO PRIMARIA', 150, '2021-03-14 23:57:31', 1, 1),
+(10, 1, 'MENSUALIDAD NIVEL PRIMARIA', 'PAGO CORRESPONDIENTE A LA MENSUALIDAD DEL NIVEL ACADÉMICO PRIMARIA', 160, '2021-03-14 23:58:44', 1, 1),
+(11, 1, 'INSCRIPCIÓN BÁSICOS', 'PAGO CORRESPONDIENTE A LA INSCRIPCIÓN DEL NIVEL ACADÉMICO BÁSICOS', 200, '2022-01-09 15:14:18', 1, 1),
+(12, 1, 'MENSUALIDAD NIVEL BÁSICOS', 'PAGO CORRESPONDIENTE A LA MENSUALIDAD DEL NIVEL ACADÉMICO DE BÁSICOS', 180, '2022-01-09 15:47:16', 1, 1),
+(13, 1, 'INSCRIPCIÓN BACHILLERATO EN COMPUTACIÓN', 'PAGO CORRESPONDIENTE A LA INSCRIPCIÓN DEL NIVEL ACADÉMICO BACHILLERATO EN CIENCIAS Y LETRAS CON ORIENTACIÓN EN COMPUTACIÓN', 225, '2022-01-10 03:54:54', 1, 1),
+(14, 1, 'MENSUALIDAD BACHILLER EN COMPUTACIÓN', 'PAGO CORRESPONDIENTE A LA MENSUALIDAD DEL NIVEL ACADÉMICO BACHILLERATO EN CIENCIAS Y LETRAS CON ORIENTACIÓN EN COMPUTACIÓN', 250, '2022-01-10 03:57:07', 1, 1);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `observaciones`
+-- Estructura de tabla para la tabla `planilla`
 --
 
-CREATE TABLE `observaciones` (
+CREATE TABLE `planilla` (
   `id` int(10) UNSIGNED NOT NULL,
-  `id_boleta` int(10) UNSIGNED NOT NULL,
-  `descripcion` varchar(500) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `observaciones`
---
-
-INSERT INTO `observaciones` (`id`, `id_boleta`, `descripcion`) VALUES
-(15, 1, 'LOS SEÑORES INVOLUCRADOS LLEGARON A ACUERDOS VERBALES CON LA ASEGURADORA PARA DEFINIR LOS TÉRMINOS DE NEGOCIACIÓN DE PÉRDIDAS EQUITATIVAS PARA AMBOS CONDUCTORES, POR LO QUE EL TESTIGO ASISTENTE 1 Y ASISTENTE 2 DAN FE DE LO PACTADO.');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `rol`
---
-
-CREATE TABLE `rol` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `nombre` varchar(150) NOT NULL,
-  `estado` int(11) NOT NULL DEFAULT 1,
+  `id_empleado` int(10) UNSIGNED NOT NULL,
+  `mes` int(11) NOT NULL,
+  `anio` int(11) NOT NULL,
+  `salario_ordinario` float NOT NULL,
+  `abono` float NOT NULL,
+  `descuento` float NOT NULL,
+  `numero_cheque` float NOT NULL,
+  `sueldo_liquido` float NOT NULL,
   `fecha_commit` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `rol`
+-- Volcado de datos para la tabla `planilla`
 --
 
-INSERT INTO `rol` (`id`, `nombre`, `estado`, `fecha_commit`) VALUES
-(1, 'SUPERVISOR', 1, '2021-09-15 19:45:58'),
-(2, 'AGENTE', 1, '2021-09-15 19:45:58');
+INSERT INTO `planilla` (`id`, `id_empleado`, `mes`, `anio`, `salario_ordinario`, `abono`, `descuento`, `numero_cheque`, `sueldo_liquido`, `fecha_commit`) VALUES
+(2, 8, 3, 2021, 1000, 200, 200, 121021000, 600, '2021-03-15 01:29:04'),
+(3, 6, 12, 2021, 2000, 0, 0, 3213140, 2000, '2021-12-04 14:50:10');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `seccion1`
+-- Estructura de tabla para la tabla `sueldos`
 --
 
-CREATE TABLE `seccion1` (
+CREATE TABLE `sueldos` (
   `id` int(10) UNSIGNED NOT NULL,
-  `id_boleta` int(10) UNSIGNED NOT NULL,
-  `boleta_siguiente` int(11) NOT NULL,
-  `inicio` int(11) NOT NULL,
-  `fin` int(11) NOT NULL,
-  `departamento` int(10) UNSIGNED NOT NULL,
-  `municipio` int(10) UNSIGNED NOT NULL,
-  `area` int(10) UNSIGNED NOT NULL,
-  `ruta` varchar(100) DEFAULT NULL,
-  `sentido_via` varchar(100) DEFAULT NULL,
-  `aldea` varchar(200) DEFAULT NULL,
-  `direccion` varchar(200) DEFAULT NULL,
-  `km` float DEFAULT NULL,
-  `fecha` date NOT NULL,
-  `hora` time NOT NULL,
-  `fecha_commit` varchar(45) NOT NULL DEFAULT 'CURRENT_TIMESTAMP'
+  `id_empleado` int(10) UNSIGNED NOT NULL,
+  `sueldo` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `seccion1`
+-- Volcado de datos para la tabla `sueldos`
 --
 
-INSERT INTO `seccion1` (`id`, `id_boleta`, `boleta_siguiente`, `inicio`, `fin`, `departamento`, `municipio`, `area`, `ruta`, `sentido_via`, `aldea`, `direccion`, `km`, `fecha`, `hora`, `fecha_commit`) VALUES
-(20, 1, 2, 1, 2, 1, 3, 0, 'CA-9', 'CARRIL IZQUIERDO', 'ALDEA EL MANZANAL', '2DA A, ZONA 1', 10, '2021-10-18', '11:44:00', 'CURRENT_TIMESTAMP');
+INSERT INTO `sueldos` (`id`, `id_empleado`, `sueldo`) VALUES
+(1, 1, 2800),
+(6, 8, 1500),
+(7, 6, 8000);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `seccion2`
+-- Estructura de tabla para la tabla `tblroles`
 --
 
-CREATE TABLE `seccion2` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `id_boleta` int(10) UNSIGNED NOT NULL,
-  `tipo_de_hecho` varchar(100) NOT NULL,
-  `tipo_de_choque` varchar(100) DEFAULT NULL,
-  `otro_especifique` varchar(100) DEFAULT NULL,
-  `observaciones` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `seccion2`
---
-
-INSERT INTO `seccion2` (`id`, `id_boleta`, `tipo_de_hecho`, `tipo_de_choque`, `otro_especifique`, `observaciones`) VALUES
-(19, 1, 'CHOQUE', 'FRONTAL', 'NO INDICA', 'TENDIDO ELÉCTRICO DAÑADO');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `seccion3`
---
-
-CREATE TABLE `seccion3` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `id_boleta` int(10) UNSIGNED NOT NULL,
-  `id_sexo` int(10) UNSIGNED NOT NULL,
-  `edad` int(11) NOT NULL,
-  `id_tipo_persona` int(10) UNSIGNED NOT NULL,
-  `id_tipo_consecuencia` int(10) UNSIGNED NOT NULL,
-  `num_vehiculo` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `seccion3`
---
-
-INSERT INTO `seccion3` (`id`, `id_boleta`, `id_sexo`, `edad`, `id_tipo_persona`, `id_tipo_consecuencia`, `num_vehiculo`) VALUES
-(63, 1, 1, 20, 1, 1, 1),
-(64, 1, 2, 20, 2, 1, 2),
-(65, 1, 2, 22, 1, 2, 1),
-(66, 1, 2, 21, 2, 2, 2);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `seccion4`
---
-
-CREATE TABLE `seccion4` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `id_boleta` int(10) UNSIGNED NOT NULL,
-  `tipo_senal` int(10) UNSIGNED NOT NULL,
-  `estado_tiempo` int(10) UNSIGNED NOT NULL,
-  `tipo_iluminacion` int(10) UNSIGNED NOT NULL,
-  `otra_senal` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `seccion4`
---
-
-INSERT INTO `seccion4` (`id`, `id_boleta`, `tipo_senal`, `estado_tiempo`, `tipo_iluminacion`, `otra_senal`) VALUES
-(34, 1, 2, 1, 1, 'NO INDICA'),
-(35, 1, 6, 1, 1, 'NO INDICA');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `seccion7`
---
-
-CREATE TABLE `seccion7` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `id_boleta` int(10) UNSIGNED NOT NULL,
-  `no_pas_accidentados` int(11) DEFAULT NULL,
-  `hubo_lesionados` int(11) NOT NULL,
-  `hubo_fallecidos` int(11) NOT NULL,
-  `lesionados` int(11) DEFAULT NULL,
-  `lesionados_leves` int(11) DEFAULT NULL,
-  `lesionados_graves` int(11) DEFAULT NULL,
-  `trasladador_lesionados` varchar(100) DEFAULT NULL,
-  `fallecidos` int(11) DEFAULT NULL,
-  `trasladador_fallecidos` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `seccion7`
---
-
-INSERT INTO `seccion7` (`id`, `id_boleta`, `no_pas_accidentados`, `hubo_lesionados`, `hubo_fallecidos`, `lesionados`, `lesionados_leves`, `lesionados_graves`, `trasladador_lesionados`, `fallecidos`, `trasladador_fallecidos`) VALUES
-(20, 1, 5, 1, 1, 2, 1, 1, 'BV', 2, 'BV'),
-(21, 1, 4, 1, 1, 4, 2, 2, 'BV', 1, 'BV');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `seccion8`
---
-
-CREATE TABLE `seccion8` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `id_boleta` int(10) UNSIGNED NOT NULL,
-  `cinturon` int(11) DEFAULT NULL,
-  `silla_p_bebe` int(11) DEFAULT NULL,
-  `casco` int(11) DEFAULT NULL,
-  `falta_equipo_seg` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `seccion8`
---
-
-INSERT INTO `seccion8` (`id`, `id_boleta`, `cinturon`, `silla_p_bebe`, `casco`, `falta_equipo_seg`) VALUES
-(22, 1, 1, 2, 2, 1),
-(23, 1, 1, 2, 2, 2);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `seccion9`
---
-
-CREATE TABLE `seccion9` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `id_boleta` int(10) UNSIGNED NOT NULL,
-  `material_via` varchar(100) DEFAULT NULL,
-  `topografia` varchar(100) DEFAULT NULL,
-  `caract_geometricas` varchar(100) DEFAULT NULL,
-  `direccion_via` varchar(100) DEFAULT NULL,
-  `condicion_via` varchar(100) DEFAULT NULL,
-  `senalizacion` varchar(100) DEFAULT NULL,
-  `observacion_senalizacion` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `seccion9`
---
-
-INSERT INTO `seccion9` (`id`, `id_boleta`, `material_via`, `topografia`, `caract_geometricas`, `direccion_via`, `condicion_via`, `senalizacion`, `observacion_senalizacion`) VALUES
-(12, 1, 'ASFALTO', 'SUBIDA', 'RECTA', 'UNA SOLA DIRECCIÓN', 'SECA', 'EXISTE', 'CARRETERA CON DEMASIADO BACHEO');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `seccion10`
---
-
-CREATE TABLE `seccion10` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `id_boleta` int(10) UNSIGNED NOT NULL,
-  `acuerdo_iniciativa_propia` int(11) DEFAULT NULL,
-  `acuerdo_por_aseguradora` int(11) DEFAULT NULL,
-  `nombre_aseguradora` varchar(150) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `seccion10`
---
-
-INSERT INTO `seccion10` (`id`, `id_boleta`, `acuerdo_iniciativa_propia`, `acuerdo_por_aseguradora`, `nombre_aseguradora`) VALUES
-(18, 1, 1, 2, 'NO INDICA'),
-(19, 1, 2, 1, 'ASEGURADORA RURAL');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `senal`
---
-
-CREATE TABLE `senal` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `nombre` varchar(150) NOT NULL,
-  `estado` int(11) DEFAULT 1,
-  `fecha_commit` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `senal`
---
-
-INSERT INTO `senal` (`id`, `nombre`, `estado`, `fecha_commit`) VALUES
-(1, 'EXCESO DE VELOCIDAD', 1, '2021-09-17 16:53:36'),
-(2, 'NO REBASAR', 1, '2021-09-17 16:53:36'),
-(3, 'VIRAJE PROHIBIDO', 1, '2021-09-17 16:54:02'),
-(4, 'CIRCULAR EN VÍA CONTRARIA', 1, '2021-09-17 16:54:02'),
-(5, 'EXCESO DE PASAJEROS', 1, '2021-09-17 16:54:31'),
-(6, 'EXCESO DE CARGA', 1, '2021-09-17 16:54:31'),
-(7, 'CEDER EL PASO', 1, '2021-09-17 16:54:58'),
-(8, 'ESTACIONAMIENTO PROHIBIDO', 1, '2021-09-17 16:54:58'),
-(9, 'NO VIRAR EN U', 1, '2021-09-17 16:55:14'),
-(10, 'ALTO', 1, '2021-09-17 16:55:14'),
-(11, 'UNA VÍA', 1, '2021-09-17 16:55:38'),
-(12, 'NO LLEVAR LUCES ENCENDIDAS (SI ES DE NOCHE)', 1, '2021-09-17 16:55:38'),
-(13, 'NO VIRAR A LA IZQUIERDA', 1, '2021-09-17 16:56:21'),
-(14, 'OTRA', 1, '2021-09-17 16:56:21');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `sexo`
---
-
-CREATE TABLE `sexo` (
+CREATE TABLE `tblroles` (
   `id` int(10) UNSIGNED NOT NULL,
   `nombre` varchar(45) NOT NULL,
   `fecha_commit` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `sexo`
+-- Volcado de datos para la tabla `tblroles`
 --
 
-INSERT INTO `sexo` (`id`, `nombre`, `fecha_commit`) VALUES
-(1, 'HOMBRE', '2021-09-15 19:46:16'),
-(2, 'MUJER', '2021-09-15 19:46:16');
+INSERT INTO `tblroles` (`id`, `nombre`, `fecha_commit`) VALUES
+(1, 'Administrador', '2021-02-05 13:56:27'),
+(2, 'Profesor', '2021-02-05 13:56:41'),
+(3, 'Estudiante', '2021-02-05 13:56:52');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tipoconsecuencia`
+-- Estructura de tabla para la tabla `tblusuarios`
 --
 
-CREATE TABLE `tipoconsecuencia` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `nombre` varchar(100) NOT NULL,
-  `fecha_commit` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `tipoconsecuencia`
---
-
-INSERT INTO `tipoconsecuencia` (`id`, `nombre`, `fecha_commit`) VALUES
-(1, 'A. PERSONAS LESIONADAS', '2021-09-15 19:47:53'),
-(2, 'B. PERSONAS FALLECIDAS', '2021-09-15 19:47:53');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `tipopersona`
---
-
-CREATE TABLE `tipopersona` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `nombre` varchar(45) NOT NULL,
-  `fecha_commit` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `tipopersona`
---
-
-INSERT INTO `tipopersona` (`id`, `nombre`, `fecha_commit`) VALUES
-(1, 'PEATÓN', '2021-09-15 19:48:21'),
-(2, 'PASAJERO', '2021-09-15 19:48:21');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `tipovehiculo`
---
-
-CREATE TABLE `tipovehiculo` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `nombre` varchar(100) NOT NULL,
-  `estado` int(11) DEFAULT 1,
-  `fecha_commit` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `tipovehiculo`
---
-
-INSERT INTO `tipovehiculo` (`id`, `nombre`, `estado`, `fecha_commit`) VALUES
-(1, 'MOTOCICLETA', 1, '2021-09-15 19:49:36'),
-(2, 'MOTOTAXI', 1, '2021-09-15 19:49:36'),
-(3, 'AUTOMÓVIL', 1, '2021-09-15 19:49:53'),
-(4, 'PICK-UP', 1, '2021-09-15 19:49:53'),
-(5, 'VEHÍCULO AGRÍCOLA', 1, '2021-09-15 19:50:21'),
-(6, 'MICROBÚS', 1, '2021-09-15 19:50:21'),
-(7, 'PANEL', 1, '2021-09-15 19:50:38'),
-(8, 'CAMIONETA', 1, '2021-09-15 19:50:38'),
-(9, 'BUS URBANO', 1, '2021-09-15 19:51:00'),
-(10, 'BUS EXTRAURBANO', 1, '2021-09-15 19:51:00'),
-(11, 'BUS ESCOLAR', 1, '2021-09-15 19:51:19'),
-(12, 'BUS DE TURISMO', 1, '2021-09-15 19:51:19'),
-(13, 'CAMIÓN', 1, '2021-09-15 19:51:34'),
-(14, 'CABEZAL', 1, '2021-09-15 19:51:34'),
-(15, 'FURGÓN', 1, '2021-09-15 19:51:49'),
-(16, 'REMOLQUE', 1, '2021-09-15 19:51:49'),
-(17, 'GRÚA', 1, '2021-09-15 19:52:08'),
-(18, 'PLATAFORMA', 1, '2021-09-15 19:52:08'),
-(19, 'TRACTOR', 1, '2021-09-15 19:53:46'),
-(20, 'OTRO TIPO, ESPECIFÍQUE', 1, '2021-09-15 19:53:46');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `usuario`
---
-
-CREATE TABLE `usuario` (
+CREATE TABLE `tblusuarios` (
   `id` int(10) UNSIGNED NOT NULL,
   `id_rol` int(10) UNSIGNED NOT NULL,
-  `nombres` varchar(200) NOT NULL,
-  `apellidos` varchar(200) NOT NULL,
-  `correo` varchar(150) NOT NULL,
+  `dpi` varchar(100) DEFAULT NULL,
+  `nombres` varchar(100) NOT NULL,
+  `apellidos` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
-  `estado` int(11) NOT NULL DEFAULT 1,
+  `telefono` int(11) NOT NULL,
+  `fotografia` longblob DEFAULT NULL,
   `fecha_commit` timestamp NOT NULL DEFAULT current_timestamp(),
-  `usuario_commit` int(10) UNSIGNED NOT NULL
+  `estado` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `usuario`
+-- Volcado de datos para la tabla `tblusuarios`
 --
 
-INSERT INTO `usuario` (`id`, `id_rol`, `nombres`, `apellidos`, `correo`, `password`, `estado`, `fecha_commit`, `usuario_commit`) VALUES
-(1, 1, 'Fernando José', 'Martínez Flores', 'ferfer21140@gmail.com', '12345', 1, '2021-09-15 19:46:44', 0),
-(5, 2, ' Samuel Estuardo', ' Ramirez Garcia', 'sam0411@gmail.com', 'asdfg', 1, '2021-09-18 18:35:38', 1),
-(9, 1, 'José Andres', 'Hernández Flores', 'joseandres21140@gmail.com', '12345', 1, '2021-10-18 00:01:11', 1),
-(10, 1, 'Oscar René', 'Ortíz', 'oscarortiz2021@gmail.com', '12345', 1, '2021-10-18 00:02:31', 1),
-(11, 1, 'Maria Dolores', 'Castro Falla', 'mcastro@gmail.com', '12345', 1, '2021-10-18 00:19:34', 1),
-(14, 1, 'Marcos Daniel', 'López Alonso', 'marcos2021@gmail.com', '12345', 1, '2021-12-14 18:21:44', 10),
-(15, 1, 'Juan Manuel', 'Sánchez López', 'juanmanuel@gmail.com', '12345', 1, '2021-12-16 20:38:46', 1);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `vehiculoinvolucrado`
---
-
-CREATE TABLE `vehiculoinvolucrado` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `id_boleta` int(10) UNSIGNED NOT NULL,
-  `placa` varchar(100) DEFAULT NULL,
-  `color` varchar(50) DEFAULT NULL,
-  `marca` varchar(100) DEFAULT NULL,
-  `modelo` varchar(100) DEFAULT NULL,
-  `tarjeta_circulacion` varchar(150) DEFAULT NULL,
-  `consignado` int(11) DEFAULT -1,
-  `consignador` varchar(100) DEFAULT NULL,
-  `tipo_vehiculo` int(10) UNSIGNED NOT NULL,
-  `servicio` varchar(100) DEFAULT NULL,
-  `especifique_otro_vehiculo` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `vehiculoinvolucrado`
---
-
-INSERT INTO `vehiculoinvolucrado` (`id`, `id_boleta`, `placa`, `color`, `marca`, `modelo`, `tarjeta_circulacion`, `consignado`, `consignador`, `tipo_vehiculo`, `servicio`, `especifique_otro_vehiculo`) VALUES
-(27, 1, 'P-258BFJ', 'BLANCO', 'TOYOTA', '1994', '10010', 0, 'NINGUNO', 4, 'NO INDICA', 'NO INDICA'),
-(28, 1, 'P060HMS', 'GRIS', 'MITSUBISHI', '2007', '4010201', 1, 'PNC', 8, 'NO INDICA', 'NO INDICA');
+INSERT INTO `tblusuarios` (`id`, `id_rol`, `dpi`, `nombres`, `apellidos`, `email`, `password`, `telefono`, `fotografia`, `fecha_commit`, `estado`) VALUES
+(1, 1, '3053379550208', 'FERNANDO JOSÉ', 'MARTINEZ FLORES', 'ferfer21140@gmail.com', 'Fer.2020', 41057814, '', '2021-02-05 13:58:14', 1),
+(6, 2, '3053379550203', 'EVERILDO', 'MORALES', 'everildo@gmail.com', '12345', 50483821, 0xffd8ffdb004300080606070605080707070909080a0c140d0c0b0b0c1912130f141d1a1f1e1d1a1c1c20242e2720222c231c1c2837292c30313434341f27393d38323c2e333432ffdb0043010909090c0b0c180d0d1832211c213232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232ffc00014080096006404012200021101031101042200ffc4001f0000010501010101010100000000000000000102030405060708090a0bffc400b5100002010303020403050504040000017d01020300041105122131410613516107227114328191a1082342b1c11552d1f02433627282090a161718191a25262728292a3435363738393a434445464748494a535455565758595a636465666768696a737475767778797a838485868788898a92939495969798999aa2a3a4a5a6a7a8a9aab2b3b4b5b6b7b8b9bac2c3c4c5c6c7c8c9cad2d3d4d5d6d7d8d9dae1e2e3e4e5e6e7e8e9eaf1f2f3f4f5f6f7f8f9faffc4001f0100030101010101010101010000000000000102030405060708090a0bffc400b51100020102040403040705040400010277000102031104052131061241510761711322328108144291a1b1c109233352f0156272d10a162434e125f11718191a262728292a35363738393a434445464748494a535455565758595a636465666768696a737475767778797a82838485868788898a92939495969798999aa2a3a4a5a6a7a8a9aab2b3b4b5b6b7b8b9bac2c3c4c5c6c7c8c9cad2d3d4d5d6d7d8d9dae2e3e4e5e6e7e8e9eaf2f3f4f5f6f7f8f9faffda000e040100021103110400003f00eb3ad2d3453d4579e8ee3dfe8a28a70029d8a00e69e0715ac4cdb0a28a2998a5db4ec52823357625b0a28a299b7da8db526734b458570a28a2a1d9cd3c2548053b14ec2b85145150eda5db52e29a4734ac170a28a2a2db453c8e68a430a28a2a98eb528a8875a916b089bc828a28a9453a999aa7a96a3069d6725c5c4812341924d6f130930a28a2ad493246a5998003924d7397be37d16cd82b5dab9ce309ce2bccf5ef19ea1accac8b2186db2404438c8f7ae62e09dbbb35aa466d8514515ec33fc4bd261765412c98e840e0d68e9fe3bd22f55774de5b1c70d5e0c2434f8e66520ee229d8570a28a2be9cb6ba8ae63124522ba1e841ab35e15e13f1b4fa2ca209bf796aec339eab5ed56b791dcc092c6c191c0208ee2958770a28a2ad1a69a37e69339a96520a28a290f5a2908e68a92828a28aa42a55eb5103cd483ad6113690514514f2702bc9be286b0ef7d069b1c84222ef900ee4f4af55738535e0de2695f54f185d460824cde5ab0f41c57440e79851451588ac7ad4fb7cc888aeddfc090bdac62290ac8072c7b9a647e04654c35c1ddec2b4b9160a28a2bcf0820e294577973e01ce0c731dc7a922a80f025df98419576f6345c2c145145728ac457aefc30d5ae2eac27b398964b723613e87b5735ff081af90c7cf6f331c7a5697c36692c359bfd3a61b5b686c7b8a010514515eaf9e29734c078a3350cb41451453f3453334548c28a28aaa3ad48b518eb4f1d6b089bc828a28aaba9cff0067d3ee25fee46cdf90af11f0a442f7c4c8f2fcc7264e7b9af65f109c6857c7fe983ff235e6ff000eb4a67927d41d7e503621f7ef5d11d8e796e1451457a0a478038a7ec1546e35ab0b494c52dca2b8ea335660bdb7b940d14a8c0fa1aa10514514f68c544621e956c631504d3c51825980a0028a28a8bca15856d651d9f8d62bb52434abb48ed5b09a85ac8fb5655cfd6b3f500535ab094742e05315c28a28aee15be5a0b54687e514b9a96520a28a2977514c3d68a918514514c14f06980d38561137905145159daea89347bc427ef42c3f4ac2f0f583dbf85208a0611bc8a5b763a66ba1d454341303d3cb3fcaa0b487c9d32de21c6d8d47e95d11d8e77b8514515c4ea3a468968246b96926957991b2491ee6b374c5b38f50492cae25543f754f435d9dd6916f209b298330dae7fbc2a9dbe816b018f62f318c2fb0aa448514515acaec2d8127b57317b8967632ccdb3ae0575463ff0047dbed8acd6d32290b6e1cb0c1a68185145158b6f676572c045232b7639ad87864486d0cc7734532fcded4e8b4785163033fbbfbb5a12c59b7c75c107f5a62b0514515b713ee51cd3f3552d33e4ae4d59cd43290514514bcd14dcd148a0a28a2929e2a3ef4f1d6b9a2744828a28aa9a88260931dd48a7e3f76bf4a7dd2799030f6a8cfcb1a8f6ade273c828a28aad28155b203e2a799bad529537a907bd5921451455a661b3a8a8979354cc3b982ee3b476cd5a89762e339a620a28a2a6c7352310b19a8837ce29f202caabeac2980514515a10802315212292318403da9462931a0a28a2933ee68a692334548c28a28a7f5a51c50bd69db6b9e28e8930a28a297ad579862ac0e950cd5b44c585145159d71c293585737d769234715a330ebbfb574130c8aafb00ed56880a28a2b998ef750374a0c185efcd6b5ade492929242ca477ed56bcb5de4e0528519e053105145152275157618f7104f6e9551172456942b8414c028a28a9470290e40a71e94d63c5263414514534d14d3d68a92828a28a954e0d4cb500eb5321ed501a8514514e23154ee1b0d57bb550ba1863548414514556277531c00290e54e6a377c8aa10514514ce39a14f34dec69a879a601451455a8bfd60ad34fba2b2e1e6415a8bd2810514514a69a694d34d218514514da2968a061451453b3cd3d4d474e0715996145145585391515c47b9723ad2a373521e95488614514564483071559c56bcb0abf38e6abb5983d0d50828a28acca23539abff0061c756a7c702a74145c028a28a6dbc38f98d5c1c54638a76680b0514514e3834dc7bd266933498c28a28a7607ad1499a290ec1451452b0e68068a2a4a0a28a29ca79a981ed451568cd8514514d279c5373834514d820a28a291ba1a87345152505145149ba973451400514514668cd145001451452d1451400514515ffd9, '2021-02-26 03:30:44', 1),
+(8, 2, '3053379550202', 'ARIEL', 'RAMÍREZ', 'arielramirez@gmail.com', '12345', 40201201, 0xffd8ffdb004300080606070605080707070909080a0c140d0c0b0b0c1912130f141d1a1f1e1d1a1c1c20242e2720222c231c1c2837292c30313434341f27393d38323c2e333432ffdb0043010909090c0b0c180d0d1832211c213232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232ffc00014080096006404012200021101031101042200ffc4001f0000010501010101010100000000000000000102030405060708090a0bffc400b5100002010303020403050504040000017d01020300041105122131410613516107227114328191a1082342b1c11552d1f02433627282090a161718191a25262728292a3435363738393a434445464748494a535455565758595a636465666768696a737475767778797a838485868788898a92939495969798999aa2a3a4a5a6a7a8a9aab2b3b4b5b6b7b8b9bac2c3c4c5c6c7c8c9cad2d3d4d5d6d7d8d9dae1e2e3e4e5e6e7e8e9eaf1f2f3f4f5f6f7f8f9faffc4001f0100030101010101010101010000000000000102030405060708090a0bffc400b51100020102040403040705040400010277000102031104052131061241510761711322328108144291a1b1c109233352f0156272d10a162434e125f11718191a262728292a35363738393a434445464748494a535455565758595a636465666768696a737475767778797a82838485868788898a92939495969798999aa2a3a4a5a6a7a8a9aab2b3b4b5b6b7b8b9bac2c3c4c5c6c7c8c9cad2d3d4d5d6d7d8d9dae2e3e4e5e6e7e8e9eaf2f3f4f5f6f7f8f9faffda000e040100021103110400003f00eb3ad2d3453d4579e8ee3dfe8a28a70029d8a00e69e0715ac4cdb0a28a2998a5db4ec52823357625b0a28a299b7da8db526734b458570a28a2a1d9cd3c2548053b14ec2b85145150eda5db52e29a4734ac170a28a2a2db453c8e68a430a28a2a98eb528a8875a916b089bc828a28a9453a999aa7a96a3069d6725c5c4812341924d6f130930a28a2ad493246a5998003924d7397be37d16cd82b5dab9ce309ce2bccf5ef19ea1accac8b2186db2404438c8f7ae62e09dbbb35aa466d8514515ec33fc4bd261765412c98e840e0d68e9fe3bd22f55774de5b1c70d5e0c2434f8e66520ee229d8570a28a2be9cb6ba8ae63124522ba1e841ab35e15e13f1b4fa2ca209bf796aec339eab5ed56b791dcc092c6c191c0208ee2958770a28a2ad1a69a37e69339a96520a28a290f5a2908e68a92828a28aa42a55eb5103cd483ad6113690514514f2702bc9be286b0ef7d069b1c84222ef900ee4f4af55738535e0de2695f54f185d460824cde5ab0f41c57440e79851451588ac7ad4fb7cc888aeddfc090bdac62290ac8072c7b9a647e04654c35c1ddec2b4b9160a28a2bcf0820e294577973e01ce0c731dc7a922a80f025df98419576f6345c2c145145728ac457aefc30d5ae2eac27b398964b723613e87b5735ff081af90c7cf6f331c7a5697c36692c359bfd3a61b5b686c7b8a010514515eaf9e29734c078a3350cb41451453f3453334548c28a28aaa3ad48b518eb4f1d6b089bc828a28aaba9cff0067d3ee25fee46cdf90af11f0a442f7c4c8f2fcc7264e7b9af65f109c6857c7fe983ff235e6ff000eb4a67927d41d7e503621f7ef5d11d8e796e1451457a0a478038a7ec1546e35ab0b494c52dca2b8ea335660bdb7b940d14a8c0fa1aa10514514f68c544621e956c631504d3c51825980a0028a28a8bca15856d651d9f8d62bb52434abb48ed5b09a85ac8fb5655cfd6b3f500535ab094742e05315c28a28aee15be5a0b54687e514b9a96520a28a2977514c3d68a918514514c14f06980d38561137905145159daea89347bc427ef42c3f4ac2f0f583dbf85208a0611bc8a5b763a66ba1d454341303d3cb3fcaa0b487c9d32de21c6d8d47e95d11d8e77b8514515c4ea3a468968246b96926957991b2491ee6b374c5b38f50492cae25543f754f435d9dd6916f209b298330dae7fbc2a9dbe816b018f62f318c2fb0aa448514515acaec2d8127b57317b8967632ccdb3ae0575463ff0047dbed8acd6d32290b6e1cb0c1a68185145158b6f676572c045232b7639ad87864486d0cc7734532fcded4e8b4785163033fbbfbb5a12c59b7c75c107f5a62b0514515b713ee51cd3f3552d33e4ae4d59cd43290514514bcd14dcd148a0a28a2929e2a3ef4f1d6b9a2744828a28aa9a88260931dd48a7e3f76bf4a7dd2799030f6a8cfcb1a8f6ade273c828a28aad28155b203e2a799bad529537a907bd5921451455a661b3a8a8979354cc3b982ee3b476cd5a89762e339a620a28a2a6c7352310b19a8837ce29f202caabeac2980514515a10802315212292318403da9462931a0a28a2933ee68a692334548c28a28a7f5a51c50bd69db6b9e28e8930a28a297ad579862ac0e950cd5b44c585145159d71c293585737d769234715a330ebbfb574130c8aafb00ed56880a28a2b998ef750374a0c185efcd6b5ade492929242ca477ed56bcb5de4e0528519e053105145152275157618f7104f6e9551172456942b8414c028a28a9470290e40a71e94d63c5263414514534d14d3d68a92828a28a954e0d4cb500eb5321ed501a8514514e23154ee1b0d57bb550ba1863548414514556277531c00290e54e6a377c8aa10514514ce39a14f34dec69a879a601451455a8bfd60ad34fba2b2e1e6415a8bd2810514514a69a694d34d218514514da2968a061451453b3cd3d4d474e0715996145145585391515c47b9723ad2a373521e95488614514564483071559c56bcb0abf38e6abb5983d0d50828a28acca23539abff0061c756a7c702a74145c028a28a6dbc38f98d5c1c54638a76680b0514514e3834dc7bd266933498c28a28a7607ad1499a290ec1451452b0e68068a2a4a0a28a29ca79a981ed451568cd8514514d279c5373834514d820a28a291ba1a87345152505145149ba973451400514514668cd145001451452d1451400514515ffd9, '2021-03-14 23:50:55', 1),
+(9, 1, '3053379550204', 'José Rodolfo', 'Flores Ruiz', 'jose@gmail.com', '12345', 41392318, NULL, '2022-01-07 23:27:15', 1);
 
 --
 -- Índices para tablas volcadas
 --
 
 --
--- Indices de la tabla `asistente`
+-- Indices de la tabla `alumnos`
 --
-ALTER TABLE `asistente`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `FK_ID_BOLETA_BOLETA_idx` (`id_boleta`);
-
---
--- Indices de la tabla `boleta`
---
-ALTER TABLE `boleta`
-  ADD PRIMARY KEY (`codigo_boleta`),
-  ADD KEY `fk_boleta_usuario_idx` (`usuario_commit`);
-
---
--- Indices de la tabla `clima`
---
-ALTER TABLE `clima`
+ALTER TABLE `alumnos`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `conductor`
+-- Indices de la tabla `contacto`
 --
-ALTER TABLE `conductor`
+ALTER TABLE `contacto`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `FK_ID_BOLETA_BOLETA_idx` (`id_boleta`);
+  ADD KEY `fk_contactos_alumnos_idx` (`id_alumno`);
 
 --
--- Indices de la tabla `departamento`
+-- Indices de la tabla `cursos`
 --
-ALTER TABLE `departamento`
+ALTER TABLE `cursos`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_departamento_usuario_idx` (`usuario_commit`);
+  ADD KEY `fk_cursos_profesor_usuario_idx` (`id_profesor`),
+  ADD KEY `fk_cursos_grados_idx` (`id_grado`);
 
 --
--- Indices de la tabla `iluminacion`
+-- Indices de la tabla `grados`
 --
-ALTER TABLE `iluminacion`
+ALTER TABLE `grados`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `licencia`
+-- Indices de la tabla `matricula`
 --
-ALTER TABLE `licencia`
+ALTER TABLE `matricula`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `id_boleta` (`id_boleta`);
+  ADD KEY `fk_matricula_idx` (`id_alumno`),
+  ADD KEY `fk_matricula_grado_idx` (`id_grado`);
 
 --
--- Indices de la tabla `municipio`
+-- Indices de la tabla `movimientos`
 --
-ALTER TABLE `municipio`
+ALTER TABLE `movimientos`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_municipio_departamento_idx` (`id_departamento`),
-  ADD KEY `fk_municipio_usuario_idx` (`usuario_commit`);
+  ADD KEY `fk_mov_opera` (`id_operacion`),
+  ADD KEY `fora_movimientos_usuarios` (`id_usuario_operacion`);
 
 --
--- Indices de la tabla `observaciones`
+-- Indices de la tabla `notas`
 --
-ALTER TABLE `observaciones`
+ALTER TABLE `notas`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_observaciones_idx` (`id_boleta`);
+  ADD KEY `fk_nota_curso_idx` (`id_curso`),
+  ADD KEY `fk_nota_alumno_idx` (`id_alumno`);
 
 --
--- Indices de la tabla `rol`
+-- Indices de la tabla `operaciones`
 --
-ALTER TABLE `rol`
+ALTER TABLE `operaciones`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_operaciones_usuario_idx` (`id_usuario`);
+
+--
+-- Indices de la tabla `planilla`
+--
+ALTER TABLE `planilla`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_planilla_usuario_idx` (`id_empleado`);
+
+--
+-- Indices de la tabla `sueldos`
+--
+ALTER TABLE `sueldos`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_sueldos_usuarios_idx` (`id_empleado`);
+
+--
+-- Indices de la tabla `tblroles`
+--
+ALTER TABLE `tblroles`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `seccion1`
+-- Indices de la tabla `tblusuarios`
 --
-ALTER TABLE `seccion1`
+ALTER TABLE `tblusuarios`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_sec1_departamento_idx` (`departamento`),
-  ADD KEY `fk_sec1_municipio_idx` (`municipio`),
-  ADD KEY `fk_sec1_boleta_idx` (`id_boleta`);
-
---
--- Indices de la tabla `seccion2`
---
-ALTER TABLE `seccion2`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_sec2_boleta_idx` (`id_boleta`);
-
---
--- Indices de la tabla `seccion3`
---
-ALTER TABLE `seccion3`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_sub3_sexo_idx` (`id_sexo`),
-  ADD KEY `fk_sub3_tipo_idx` (`id_tipo_persona`),
-  ADD KEY `fk_sub3_tipo_consecuencia_idx` (`id_tipo_consecuencia`),
-  ADD KEY `fk_sec3_boleta_idx` (`id_boleta`);
-
---
--- Indices de la tabla `seccion4`
---
-ALTER TABLE `seccion4`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_sec4_senal_idx` (`tipo_senal`),
-  ADD KEY `fk_sec4_iluminacion_idx` (`tipo_iluminacion`),
-  ADD KEY `fk_sec4_clima_idx` (`estado_tiempo`),
-  ADD KEY `fk_sec4_boleta_idx` (`id_boleta`);
-
---
--- Indices de la tabla `seccion7`
---
-ALTER TABLE `seccion7`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_sec7_boleta_idx` (`id_boleta`);
-
---
--- Indices de la tabla `seccion8`
---
-ALTER TABLE `seccion8`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_sec8_boleta_idx` (`id_boleta`);
-
---
--- Indices de la tabla `seccion9`
---
-ALTER TABLE `seccion9`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_sec9_boleta_idx` (`id_boleta`);
-
---
--- Indices de la tabla `seccion10`
---
-ALTER TABLE `seccion10`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_idboleta_boleta_idx` (`id_boleta`);
-
---
--- Indices de la tabla `senal`
---
-ALTER TABLE `senal`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `sexo`
---
-ALTER TABLE `sexo`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `tipoconsecuencia`
---
-ALTER TABLE `tipoconsecuencia`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `tipopersona`
---
-ALTER TABLE `tipopersona`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `tipovehiculo`
---
-ALTER TABLE `tipovehiculo`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `usuario`
---
-ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_usuario_rol_idx` (`id_rol`);
-
---
--- Indices de la tabla `vehiculoinvolucrado`
---
-ALTER TABLE `vehiculoinvolucrado`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `FK_SEC6_TIPO_VEHICULO_idx` (`tipo_vehiculo`),
-  ADD KEY `FK_SEC6_BOLETA_idx` (`id_boleta`);
+  ADD KEY `fk_rol_tblusuarios_tblroles_idx` (`id_rol`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT de la tabla `asistente`
+-- AUTO_INCREMENT de la tabla `alumnos`
 --
-ALTER TABLE `asistente`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+ALTER TABLE `alumnos`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT de la tabla `clima`
+-- AUTO_INCREMENT de la tabla `contacto`
 --
-ALTER TABLE `clima`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+ALTER TABLE `contacto`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT de la tabla `conductor`
+-- AUTO_INCREMENT de la tabla `cursos`
 --
-ALTER TABLE `conductor`
+ALTER TABLE `cursos`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
--- AUTO_INCREMENT de la tabla `departamento`
+-- AUTO_INCREMENT de la tabla `grados`
 --
-ALTER TABLE `departamento`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+ALTER TABLE `grados`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
--- AUTO_INCREMENT de la tabla `iluminacion`
+-- AUTO_INCREMENT de la tabla `matricula`
 --
-ALTER TABLE `iluminacion`
+ALTER TABLE `matricula`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
+--
+-- AUTO_INCREMENT de la tabla `movimientos`
+--
+ALTER TABLE `movimientos`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+
+--
+-- AUTO_INCREMENT de la tabla `notas`
+--
+ALTER TABLE `notas`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+
+--
+-- AUTO_INCREMENT de la tabla `operaciones`
+--
+ALTER TABLE `operaciones`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT de la tabla `planilla`
+--
+ALTER TABLE `planilla`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT de la tabla `licencia`
+-- AUTO_INCREMENT de la tabla `sueldos`
 --
-ALTER TABLE `licencia`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
-
---
--- AUTO_INCREMENT de la tabla `municipio`
---
-ALTER TABLE `municipio`
+ALTER TABLE `sueldos`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT de la tabla `observaciones`
+-- AUTO_INCREMENT de la tabla `tblroles`
 --
-ALTER TABLE `observaciones`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+ALTER TABLE `tblroles`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT de la tabla `rol`
+-- AUTO_INCREMENT de la tabla `tblusuarios`
 --
-ALTER TABLE `rol`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT de la tabla `seccion1`
---
-ALTER TABLE `seccion1`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
-
---
--- AUTO_INCREMENT de la tabla `seccion2`
---
-ALTER TABLE `seccion2`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
-
---
--- AUTO_INCREMENT de la tabla `seccion3`
---
-ALTER TABLE `seccion3`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
-
---
--- AUTO_INCREMENT de la tabla `seccion4`
---
-ALTER TABLE `seccion4`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
-
---
--- AUTO_INCREMENT de la tabla `seccion7`
---
-ALTER TABLE `seccion7`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
-
---
--- AUTO_INCREMENT de la tabla `seccion8`
---
-ALTER TABLE `seccion8`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
-
---
--- AUTO_INCREMENT de la tabla `seccion9`
---
-ALTER TABLE `seccion9`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
---
--- AUTO_INCREMENT de la tabla `seccion10`
---
-ALTER TABLE `seccion10`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
-
---
--- AUTO_INCREMENT de la tabla `senal`
---
-ALTER TABLE `senal`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
-
---
--- AUTO_INCREMENT de la tabla `sexo`
---
-ALTER TABLE `sexo`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT de la tabla `tipoconsecuencia`
---
-ALTER TABLE `tipoconsecuencia`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT de la tabla `tipopersona`
---
-ALTER TABLE `tipopersona`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT de la tabla `tipovehiculo`
---
-ALTER TABLE `tipovehiculo`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
-
---
--- AUTO_INCREMENT de la tabla `usuario`
---
-ALTER TABLE `usuario`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
-
---
--- AUTO_INCREMENT de la tabla `vehiculoinvolucrado`
---
-ALTER TABLE `vehiculoinvolucrado`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+ALTER TABLE `tblusuarios`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Restricciones para tablas volcadas
 --
 
 --
--- Filtros para la tabla `asistente`
+-- Filtros para la tabla `contacto`
 --
-ALTER TABLE `asistente`
-  ADD CONSTRAINT `FK_ID_BOLETA_BOLETA_GENERAL` FOREIGN KEY (`id_boleta`) REFERENCES `boleta` (`codigo_boleta`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `contacto`
+  ADD CONSTRAINT `fk_contactos_alumnos` FOREIGN KEY (`id_alumno`) REFERENCES `alumnos` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Filtros para la tabla `boleta`
+-- Filtros para la tabla `cursos`
 --
-ALTER TABLE `boleta`
-  ADD CONSTRAINT `fk_boleta_usuario` FOREIGN KEY (`usuario_commit`) REFERENCES `usuario` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `cursos`
+  ADD CONSTRAINT `fk_cursos_grados` FOREIGN KEY (`id_grado`) REFERENCES `grados` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_cursos_profesor_usuario` FOREIGN KEY (`id_profesor`) REFERENCES `tblusuarios` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Filtros para la tabla `conductor`
+-- Filtros para la tabla `matricula`
 --
-ALTER TABLE `conductor`
-  ADD CONSTRAINT `FK_ID_BOLETA_BOLETA` FOREIGN KEY (`id_boleta`) REFERENCES `boleta` (`codigo_boleta`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `matricula`
+  ADD CONSTRAINT `fk_matricula_alumno` FOREIGN KEY (`id_alumno`) REFERENCES `alumnos` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_matricula_grado` FOREIGN KEY (`id_grado`) REFERENCES `grados` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Filtros para la tabla `departamento`
+-- Filtros para la tabla `movimientos`
 --
-ALTER TABLE `departamento`
-  ADD CONSTRAINT `fk_departamento_usuario` FOREIGN KEY (`usuario_commit`) REFERENCES `usuario` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `movimientos`
+  ADD CONSTRAINT `fk_mov_opera` FOREIGN KEY (`id_operacion`) REFERENCES `operaciones` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fora_movimientos_usuarios` FOREIGN KEY (`id_usuario_operacion`) REFERENCES `tblusuarios` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Filtros para la tabla `licencia`
+-- Filtros para la tabla `notas`
 --
-ALTER TABLE `licencia`
-  ADD CONSTRAINT `fk_idBoletaConductor_boleta` FOREIGN KEY (`id_boleta`) REFERENCES `boleta` (`codigo_boleta`),
-  ADD CONSTRAINT `licencia_ibfk_1` FOREIGN KEY (`id_boleta`) REFERENCES `boleta` (`codigo_boleta`);
+ALTER TABLE `notas`
+  ADD CONSTRAINT `fk_nota_alumno` FOREIGN KEY (`id_alumno`) REFERENCES `alumnos` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_nota_curso` FOREIGN KEY (`id_curso`) REFERENCES `cursos` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Filtros para la tabla `municipio`
+-- Filtros para la tabla `operaciones`
 --
-ALTER TABLE `municipio`
-  ADD CONSTRAINT `fk_municipio_departamento` FOREIGN KEY (`id_departamento`) REFERENCES `departamento` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_municipio_usuario` FOREIGN KEY (`usuario_commit`) REFERENCES `usuario` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `operaciones`
+  ADD CONSTRAINT `fk_operaciones_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `tblusuarios` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Filtros para la tabla `observaciones`
+-- Filtros para la tabla `planilla`
 --
-ALTER TABLE `observaciones`
-  ADD CONSTRAINT `fk_observaciones` FOREIGN KEY (`id_boleta`) REFERENCES `boleta` (`codigo_boleta`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `planilla`
+  ADD CONSTRAINT `fk_planilla_usuario` FOREIGN KEY (`id_empleado`) REFERENCES `tblusuarios` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Filtros para la tabla `seccion1`
+-- Filtros para la tabla `sueldos`
 --
-ALTER TABLE `seccion1`
-  ADD CONSTRAINT `fk_sec1_boleta` FOREIGN KEY (`id_boleta`) REFERENCES `boleta` (`codigo_boleta`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_sec1_departamento` FOREIGN KEY (`departamento`) REFERENCES `departamento` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_sec1_municipio` FOREIGN KEY (`municipio`) REFERENCES `municipio` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `sueldos`
+  ADD CONSTRAINT `fk_sueldos_usuarios` FOREIGN KEY (`id_empleado`) REFERENCES `tblusuarios` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Filtros para la tabla `seccion2`
+-- Filtros para la tabla `tblusuarios`
 --
-ALTER TABLE `seccion2`
-  ADD CONSTRAINT `fk_sec2_boleta` FOREIGN KEY (`id_boleta`) REFERENCES `boleta` (`codigo_boleta`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `seccion3`
---
-ALTER TABLE `seccion3`
-  ADD CONSTRAINT `fk_sec3_boleta` FOREIGN KEY (`id_boleta`) REFERENCES `boleta` (`codigo_boleta`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_sub3_sexo` FOREIGN KEY (`id_sexo`) REFERENCES `sexo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_sub3_tipo` FOREIGN KEY (`id_tipo_persona`) REFERENCES `tipopersona` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_sub3_tipo_consecuencia` FOREIGN KEY (`id_tipo_consecuencia`) REFERENCES `tipoconsecuencia` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `seccion4`
---
-ALTER TABLE `seccion4`
-  ADD CONSTRAINT `fk_sec4_boleta` FOREIGN KEY (`id_boleta`) REFERENCES `boleta` (`codigo_boleta`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_sec4_clima` FOREIGN KEY (`estado_tiempo`) REFERENCES `clima` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_sec4_iluminacion` FOREIGN KEY (`tipo_iluminacion`) REFERENCES `iluminacion` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_sec4_senal` FOREIGN KEY (`tipo_senal`) REFERENCES `senal` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `seccion7`
---
-ALTER TABLE `seccion7`
-  ADD CONSTRAINT `fk_sec7_boleta` FOREIGN KEY (`id_boleta`) REFERENCES `boleta` (`codigo_boleta`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `seccion8`
---
-ALTER TABLE `seccion8`
-  ADD CONSTRAINT `fk_sec8_boleta` FOREIGN KEY (`id_boleta`) REFERENCES `boleta` (`codigo_boleta`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `seccion9`
---
-ALTER TABLE `seccion9`
-  ADD CONSTRAINT `fk_sec9_boleta` FOREIGN KEY (`id_boleta`) REFERENCES `boleta` (`codigo_boleta`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `seccion10`
---
-ALTER TABLE `seccion10`
-  ADD CONSTRAINT `fk_idboleta_boleta` FOREIGN KEY (`id_boleta`) REFERENCES `boleta` (`codigo_boleta`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `usuario`
---
-ALTER TABLE `usuario`
-  ADD CONSTRAINT `fk_usuario_rol` FOREIGN KEY (`id_rol`) REFERENCES `rol` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `vehiculoinvolucrado`
---
-ALTER TABLE `vehiculoinvolucrado`
-  ADD CONSTRAINT `FK_SEC6_BOLETA` FOREIGN KEY (`id_boleta`) REFERENCES `boleta` (`codigo_boleta`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `FK_SEC6_TIPO_VEHICULO` FOREIGN KEY (`tipo_vehiculo`) REFERENCES `tipovehiculo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `tblusuarios`
+  ADD CONSTRAINT `fk_rol_tblusuarios_tblroles` FOREIGN KEY (`id_rol`) REFERENCES `tblroles` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+

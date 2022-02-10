@@ -93,20 +93,20 @@
 
            //------------------Función para editar una nota---------------------
 
-           public function editar($idCursoe,$idAlumnoe,$bimestree,$anioe,$notae,$idEditare){
+           public function editar($notae,$idEditare){
         
             //Instanciamos la clase conexión
             $conexion = new Conexion();
             //Conectamos a la base de datos
             $conexion->conectar();
             //Instrucción SQL
-            $sql = "update notas set id_curso=?,id_alumno=?,bimestre=?,anio=?,nota=? where id=?";
+            $sql = "update notas set nota=? where id=?";
             //Preparamos la instrucción sql
             $stmt = $conexion->db->prepare($sql);
             
             //Enviamos los parámetros
             //i = integer, s = string, d= double...se colocan segun el tamaño de parametros
-            $stmt->bind_param('iiiidi',$idCursoe,$idAlumnoe,$bimestree,$anioe,$notae,$idEditare);
+            $stmt->bind_param('di',$notae,$idEditare);
               
             //Ejecutamos instrucción
             $stmt->execute();
@@ -187,6 +187,87 @@
         //Devolvemos los usuarios encontrados
         return $resultadoNotas;
         }
+
+        //--------Obtener nota por alumno y año académico---------------
+
+        public function obtenerNotasAlumnoAnio($idAlumnoBuscar,$anioBuscar){
+            //Instanciamos la clase conexión
+        $conexion = new Conexion();
+        //Conectamos a la base de datos
+        $conexion->conectar();
+        //Array contenedor de resultados
+        $resultadoNotas = array();
+        //Instrucción SQL
+        $sql = "select *from notas where id_alumno='".$idAlumnoBuscar . "' and anio='". $anioBuscar . "'";
+        //Ejecución de instrucción     
+        $ejecutar = mysqli_query($conexion->db, $sql);
+    
+        while($fila = mysqli_fetch_array($ejecutar)){
+            
+            //Instanciamos objeto
+            $notaIndex = new Nota();
+    
+            $notaIndex->setId($fila['id']);
+            $notaIndex->setIdCurso($fila['id_curso']);
+            $notaIndex->setIdAlumno($fila['id_alumno']);
+            $notaIndex->setBimestre($fila['bimestre']);
+            $notaIndex->setAnio($fila['anio']);
+            $notaIndex->setNota($fila['nota']);
+            $notaIndex->setFechaCommit($fila['fecha_commit']);      
+                
+            //Llenamos el array de resultados de usuarios
+            array_push($resultadoNotas,$notaIndex);
+           
+        }
+    
+        //Nos desconectamos de la base de datos
+        $conexion->desconectar();
+    
+        //Devolvemos los usuarios encontrados
+        return $resultadoNotas;
+        }
+
+
+        //--Obtener notas de alumo por id de alumno, año y curso
+
+        public function obtenerNotasAlumnoAnioCurso($idAlumnoBuscar,$anioBuscar,$cursoBuscar){
+            //Instanciamos la clase conexión
+        $conexion = new Conexion();
+        //Conectamos a la base de datos
+        $conexion->conectar();
+        //Array contenedor de resultados
+        $resultadoNotas = array();
+        //Instrucción SQL
+        $sql = "select *from notas where id_alumno='".$idAlumnoBuscar . "' and anio='". $anioBuscar . "' and id_curso='". $cursoBuscar . "'";
+        //Ejecución de instrucción     
+        $ejecutar = mysqli_query($conexion->db, $sql);
+    
+        while($fila = mysqli_fetch_array($ejecutar)){
+            
+            //Instanciamos objeto
+            $notaIndex = new Nota();
+    
+            $notaIndex->setId($fila['id']);
+            $notaIndex->setIdCurso($fila['id_curso']);
+            $notaIndex->setIdAlumno($fila['id_alumno']);
+            $notaIndex->setBimestre($fila['bimestre']);
+            $notaIndex->setAnio($fila['anio']);
+            $notaIndex->setNota($fila['nota']);
+            $notaIndex->setFechaCommit($fila['fecha_commit']);      
+                
+            //Llenamos el array de resultados de usuarios
+            array_push($resultadoNotas,$notaIndex);
+           
+        }
+    
+        //Nos desconectamos de la base de datos
+        $conexion->desconectar();
+    
+        //Devolvemos los usuarios encontrados
+        return $resultadoNotas;
+        }
+
+
 
         //----------Validar si la nota ya ha sido ingresada--------------------
 
