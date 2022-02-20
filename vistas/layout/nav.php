@@ -81,6 +81,8 @@
           include("../clases/Matricula.php");
           include("../clases/Movimiento.php");
           include("../clases/Nota.php");
+          include("../clases/Sueldo.php");
+          include("../clases/Planilla.php");
           
           
           session_start();
