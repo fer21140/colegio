@@ -88,6 +88,7 @@
 <script src="../js/confirmacionEliminarMovimiento.js"></script>
 <script src="../js/confirmacionReactivarMovimiento.js"></script>
 
+<script src="../js/confirmacionEliminarPlani.js"></script>
 
 
 <script>
