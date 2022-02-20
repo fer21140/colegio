@@ -113,64 +113,7 @@ include ("layout/nav.php");
                   </tr>
                   </thead>
                   <tbody>
-                 
-                  <?php
-               
-
-                $planilla = new Planilla();
-                $planillaArray = $planilla->obtenerPlanillas();
                 
-                for($i=0; $i<sizeof($planillaArray);$i++){
-                  echo "<tr>";
-
-                  $idPlanilla = $planillaArray[$i]->getId();
-                  $idEmpleado = $planillaArray[$i]->getIdEmpleado();
-
-                  $usuario = new Usuario();
-                  $resUsuario = $usuario->buscarPorId($idEmpleado);
-                  $dpi = $resUsuario->getDpi();
-
-                  $nombreEmpleado = $planillaArray[$i]->getNombreEmpleado();
-                  $salarioOrdinario = $planillaArray[$i]->getSalarioOrdinario();
-                  $abono = $planillaArray[$i]->getAbono();
-                  $descuento = $planillaArray[$i]->getDescuento();
-                  $noCheque = $planillaArray[$i]->getNumeroCheque();
-                  $sueldoLiquido = $planillaArray[$i]->getSueldoLiquido();
-
-                  
-                  //Imprimimos datos
-                  echo "
-                    
-                    <td>$idPlanilla</td>
-                    <td>$dpi</td>
-                    <td>$nombreEmpleado</td>
-                    <td>$salarioOrdinario</td>
-                    <td>$abono</td>
-                    <td>$descuento</td>
-                    <td>$noCheque</td>
-                    <td>$sueldoLiquido</td>";
-
-                    
-                
-
-                  //Imprimimos botones
-                  
-                    echo "<td><a type='submit' href='planilla_editar.php?id=$idPlanilla' class='btn btn-primary'>
-                    <i class='fas fa-pen'></i> 
-                    </a>";
-
-                    
-                    echo"<a type='submit' class='btn btn-danger' id='btnEliminarPlani' href='../crud/eliminarPlanilla.php?id=$idPlanilla'>
-                    <i class='fas fa-trash-alt'></i>
-                    </a>"; 
-                    
-                    echo"<a type='submit' href='planilla_vista.php?id=$idPlanilla'class='btn bg-gradient-success'>
-                    <i class='fas fa-eye'></i> 
-                    </a></td>";
-                  
-                  echo "</tr>";
-                }
-                  ?>
                 
 
 

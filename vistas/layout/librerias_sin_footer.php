@@ -58,6 +58,10 @@
 <script src="../app/AdminLTE-3.0.5/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="../app/AdminLTE-3.0.5/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 
+<script src="../js/confirmacionEliminarMovimiento.js"></script>
+<script src="../js/confirmacionReactivarMovimiento.js"></script>
+<script src="../js/confirmacionEliminarPlani.js"></script>
+
 
 <script>
   $(function () {
