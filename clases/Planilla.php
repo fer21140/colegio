@@ -272,7 +272,62 @@
         return $resultadoPlanilla;
     }
 
+    //Validar planilla ya ingresada
+
+    public function validarPlanillaIngresada($idEmpleadob,$mesb,$aniob){
+        
+        //Instanciamos clase conexión
+        $conexion = new Conexion();
+        //Nos conectamos a la base de datos
+        $conexion->conectar();
+        //Variable validadora de existencia de nickname
+        $res=0;
+
+        $sql = "select id_empleado, mes, anio from planilla where id_empleado='" . $idEmpleadob . "' and mes='" . $mesb . "' and anio='" . $aniob . "'";
+                
+        $ejecutar = mysqli_query($conexion->db, $sql);
+
+        while($fila = mysqli_fetch_array($ejecutar)){
+            if($fila['id_empleado']== $idEmpleadob && $fila['anio'] == $aniob && $fila['mes']==$mesb){
+                $res=1;//Ya existe
+                break;//Rompemos ciclo debido a que no sirve de nada seguir buscando debido a que ya hay primera coincidencia
+            }
+        }
+
+        //Nos desconectamos de la base de datos
+        $conexion->desconectar();
+        //Devolvemos resultado 1=existe, 0 = no existe
+        return $res;
+       }
+
+       //---------Eliminar planilla-------------
+
+       //--------------Función para guardar una planilla
+       public function eliminar($idEliminar){
+
+        //Instanciamos la clase conexión
+        $conexion = new Conexion();
+        //Conectamos a la base de datos
+        $conexion->conectar();
+        //Instrucción SQL
+        $sql = "delete from planilla where id=?";
+        //Preparamos la instrucción sql
+        $stmt = $conexion->db->prepare($sql);
+        
+        //Enviamos los parámetros
+        //i = integer, s = string, d= double...se colocan segun el tamaño de parametros
+        $stmt->bind_param('i',$idEliminar);
+          
+        //Ejecutamos instrucción
+        $stmt->execute();
+        
+        //Desconectamos la base de datos
+        $conexion->desconectar();
+
+}
+
     }
 
+    
 
 ?>

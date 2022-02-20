@@ -174,6 +174,35 @@ class Sueldo{
         return $resultadoSueldo;
     }
 
+    //----------Buscar sueldo por id de empleado
+
+    public function buscarPorIdEmpleado($idEmpleado){
+        //Instanciamos la clase conexión
+     $conexion = new Conexion();
+     //Conectamos a la base de datos
+     $conexion->conectar();
+     //Declaramos el objeto contenedor del resultado
+     $resultadoSueldo = new Sueldo();
+     
+     //Instrucción SQL
+    $sql = "select s.id as IDSUELDO, s.id_empleado, s.sueldo, u.id, u.nombres, u.apellidos from sueldos s, tblusuarios u where s.id_empleado=u.id and s.id_empleado='" . $idEmpleado . "'";
+    //Ejecución de instrucción     
+    $ejecutar = mysqli_query($conexion->db, $sql);
+
+    while($fila = mysqli_fetch_array($ejecutar)){
+        
+        $resultadoSueldo->setId($fila['IDSUELDO']);
+        $resultadoSueldo->setIdEmpleado($fila['id_empleado']);
+        $resultadoSueldo->setSueldo($fila['sueldo']);
+        $resultadoSueldo->setNombreEmpleado($fila['nombres'] . " " . $fila['apellidos']);
+       
+    }
+        //Nos desconectamos de la base de datos
+        $conexion->desconectar();
+        //Devolvemos el usuario encontrado
+        return $resultadoSueldo;
+    }
+
 
 }
 
