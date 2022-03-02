@@ -12,6 +12,7 @@ include ("layout/nav.php");
 
 ?>
 
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -39,7 +40,7 @@ include ("layout/nav.php");
             <div class="card">
               <div class="card-header">
               <a type="submit" class="btn btn-primary" href="operacion_ingresar.php">Ingresar operación</a>
-              <a type="submit" class="btn btn-primary" target="_blank" href="../reportes/reporte_usuario.php">Reporte</a>
+              <input type="button" class="btn btn-primary" target="_blank" value="Exportar a PDF" id="btnReporte" name="btnReporte" href="../reportes/reporte_operaciones.php">
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -164,6 +165,21 @@ include ("layout/nav.php");
     </section>
     <!-- /.content -->
   </div>
+
+  <script type="text/javascript">
+    $(document).ready(function(){
+    
+        $('#btnReporte').click(function(){
+           
+          window.open('../reportes/reporte_operaciones.php', '_blank');
+                    
+           
+       });
+
+        
+
+    });
+</script>
 
 <?php
 

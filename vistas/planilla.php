@@ -219,6 +219,15 @@ function generarPlanilla(){
         
         });
 
+        $('#btnExportar').click(function(){
+          
+          var mesBusqueda = document.getElementById('mes').value;
+          var anioBusqueda = document.getElementById('anio').value;
+
+          window.open('../reportes/reporte_planilla.php?mes='+mesBusqueda +'&anio='+anioBusqueda, '_blank');
+        
+        });
+
     });
 </script>
 

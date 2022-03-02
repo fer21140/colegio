@@ -37,7 +37,7 @@ include ("layout/nav.php");
             <div class="card">
               <div class="card-header">
               <a type="submit" class="btn btn-primary" href="grado_ingresar.php">Ingresar grado académico</a>
-              <a type="submit" class="btn btn-primary" href="../reportes/reporte_plan.php" target="_blank">Reporte</a>
+              <a type="submit" class="btn btn-primary" href="../reportes/reporte_grados.php" target="_blank">Reporte</a>
               </div>
               <!-- /.card-header -->
               <div class="card-body">

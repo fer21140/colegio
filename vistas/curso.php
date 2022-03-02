@@ -12,6 +12,8 @@ include ("layout/nav.php");
 
 ?>
 
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+
 
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -39,8 +41,41 @@ include ("layout/nav.php");
             <div class="card">
               <div class="card-header">
               <a type="submit" class="btn btn-primary" href="curso_ingresar.php">Ingresar nuevo curso</a>
-              <a type="submit" class="btn btn-primary" target="_blank" href="../reportes/reporte_usuario.php">Reporte</a>
-              </div>
+              <input type="button" class="btn btn-primary" value="Exportar PDF" id="btnExportar" name="btnExportar">
+              
+              <br>
+              <br>
+              <div class="col-sm-6">
+                      <!-- text input -->
+                      <div class="form-group">
+                        <label>Filtrar por grado académico</label>
+                        <select class="form-control selectGrado" id="grado" name="grado">
+                        <option value="0">Seleccionar grado académico</option>
+                          <?php
+                            $gradoBusqueda = new Grado();
+            
+                            $resultadoGrado = $gradoBusqueda->obtenerGrados();
+
+                            for($i=0; $i<sizeof($resultadoGrado);$i++){
+                                $idGradoB= $resultadoGrado[$i]->getId();
+                                $nombreGrado = $resultadoGrado[$i]->getNombre();
+                                
+                                echo "<option value='$idGradoB'>$nombreGrado</option>";
+                            }
+
+                            
+                            
+                          ?>
+                          
+                        </select>
+                      </div>
+                    </div>
+
+            </div>
+
+              
+
+              <div id="tablaresultados">
               <!-- /.card-header -->
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
@@ -61,110 +96,6 @@ include ("layout/nav.php");
                   <tbody>
                  
                  
-                <?php
-                
-                $curso = new Curso();
-                $cursoArray = $curso->obtenerCursos();
-                
-                for($i=0; $i<sizeof($cursoArray);$i++){
-                  echo "<tr>";
-
-                  $id = $cursoArray[$i]->getId();
-                  $nombre = $cursoArray[$i]->getNombre();
-                  $profesor = $cursoArray[$i]->getIdProfesor();
-                  
-                  $usuario = new Usuario();
-                  $resUsuario = $usuario->buscarPorId($profesor);
-                  $nombreProfesor = $resUsuario->getNombres() . " " . $resUsuario->getApellidos();
-
-                  $grado = $cursoArray[$i]->getIdGrado();
-
-                  $gradoClase = new Grado();
-                  $gradoRes = $gradoClase->buscarPorId($grado);
-                  $nombreGrado = $gradoRes->getNombre();
-
-                  $horaInicio = $cursoArray[$i]->getHoraInicio();
-                  $horaFin = $cursoArray[$i]->getHoraFin();
-                  $diasSemana = $cursoArray[$i]->getDiasSemana();
-                  $estado = $cursoArray[$i]->getEstado();
-                  
-
-                  //Imprimimos datos
-                  echo "
-                    
-                    <td>$id</td>
-                    <td>$nombre</td>
-                    <td>$nombreProfesor</td>
-                    <td>$nombreGrado</td>
-                    <td>$horaInicio</td>
-                    <td>$horaFin</td>
-                    
-                    ";
-                    
-                    $cadenaDias ="";
-
-                    for($r=0;$r<strlen($diasSemana);$r++){
-                        
-                        if(strcmp(strval($diasSemana[$r]), "1") === 0){
-                            $cadenaDias = $cadenaDias . "L";
-                        }
-
-                        if(strcmp(strval($diasSemana[$r]), "2") === 0){
-                            $cadenaDias = $cadenaDias . "M";
-                        }
-                        if(strcmp(strval($diasSemana[$r]), "3") === 0){
-                            $cadenaDias = $cadenaDias . "M";
-                        }
-                        if(strcmp(strval($diasSemana[$r]), "4") === 0){
-                            $cadenaDias = $cadenaDias . "J";
-                        }
-                        if(strcmp(strval($diasSemana[$r]), "5") === 0){
-                            $cadenaDias = $cadenaDias . "V";
-                        }
-                        if(strcmp(strval($diasSemana[$r]), "6") === 0){
-                            $cadenaDias = $cadenaDias . "S";
-                        }
-                        if(strcmp(strval($diasSemana[$r]), "7") === 0){
-                            $cadenaDias = $cadenaDias . "D";
-                        }
-
-                    
-                    }
-
-                    echo "<td>$cadenaDias</td>";
-                    
-
-                  //Imprimimos según estado
-                 
-                  if($estado==1){
-                    echo "<td><h4><span class='badge bg-success'>Activo</span></h4></td>";
-                  }else{
-                    echo "<td><h4><span class='badge bg-danger'>Inactivo</span></h4></td>";
-                  }
-
-                  //Imprimimos botones
-                  
-                    echo "<td><a type='submit' href='curso_editar.php?id=$id' class='btn btn-primary'>
-                    <i class='fas fa-pen'></i> 
-                    </a>";
-
-                    if($estado==1){
-                    echo"<a type='submit' class='btn btn-danger' id='btnEliminarCurso' href='../crud/eliminarCurso.php?id=$id'>
-                    <i class='fas fa-trash-alt'></i>
-                    </a>"; 
-                    }else{
-                      //Imprimimo botón de reactivar
-                      echo"<a type='submit' class='btn btn-warning' id='btnReactivarCurso' href='../crud/reactivarCurso.php?id=$id'>
-                    <i class='fa fa-arrow-left'></i>
-                    </a>"; 
-                    }
-                    echo"<a type='submit' href='curso_vista.php?id=$id'class='btn bg-gradient-success'>
-                    <i class='fas fa-eye'></i> 
-                    </a></td>";
-                  
-                  echo "</tr>";
-                }
-                  ?>
                   
                   </tbody>
                   <tfoot>
@@ -182,6 +113,8 @@ include ("layout/nav.php");
                   </tfoot>
                 </table>
               </div>
+              <!--CERRAMOS DIV DINÁMICO DE TABLA-->
+              </div>
               <!-- /.card-body -->
             </div>
             <!-- /.card -->
@@ -194,6 +127,83 @@ include ("layout/nav.php");
     </section>
     <!-- /.content -->
   </div>
+
+  <script>
+    $(function () {
+      //Initialize Select2 Elements
+      $('.selectGrado').select2()
+
+      //Initialize Select2 Elements
+      $('.select2bs4').select2({
+        theme: 'bootstrap4'
+      })
+    });
+
+    /*$( ".select2" ).change(function() {
+     //Aquí cargamos el usuario
+    });*/
+    </script>
+
+<script type="text/javascript">
+
+function filtrarPorGrado(){
+    
+   
+    $.ajax({
+        type:"POST",
+        url:"busqueda_cursos_grado.php?id=" + $ ('#grado').val() ,
+        //data:"id="+ $ ('#lista1').val(),
+        success:function(r){
+            $('#tablaresultados').html(r);
+        }
+    
+    });
+
+}
+</script>
+
+<script>
+
+$(document).ready(function(){
+    
+    //recargarLista();
+
+    $('#grado').change(function(){
+    //Llamamos a la función
+    //alert("haz hecho click en el boton generar");
+    var idGrado = document.getElementById('grado').value;
+    
+    if(idGrado>0){
+      filtrarPorGrado();
+    }
+   
+   
+    
+    });
+
+    $('#btnExportar').click(function(){
+    //Llamamos a la función
+    //alert("haz hecho click en el boton generar");
+    var idGradoPDF = document.getElementById('grado').value;
+    
+    if(idGradoPDF>0){
+      window.open('../reportes/reporte_cursos.php?id='+idGradoPDF, '_blank');
+    }else{
+      alert("¡Debes generar una búsqueda primero!");
+    }
+   
+   
+    
+    });
+
+    
+
+});
+
+
+</script>
+
+
 
 <?php
 

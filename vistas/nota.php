@@ -482,14 +482,7 @@ function cargarNotas(){
     });
 
 }
-
-
-
-
 </script>
-
-
-
 
 
 <script>
@@ -581,6 +574,7 @@ function cargarNotas(){
             
         });
 
+
         $('#anio').change(function(){
             
             var idGrado = document.getElementById('grado').value;
@@ -594,6 +588,30 @@ function cargarNotas(){
                 alert('¡Selecciona un grado académico primero para cargar alumnos y cursos automáticamente!');
             }
         });
+
+        $('#btnTarjeta').click(function(){
+           
+           var idGradoTarjeta = document.getElementById('grado').value;
+           var anioTarjeta = document.getElementById('anio').value;
+           var idAlumnoTarjeta = document.getElementById('id_alumno').value;
+
+           if(idGradoTarjeta>0){
+                
+                if(anioTarjeta>0){
+                    if(idAlumnoTarjeta>0){
+                    //Aquí llamamos a la función para cargar las notas en formato pdf
+                    window.open('../reportes/calificacion_pdf.php?idGrado='+idGradoTarjeta+'&anio='+anioTarjeta+'&idAlumno='+idAlumnoTarjeta, '_blank');
+                    }else{
+                        alert("¡Selecciona un alumno primero!");
+                    }
+                }else{
+                    alert("¡Selecciona un año académico válido!");
+                }
+           }else{
+               alert("¡Selecciona un grado académico primero!");
+           }
+           
+       });
 
     });
 </script>

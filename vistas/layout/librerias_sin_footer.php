@@ -60,6 +60,11 @@
 
 <script src="../js/confirmacionEliminarMovimiento.js"></script>
 <script src="../js/confirmacionReactivarMovimiento.js"></script>
+<script src="../js/confirmacionEliminarCurso.js"></script>
+<script src="../js/confirmacionReactivarCurso.js"></script>
+<script src="../js/confirmacionEliminarMatricula.js"></script>
+<script src="../js/confirmacionReactivarMatricula.js"></script>
+
 <script src="../js/confirmacionEliminarPlani.js"></script>
 
 
