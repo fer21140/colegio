@@ -321,7 +321,7 @@ $(document).ready(function(){
 
    if(filtro==0){
      mostrarTodos();
-     window.open('../reportes/reporte_pagos_pdf.php');
+     window.open('../reportes/reporte_pagos_pdf.php?tipoReporte=0');
    }
     
    //------------Filtro solo por cliente--------------------------
@@ -330,7 +330,7 @@ $(document).ready(function(){
     if(idAlumno!=0){
     
       filtrarPorAlumno();
-      window.open('../reportes/reporte_pagos_pdf.php');
+      window.open('../reportes/reporte_pagos_pdf.php?tipoReporte=1&idAlumno='+idAlumno);
     
     }else{
       
@@ -348,7 +348,7 @@ $(document).ready(function(){
          //Validamos si la fecha de inicio es menor o igual a la fecha final
          if(Date.parse(fechaInicio)<=Date.parse(fechaFin)){
             filtrarPorFechas();
-            window.open('../reportes/reporte_pagos_pdf.php');
+            window.open('../reportes/reporte_pagos_pdf.php?tipoReporte=2&fechaInicio='+fechaInicio+"&fechaFin="+fechaFin);
          }else{
            alert("La fecha de inicio no puede ser mayor a la fecha final");
          }
@@ -368,7 +368,7 @@ $(document).ready(function(){
          //Validamos si la fecha de inicio es menor o igual a la fecha final
          if(Date.parse(fechaInicio)<=Date.parse(fechaFin)){
             filtrarPorAlumnoFecha();
-            window.open('../reportes/reporte_pagos_pdf.php');
+            window.open('../reportes/reporte_pagos_pdf.php?tipoReporte=3&idAlumno='+idAlumno+"&fechaInicio="+fechaInicio+"&fechaFin="+fechaFin);
          }else{
            alert("La fecha de inicio no puede ser mayor a la fecha final");
          }

@@ -12,6 +12,7 @@ include ("layout/nav.php");
 
 ?>
 
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -39,9 +40,65 @@ include ("layout/nav.php");
             <div class="card">
               <div class="card-header">
               <a type="submit" class="btn btn-primary" href="matricula_ingresar.php">Inscribir alumno</a>
-              <a type="submit" class="btn btn-primary" target="_blank" href="../reportes/reporte_usuario.php">Reporte</a>
-              </div>
+              <input type="button" class="btn btn-primary" value="Exportar PDF" id="btnExportar" name="btnExportar">
+              
+              <br>
+              <br>
+              <div class="row">
+              <div class="col-sm-6">
+                      <!-- text input -->
+                      <div class="form-group">
+                        <label>Seleccionar grado académico</label>
+                        <select class="form-control selectGrado" id="grado" name="grado">
+                        <option value="0">Seleccionar grado académico</option>
+                          <?php
+                            $gradoBusqueda = new Grado();
+            
+                            $resultadoGrado = $gradoBusqueda->obtenerGrados();
+
+                            for($i=0; $i<sizeof($resultadoGrado);$i++){
+                                $idGradoB= $resultadoGrado[$i]->getId();
+                                $nombreGrado = $resultadoGrado[$i]->getNombre();
+                                
+                                echo "<option value='$idGradoB'>$nombreGrado</option>";
+                            }
+
+                            
+                            
+                          ?>
+                          
+                        </select>
+                      </div>
+                    </div>
+
+                    <?php
+                    $Date = date("d-m-Y");  
+                    $year = date("Y");
+
+
+                    echo "<div class='col-sm-6'>
+                    
+                    <div class='form-group'>
+                      <label>Seleccione el ciclo académico</label>
+                      <select class='form-control selectAnio' name='anio' id='anio'>";
+                      
+
+                        for($i=$year;$i>=2010;$i--) { 
+                          echo "<option value='".$i."'>".$i."</option>";
+                        }
+                        
+                    echo "</select>";
+                    echo "</div>";
+                    echo "</div>";
+
+
+                   ?>
+
+                      </div>
+
+            </div>
               <!-- /.card-header -->
+              <div id="tablaresultados">
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
@@ -59,79 +116,7 @@ include ("layout/nav.php");
                   <tbody>
                  
                  
-                <?php
                 
-                $matricula = new Matricula();
-                $matriculaArray = $matricula->obtenerMatriculas();
-                
-                for($i=0; $i<sizeof($matriculaArray);$i++){
-                  echo "<tr>";
-
-                  $id = $matriculaArray[$i]->getId();
-
-                  //Obtener nombres del alumno
-                  $alumno = new Alumno();
-                  $resAlumno = $alumno->buscarPorId($matriculaArray[$i]->getIdAlumno());
-                  $nombreAlumno = $resAlumno->getPrimerNombre() . " " . $resAlumno->getSegundoNombre() . " " . $resAlumno->getTercerNombre() . " " . $resAlumno->getPrimerApellido() . " " . $resAlumno->getSegundoApellido();
-
-                  //Obtener nombre del grado académico
-                  $grado = new Grado();
-                  $resGrado = $grado->buscarPorId($matriculaArray[$i]->getIdGrado());
-                  $nombreGrado = $resGrado->getNombre();
-
-                  $valorInscripcion = $matriculaArray[$i]->getValorInscripcion();
-                  $valorMensual = $matriculaArray[$i]->getValorMensual();
-
-                  $anio = $matriculaArray[$i]->getAnio();
-                  $estado = $matriculaArray[$i]->getEstado();
-
-
-
-                  //Imprimimos datos
-                  echo "
-                    
-                    <td>$id</td>
-                    <td>$nombreAlumno</td>
-                    <td>$nombreGrado</td>
-                    <td>$valorInscripcion</td>
-                    <td>$valorMensual</td>
-                    <td>$anio</td>
-                    ";
-
-                    
-                    
-
-                  //Imprimimos según estado
-                 
-                  if($estado==1){
-                    echo "<td><h4><span class='badge bg-success'>Activo</span></h4></td>";
-                  }else{
-                    echo "<td><h4><span class='badge bg-danger'>Inactivo</span></h4></td>";
-                  }
-
-                  //Imprimimos botones
-                  
-                    echo "<td><a type='submit' href='matricula_editar.php?id=$id' class='btn btn-primary'>
-                    <i class='fas fa-pen'></i> 
-                    </a>";
-
-                    if($estado==1){
-                    echo"<a type='submit' class='btn btn-danger' id='btnEliminarMatricula' href='../crud/eliminarMatricula.php?id=$id'>
-                    <i class='fas fa-trash-alt'></i>
-                    </a>"; 
-                    }else{
-                      //Imprimimo botón de reactivar
-                      echo"<a type='submit' class='btn btn-warning' id='btnReactivarMatricula' href='../crud/reactivarMatricula.php?id=$id'>
-                    <i class='fa fa-arrow-left'></i>
-                    </a>"; 
-                    }
-                    echo"<a type='submit' href='matricula_vista.php?id=$id'class='btn bg-gradient-success'>
-                    <i class='fas fa-eye'></i> 
-                    </a></td>";
-                  
-                  echo "</tr>";
-                }
-                  ?>
                   
                   </tbody>
                   <tfoot>
@@ -148,6 +133,8 @@ include ("layout/nav.php");
                   </tfoot>
                 </table>
               </div>
+              
+              </div>
               <!-- /.card-body -->
             </div>
             <!-- /.card -->
@@ -160,6 +147,122 @@ include ("layout/nav.php");
     </section>
     <!-- /.content -->
   </div>
+
+  <script>
+    $(function () {
+      //Initialize Select2 Elements
+      $('.selectGrado').select2()
+
+      //Initialize Select2 Elements
+      $('.select2bs4').select2({
+        theme: 'bootstrap4'
+      })
+    });
+
+    /*$( ".select2" ).change(function() {
+     //Aquí cargamos el usuario
+    });*/
+    </script>
+
+<script>
+    $(function () {
+      //Initialize Select2 Elements
+      $('.selectAnio').select2()
+
+      //Initialize Select2 Elements
+      $('.select2bs4').select2({
+        theme: 'bootstrap4'
+      })
+    });
+
+    /*$( ".select2" ).change(function() {
+     //Aquí cargamos el usuario
+    });*/
+    </script>
+
+<script type="text/javascript">
+
+function filtrarPorAnioGrado(){
+    
+   
+    $.ajax({
+        type:"POST",
+        url:"busqueda_matricula_anio_grado.php?idGrado=" + $ ('#grado').val() + "&anio="+ $ ('#anio').val(),
+        //data:"id="+ $ ('#lista1').val(),
+        success:function(r){
+            $('#tablaresultados').html(r);
+        }
+    
+    });
+
+}
+</script>
+
+
+
+
+<script>
+
+  
+
+$(document).ready(function(){
+    
+    //recargarLista();
+
+    $('#grado').change(function(){
+    //Llamamos a la función
+    //alert("haz hecho click en el boton generar");
+    var idGrado = document.getElementById('grado').value;
+    var anio = document.getElementById('anio').value;
+    
+    if(idGrado>0){
+      filtrarPorAnioGrado();
+    }
+   
+   
+    
+    });
+
+    $('#anio').change(function(){
+    //Llamamos a la función
+    //alert("haz hecho click en el boton generar");
+    var idGradoAnio = document.getElementById('grado').value;
+   
+    
+    if(idGradoAnio>0){
+      filtrarPorAnioGrado();
+    }else{
+      alert("¡Selecciona un grado académico primero!");
+    }
+   
+   
+    
+    });
+
+    $('#btnExportar').click(function(){
+    //Llamamos a la función
+    //alert("haz hecho click en el boton generar");
+    var idGradoPDF = document.getElementById('grado').value;
+    var anioPDF = document.getElementById('anio').value;
+    
+    if(idGradoPDF>0){
+      window.open('../reportes/reporte_matricula.php?idGrado='+idGradoPDF+'&anio='+anioPDF, '_blank');
+    }else{
+      alert("¡Debes generar una búsqueda primero!");
+    }
+   
+   
+    
+    });
+
+    
+
+});
+
+
+</script>
+
+
 
 <?php
 

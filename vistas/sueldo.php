@@ -37,7 +37,7 @@ include ("layout/nav.php");
             <div class="card">
               <div class="card-header">
               <a type="submit" class="btn btn-primary" href="sueldo_ingresar.php">Asignar sueldo a empleado</a>
-              <a type="submit" class="btn btn-primary" href="../reportes/reporte_plan.php" target="_blank">Reporte</a>
+              <a type="submit" class="btn btn-primary" href="../reportes/reporte_sueldos.php" target="_blank">Reporte</a>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
