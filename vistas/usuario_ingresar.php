@@ -53,7 +53,7 @@ include ("layout/nav.php");
                       <div class="form-group">
                         <label>Nombres</label>
                         <input type="text" class="form-control" placeholder="Nombres" name="nombres" id="nombres"
-                        pattern="^[a-zA-ZáéíóúÁÉÍÓÚ]{1,50}" required minlength="1" maxlength="50">
+                        pattern="^[a-zA-ZáéíóúÁÉÍÓÚ ]{1,50}" required minlength="1" maxlength="50">
                       </div>
                     </div>
                     <div class="col-sm-6">
@@ -61,7 +61,7 @@ include ("layout/nav.php");
                       <div class="form-group">
                         <label>Apellidos</label>
                         <input type="text" class="form-control" placeholder="Apellidos" name="apellidos" id="apellidos"
-                        required pattern="^[a-zA-ZáéíóúÁÉÍÓÚ]{1,50}" required minlength="1" maxlength="50">
+                        required pattern="^[a-zA-ZáéíóúÁÉÍÓÚ ]{1,50}" required minlength="1" maxlength="50">
                       </div>
                     </div>
 

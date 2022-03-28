@@ -92,7 +92,24 @@ $pdf->SetFont('Arial','',10);
 
 $contador=0;
 
+$usuarioSesion;
+$idUsuarioSesion;
+if(isset($_SESSION)){
+    $usuario = $_SESSION['usuario'];
+    $idUsuarioSesion = $usuario->getId();
+}else{
+    session_start();
+    $usuario = $_SESSION['usuario'];
+    $idUsuarioSesion = $usuario->getId();
+
+}
+
+
+
+if(isset($_REQUEST['modoVista'])){
+
 for($i=0; $i<sizeof($cursoArray);$i++) {
+    if($cursoArray[$i]->getIdProfesor()==$idUsuarioSesion){
     $contador = $contador + 1;
     $id = $contador;
     $nombreCurso = $cursoArray[$i]->getNombre();
@@ -138,8 +155,61 @@ for($i=0; $i<sizeof($cursoArray);$i++) {
 
 
     $pdf->Cell(30,8,limitarCadena(utf8_decode($cadenaDias),35,"..."),1,1,'C');
-    
+        }//Fin de if validador de profesor
 
+    }
+}else{
+    //Imprimimos todos los horarios completos del grado
+    for($i=0; $i<sizeof($cursoArray);$i++) {
+       
+        $contador = $contador + 1;
+        $id = $contador;
+        $nombreCurso = $cursoArray[$i]->getNombre();
+        $horaInicio = $cursoArray[$i]->getHoraInicio();
+        $horaFin = $cursoArray[$i]->getHoraFin();
+        $diasSemana = $cursoArray[$i]->getDiasSemana();
+        
+    
+        $pdf->Cell(15,8,$id,1,0,'C');
+        $pdf->Cell(100,8,limitarCadena(utf8_decode($nombreCurso),45,"..."),1,0,'C');
+        $pdf->Cell(25,8,limitarCadena(utf8_decode($horaInicio),20,"..."),1,0,'C');
+        $pdf->Cell(20,8,limitarCadena(utf8_decode($horaFin),20,"..."),1,0,'C');
+    
+        $cadenaDias ="";
+    
+                        for($r=0;$r<strlen($diasSemana);$r++){
+                            
+                            if(strcmp(strval($diasSemana[$r]), "1") === 0){
+                                $cadenaDias = $cadenaDias . "L";
+                            }
+    
+                            if(strcmp(strval($diasSemana[$r]), "2") === 0){
+                                $cadenaDias = $cadenaDias . "M";
+                            }
+                            if(strcmp(strval($diasSemana[$r]), "3") === 0){
+                                $cadenaDias = $cadenaDias . "M";
+                            }
+                            if(strcmp(strval($diasSemana[$r]), "4") === 0){
+                                $cadenaDias = $cadenaDias . "J";
+                            }
+                            if(strcmp(strval($diasSemana[$r]), "5") === 0){
+                                $cadenaDias = $cadenaDias . "V";
+                            }
+                            if(strcmp(strval($diasSemana[$r]), "6") === 0){
+                                $cadenaDias = $cadenaDias . "S";
+                            }
+                            if(strcmp(strval($diasSemana[$r]), "7") === 0){
+                                $cadenaDias = $cadenaDias . "D";
+                            }
+    
+                        
+                        }
+    
+    
+        $pdf->Cell(30,8,limitarCadena(utf8_decode($cadenaDias),35,"..."),1,1,'C');
+            
+    
+        }
 } 
 $pdf->Output();
 

@@ -91,7 +91,7 @@ include ("layout/nav.php");
                       <div class="form-group">
                         <label>Dirección</label>
                         <input type="text" class="form-control" placeholder="Dirección" name="direccion" id="direccion"
-                        pattern="^[a-zA-ZáéíóúÁÉÍÓÚ ]{1,50}" minlength="1" maxlength="50">
+                        pattern="^[a-zA-ZáéíóúÁÉÍÓÚ, ]{1,50}" minlength="1" maxlength="50">
                       </div>
                     </div>
 

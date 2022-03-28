@@ -275,8 +275,13 @@ include("layout/nav.php");
 
                                 </div>
                                 <div class="">
-                                    
-                                    <a type="submit" class="btn btn-danger" href="curso.php">Regresar</a>
+                                <?php   
+                                if(isset($_REQUEST['modoVista'])){
+                                    echo "<a type='submit' class='btn btn-danger' href='horarios.php'>Regresar</a>";
+                                    }else{
+                                        echo "<a type='submit' class='btn btn-danger' href='curso.php'>Regresar</a>";
+                                    }
+                                    ?>
                                 </div>
                             </form>
                         </div>
