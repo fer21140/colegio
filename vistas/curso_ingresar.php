@@ -54,7 +54,7 @@ include("layout/nav.php");
                                         <!-- text input -->
                                         <div class="form-group">
                                             <label>Nombre del curso</label>
-                                            <input type="text" class="form-control" placeholder="Nombre del curso" name="nombre" id="nombre" pattern="^[a-zA-ZáéíóúÁÉÍÓÚ0-9 ]{1,100}" required minlength="1" maxlength="100">
+                                            <input type="text" class="form-control" placeholder="Nombre del curso" name="nombre" id="nombre" pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9 ]{1,100}" required minlength="1" maxlength="100">
                                         </div>
                                     </div>
 

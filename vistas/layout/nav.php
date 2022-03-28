@@ -45,6 +45,7 @@
     </ul>
 
     <ul class="navbar-nav ml-auto"><a class="btn btn-primary" href="../crud/cerrarSesion.php">Cerrar sesión</a></ul>
+    <ul class="navbar-nav ml-auto"><a class="btn btn-success" href="../vistas/index.php">Menú principal</a></ul>
   </nav>
   <!-- /.navbar -->
 
@@ -97,6 +98,7 @@
           $usuario = $_SESSION['usuario'];
           $nombre = $usuario->getNombres();
           $apellido = $usuario->getApellidos();
+          $rolPermisoMenu = $usuario->getIdRol();
 
           echo"<a href='#' class='d-block'>$nombre $apellido</a>";
         ?>
@@ -117,109 +119,168 @@
               </p>
             </a>
             
+          <?php
 
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="alumno.php" class="nav-link ">
-                  <i class="far fa-circle nav-icon"></i>
+          if($rolPermisoMenu==1){
+            echo "<ul class='nav nav-treeview'>
+              <li class='nav-item'>
+                <a href='alumno.php' class='nav-link '>
+                  <i class='far fa-circle nav-icon'></i>
                   <p>Alumnos</p>
                 </a>
               </li>
-            </ul>
+            </ul>";
+          }
+            ?>
 
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="grado.php" class="nav-link ">
-                  <i class="far fa-circle nav-icon"></i>
+            <?php
+            if($rolPermisoMenu==1){
+           
+              echo "<ul class='nav nav-treeview'>
+              <li class='nav-item'>
+                <a href='grado.php' class='nav-link '>
+                  <i class='far fa-circle nav-icon'></i>
                   <p>Grados académicos</p>
                 </a>
               </li>
-            </ul>
+            </ul>";
+            }
+            
+            ?>
 
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="curso.php" class="nav-link ">
-                  <i class="far fa-circle nav-icon"></i>
+            <?php
+            
+            if($rolPermisoMenu==1){
+            echo "<ul class='nav nav-treeview'>
+              <li class='nav-item'>
+                <a href='curso.php' class='nav-link '>
+                  <i class='far fa-circle nav-icon'></i>
                   <p>Cursos</p>
                 </a>
               </li>
-            </ul>
-
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="matricula.php" class="nav-link ">
-                  <i class="far fa-circle nav-icon"></i>
+            </ul>";
+            }
+          ?>
+            
+            <?php
+            
+            if($rolPermisoMenu==1){
+            echo "<ul class='nav nav-treeview'>
+              <li class='nav-item'>
+                <a href='matricula.php' class='nav-link '>
+                  <i class='far fa-circle nav-icon'></i>
                   <p>Inscripciones</p>
                 </a>
               </li>
-            </ul>
-
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="nota.php" class="nav-link ">
-                  <i class="far fa-circle nav-icon"></i>
+            </ul>";
+            }
+        ?>
+            <ul class='nav nav-treeview'>
+              <li class='nav-item'>
+                <a href='nota.php' class='nav-link '>
+                  <i class='far fa-circle nav-icon'></i>
                   <p>Calificaciones</p>
                 </a>
               </li>
             </ul>
+<?php
+           if($rolPermisoMenu==2){
+           echo "<ul class='nav nav-treeview'>
+              <li class='nav-item'>
+                <a href='lista_alumnos.php' class='nav-link '>
+                  <i class='far fa-circle nav-icon'></i>
+                  <p>Listado de alumnos</p>
+                </a>
+              </li>
+            </ul>";
 
-
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="operacion.php" class="nav-link ">
-                  <i class="far fa-circle nav-icon"></i>
+            echo "<ul class='nav nav-treeview'>
+              <li class='nav-item'>
+                <a href='horarios.php' class='nav-link '>
+                  <i class='far fa-circle nav-icon'></i>
+                  <p>Horarios</p>
+                </a>
+              </li>
+            </ul>";
+           }
+?>
+            <?php
+            if($rolPermisoMenu==1){
+            echo "<ul class='nav nav-treeview'>
+              <li class='nav-item'>
+                <a href='operacion.php' class='nav-link '>
+                  <i class='far fa-circle nav-icon'></i>
                   <p>Operaciones monetarias</p>
                 </a>
               </li>
-            </ul>
+            </ul>";
+            }
+            ?>
 
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="movimiento.php" class="nav-link ">
-                  <i class="far fa-circle nav-icon"></i>
+            <?php
+            if($rolPermisoMenu==1){
+            echo "<ul class='nav nav-treeview'>
+              <li class='nav-item'>
+                <a href='movimiento.php' class='nav-link '>
+                  <i class='far fa-circle nav-icon'></i>
                   <p>Transacciones</p>
                 </a>
               </li>
-            </ul>
-
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="planilla.php" class="nav-link ">
-                  <i class="far fa-circle nav-icon"></i>
+            </ul>";
+            }
+            ?>
+            <?php
+            if($rolPermisoMenu==1){
+            echo "<ul class='nav nav-treeview'>
+              <li class='nav-item'>
+                <a href='planilla.php' class='nav-link '>
+                  <i class='far fa-circle nav-icon'></i>
                   <p>Planilla</p>
                 </a>
               </li>
-            </ul>
+            </ul>";
+            }
+            ?>
 
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="sueldo.php" class="nav-link ">
-                  <i class="far fa-circle nav-icon"></i>
+            <?php
+            if($rolPermisoMenu==1){
+            echo "<ul class='nav nav-treeview'>
+              <li class='nav-item'>
+                <a href='sueldo.php' class='nav-link '>
+                  <i class='far fa-circle nav-icon'></i>
                   <p>Sueldos</p>
                 </a>
               </li>
-            </ul>
+            </ul>";
+            }
+
+            ?>
 
           </li>
           
           
-          <li class="nav-header">ACCIONES DE ADMINISTRADOR</li>
+          <li class='nav-header'>ACCIONES DE ADMINISTRADOR</li>
           
           
          
          
+          <?php
           
-          <li class="nav-item">
-            <a href="usuario.php" class="nav-link">
-              <i class="nav-icon fas fa-user-alt"></i>
+          if($rolPermisoMenu==1){
+          echo "<li class='nav-item'>
+            <a href='usuario.php' class='nav-link'>
+              <i class='nav-icon fas fa-user-alt'></i>
               <p>
                 Usuarios
               </p>
             </a>
-          </li>
-          <li class="nav-item">
-            <a href="manual_usuario.php" class="nav-link" target="_blank">
-              <i class="nav-icon fas fa-atlas"></i>
+          </li>";
+          }
+          ?>
+          
+          <li class='nav-item'>
+            <a href='manual_usuario.php' class='nav-link' target='_blank'>
+              <i class='nav-icon fas fa-atlas'></i>
               <p>
                 Manual de usuario
               </p>

@@ -3,8 +3,8 @@
 include ("layout/header.php");
 
 ?>
-  <link rel="stylesheet" href="../css/Reloj.css" />
-  <title>Tránsito Zacapa</title>
+  
+  <title>Menú principal</title>
   <!-- Tell the browser to be responsive to screen width -->
  
 <?php
@@ -23,7 +23,7 @@ include ("layout/nav.php");
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="https://es.wikipedia.org/wiki/Gual%C3%A1n" target="_blank">Primero Gualán, Segundo Gualán y tercero Gualán</a></li>
+              <li class="breadcrumb-item"><a href="https://es.wikipedia.org/wiki/Gual%C3%A1n" target="_blank">Bienaventurado el hombre que halla la sabiduría y obtiene la inteligencia</a></li>
               
             </ol>
           </div><!-- /.col -->
@@ -42,20 +42,17 @@ include ("layout/nav.php");
             <div class="small-box bg-info">
               <div class="inner">
                 <?php
-                $conexion = new Conexion();
-                //Conectamos a la base de datos
-                $conexion->conectar();
-                $sql = "SELECT id_cliente FROM cliente  where estado=1";
-                $resultado = mysqli_query($conexion->db,$sql);
-                $row = mysqli_num_rows($resultado);
-                echo "<h3 style='user-select: auto;'>$row</h3>";
+                $user = new Usuario();
+                $resUser = $user->obtenerUsuarios();
+                $numeroUsuarios = sizeof($resUser);
+                echo "<h3 style='user-select: auto;'>$numeroUsuarios</h3>";
                 ?>
-                <p>Clientes</p>
+                <p>Usuarios</p>
               </div>
               <div class="icon">
                 <i class="fas fa-user-tie"></i>
               </div>
-              <a href="cliente.php" class="small-box-footer">Más información<i class="fas fa-arrow-circle-right"></i></a>
+              <a href="usuario.php" class="small-box-footer">Más información<i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -64,19 +61,17 @@ include ("layout/nav.php");
             <div class="small-box bg-success">
               <div class="inner">
               <?php
-                 $conexion = new Conexion();
-                 $conexion->conectar();
-                 $sql3 = "SELECT id_detalle_servicio FROM detalle_servicio where estado=1";
-                 $resultados = mysqli_query($conexion->db,$sql3);
-                 $row4 = mysqli_num_rows($resultados);
-                echo "<h3>$row4</h3>";
+                 $alumnoCount = new Alumno();
+                 $resAlumno = $alumnoCount->obtenerAlumnos();
+                 $numeroAlumnos = sizeof($resAlumno);
+                echo "<h3>$numeroAlumnos</h3>";
               ?>
-                <p>Servicios</p>
+                <p>Alumnos</p>
               </div>
               <div class="icon">
-                <i class="fas fa-tools"></i>
+                <i class="fas fa-user-alt"></i>
               </div>
-              <a href="servicio.php" class="small-box-footer">Más información <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="alumno.php" class="small-box-footer">Más información <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -85,19 +80,18 @@ include ("layout/nav.php");
             <div class="small-box bg-warning">
               <div class="inner">
               <?php
-                $conexion = new Conexion();
-                $conexion->conectar();
-                $sql ="SELECT id_personal FROM personal where estado=1";
-                $resultado =  mysqli_query($conexion->db,$sql);
-                $row = mysqli_num_rows($resultado);
+                
+                $curso = new Curso();
+                $resCurso = $curso->obtenerCursos();
+                $numeroCursos = sizeof($resCurso);
 
-                echo "<h3>$row</h3>";
+                echo "<h3>$numeroCursos</h3>";
 
               ?>
-                <p>Personal</p>
+                <p>Cursos</p>
               </div>
               <div class="icon">
-                <i class="fas fas fa-user-cog"></i>
+                <i class="fas fas fa-book"></i>
               </div>
               <a href="personal.php" class="small-box-footer">Más información<i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -108,71 +102,158 @@ include ("layout/nav.php");
             <div class="small-box bg-danger">
               <div class="inner">
                 <?php
-                  $conexion = new Conexion();
-                  $conexion->conectar();
-                  $sql = "SELECT id_usuario FROM usuario where estado=1";
-                  $resultado = mysqli_query($conexion->db, $sql);
-                  $row = mysqli_num_rows($resultado);
+                  $grado = new Grado();
+                  $resGrado = $grado->obtenerGrados();
+                  $numeroGrados = sizeof($resGrado);
                   
-                  echo "<h3>$row</h3>";
+                  echo "<h3>$numeroGrados</h3>";
                 ?>
 
-                <p>Usuarios</p>
+                <p>Grados</p>
               </div>
               <div class="icon">
-                <i class="fas fa-user-alt"></i>
+                <i class="fas fa-school"></i>
               </div>
-              <a href="usuario.php" class="small-box-footer">Más información <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="grado.php" class="small-box-footer">Más información <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
+
+
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-danger">
+              <div class="inner">
+                <?php
+                  $matricula = new Matricula();
+                  $resMatricula = $matricula->obtenerMatriculas();
+                  $numeroInscripciones = sizeof($resMatricula);
+                  
+                  echo "<h3>$numeroInscripciones</h3>";
+                ?>
+
+                <p>Inscripciones</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-newspaper"></i>
+              </div>
+              <a href="matricula.php" class="small-box-footer">Más información <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+
+
+
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-warning">
+              <div class="inner">
+              <?php
+                
+                $calificacion = new Nota();
+                $resCalificacion = $calificacion->obtenerNotas();
+                $numeroNotas = sizeof($resCalificacion);
+
+                echo "<h3>$numeroNotas</h3>";
+
+              ?>
+                <p>Calificaciones</p>
+              </div>
+              <div class="icon">
+                <i class="fas fas fa-list"></i>
+              </div>
+              <a href="nota.php" class="small-box-footer">Más información<i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+
+
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-success">
+              <div class="inner">
+              <?php
+                 $operacionCount = new Operacion();
+                 $resOperacion = $operacionCount->obtenerOperaciones();
+                 $numeroOperaciones = sizeof($resOperacion);
+                echo "<h3>$numeroOperaciones</h3>";
+              ?>
+                <p>Operaciones monetarias</p>
+              </div>
+              <div class="icon">
+              <i class="fas fas fa-wallet"></i>
+              </div>
+              <a href="operacion.php" class="small-box-footer">Más información <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+              <div class="inner">
+                <?php
+                $movimiento = new Movimiento();
+                $resMovimiento = $movimiento->obtenerMovimientos();
+                $numeroMovimientos = sizeof($resMovimiento);
+                echo "<h3 style='user-select: auto;'>$numeroMovimientos</h3>";
+                ?>
+                <p>Transacciones</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-money-bill-transfer"></i>
+              </div>
+              <a href="movimiento.php" class="small-box-footer">Más información<i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+              <div class="inner">
+                <?php
+                  $planilla = new Planilla();
+                  $resPlanilla = $planilla->obtenerPlanillas();
+                  $numeroPlanillas = sizeof($resPlanilla);
+                  
+                  echo "<h3>$numeroPlanillas</h3>";
+                ?>
+
+                <p>Planilla</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-newspaper"></i>
+              </div>
+              <a href="planilla.php" class="small-box-footer">Más información <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-success">
+              <div class="inner">
+                <?php
+                  $sueldo = new Sueldo();
+                  $resSueldo = $sueldo->obtenerSueldos();
+                  $numeroSueldos = sizeof($resSueldo);
+                  
+                  echo "<h3>$numeroSueldos</h3>";
+                ?>
+
+                <p>Sueldos</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-newspaper"></i>
+              </div>
+              <a href="sueldo.php" class="small-box-footer">Más información <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+
+          
+
+
           <!-- ./col -->
         </div>
+        
         <!-- /.row -->
         <!-- Main row -->
-        <div class="row">
-        <!--reloj-->
-        <div class="contenedor">
-        <div class="widget">
-        <div class="fecha">
-            <p id="diaSemana" class="diaSemana"></p>
-            <p id="dia" class="dia"></p>
-            <p>de</p>
-            <p id="mes" class="mes"></p>
-            <p>del</p>
-            <p id="anio" class="anio"></p>
-        </div>
-        <div class="reloj">
-           <p id="horas" class="horas"></p>
-           <p>:</p>
-           <p id="minutos" class="minutos"></p>
-           <p>:</p>
-        <div class="cajaSegundos">
-           <p id="ampm" class="ampm"></p>
-           <p id="segundos" class="segundos"></p>
-        </div>
-        </div>
-        </div>
-        </div>
-          <!-- Left col -->
-          <section class="col-lg-7 connectedSortable">
-
-          
-
-          
-          </section>
-          <!-- /.Left col -->
-          <!-- right col (We are only adding the ID to make the widgets sortable)-->
-          <section class="col-lg-5 connectedSortable">
-
-            <!-- Map card -->
-           
-
-            
-                              
-           
-          </section>
-          <!-- right col -->
-        </div>
+        
         <!-- /.row (main row) -->
       </div><!-- /.container-fluid -->
     </section>
@@ -185,54 +266,6 @@ include ("layout/footer.php");
 
 ?>
 
-<script>
-$(function(){
-  var actualizarHora = function(){
-    var fecha = new Date(),
-        hora = fecha.getHours(),
-        minutos = fecha.getMinutes(),
-        segundos = fecha.getSeconds(),
-        diaSemana = fecha.getDay(),
-        dia = fecha.getDate(),
-        mes = fecha.getMonth(),
-        anio = fecha.getFullYear(),
-        ampm;
-    
-    var $pHoras = $("#horas"),
-        $pSegundos = $("#segundos"),
-        $pMinutos = $("#minutos"),
-        $pAMPM = $("#ampm"),
-        $pDiaSemana = $("#diaSemana"),
-        $pDia = $("#dia"),
-        $pMes = $("#mes"),
-        $pAnio = $("#anio");
-    var semana = ['Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado'];
-    var meses = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
-    
-    $pDiaSemana.text(semana[diaSemana]);
-    $pDia.text(dia);
-    $pMes.text(meses[mes]);
-    $pAnio.text(anio);
-    if(hora>=12){
-      hora = hora - 12;
-      ampm = "PM";
-    }else{
-      ampm = "AM";
-    }
-    if(hora == 0){
-      hora = 12;
-    }
-    if(hora<10){$pHoras.text("0"+hora)}else{$pHoras.text(hora)};
-    if(minutos<10){$pMinutos.text("0"+minutos)}else{$pMinutos.text(minutos)};
-    if(segundos<10){$pSegundos.text("0"+segundos)}else{$pSegundos.text(segundos)};
-    $pAMPM.text(ampm);
-    
-  };
-  
-  
-  actualizarHora();
-  var intervalo = setInterval(actualizarHora,1000);
-});
-</script>
+
 
 
