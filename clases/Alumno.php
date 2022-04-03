@@ -11,6 +11,8 @@
         public $segundoApellido;
         public $direccion;
         public $telefono;
+        public $usuario;
+        public $clave;
         public $estado;
         public $fechaCommit;
         public $fotografia;
@@ -86,6 +88,22 @@
         //Setear teléfono
         public function setTelefono($_telefono){
             $this->telefono = $_telefono;
+        }
+         //Obtener usuario
+         public function getUsuario(){
+            return $this->usuario;
+        }
+        //Setear usuario
+        public function setUsuario($_usuario){
+            $this->usuario = $_usuario;
+        }
+        //Obtener clave
+        public function getClave(){
+            return $this->clave;
+        }
+        //Setear clave
+        public function setClave($_clave){
+            $this->clave = $_clave;
         }
         //obtener fotografía
         public function getFotografia(){
@@ -291,6 +309,46 @@
                 $resultadoAlumno->setTelefono($fila['telefono']);
                 $resultadoAlumno->setEstado($fila['estado']);
                 $resultadoAlumno->setFechaCommit($fila['fecha_commit']);
+                
+               
+            }
+                //Nos desconectamos de la base de datos
+                $conexion->desconectar();
+                //Devolvemos el usuario encontrado
+                return $resultadoAlumno;
+           }
+
+           //----------Función para buscar alumno por email y clave
+           
+           public function buscarPorEmailClave($usuario,$clave){
+         
+            //Instanciamos la clase conexión
+             $conexion = new Conexion();
+             //Conectamos a la base de datos
+             $conexion->conectar();
+             //Declaramos el objeto contenedor del resultado
+             $resultadoAlumno = new Alumno();
+             
+             //Instrucción SQL
+            $sql = "select *from alumnos where usuario='" . $usuario . "' AND password='" . $clave . "'";
+            //Ejecución de instrucción     
+            $ejecutar = mysqli_query($conexion->db, $sql);
+    
+            while($fila = mysqli_fetch_array($ejecutar)){
+                
+                $resultadoAlumno->setId($fila['id']);
+                $resultadoAlumno->setCarnet($fila['carnet']);
+                $resultadoAlumno->setPrimerNombre($fila['primerNombre']);
+                $resultadoAlumno->setSegundoNombre($fila['segundoNombre']);
+                $resultadoAlumno->setTercerNombre($fila['tercerNombre']);
+                $resultadoAlumno->setPrimerApellido($fila['primerApellido']);
+                $resultadoAlumno->setSegundoApellido($fila['segundoApellido']);
+                $resultadoAlumno->setDireccion($fila['direccion']);
+                $resultadoAlumno->setTelefono($fila['telefono']);
+                $resultadoAlumno->setEstado($fila['estado']);
+                $resultadoAlumno->setFechaCommit($fila['fecha_commit']);
+                $resultadoAlumno->setUsuario($fila['usuario']);
+                $resultadoAlumno->setClave($fila['password']);
                 
                
             }

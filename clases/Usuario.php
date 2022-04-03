@@ -382,6 +382,44 @@
             return $resultadoUsuario;
        }
 
+       //------Función para obtener usuario por email y clave
+
+       public function buscarPorEmailClave($email,$pass){
+         
+        //Instanciamos la clase conexión
+         $conexion = new Conexion();
+         //Conectamos a la base de datos
+         $conexion->conectar();
+         //Declaramos el objeto contenedor del resultado
+         $resultadoUsuario = new Usuario();
+         
+         //Instrucción SQL
+        $sql = "select *from tblusuarios where email='" . $email . "' AND password= '" . $pass . "'";
+        //Ejecución de instrucción     
+        $ejecutar = mysqli_query($conexion->db, $sql);
+
+        while($fila = mysqli_fetch_array($ejecutar)){
+            
+            $resultadoUsuario->setId($fila['id']);
+            $resultadoUsuario->setIdRol($fila['id_rol']);
+            $resultadoUsuario->setDpi($fila['dpi']);
+            $resultadoUsuario->setNombres($fila['nombres']);
+            $resultadoUsuario->setApellidos($fila['apellidos']);
+            $resultadoUsuario->setEmail($fila['email']);
+            $resultadoUsuario->setPassword($fila['password']);
+            $resultadoUsuario->setEstado($fila['estado']);
+            $resultadoUsuario->setFechaCommit($fila['fecha_commit']);
+            $resultadoUsuario->setTelefono($fila['telefono']);
+            $resultadoUsuario->setFotografia($fila['fotografia']);
+            
+           
+        }
+            //Nos desconectamos de la base de datos
+            $conexion->desconectar();
+            //Devolvemos el usuario encontrado
+            return $resultadoUsuario;
+       }
+
 
     }
 
