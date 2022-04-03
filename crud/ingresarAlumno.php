@@ -15,8 +15,10 @@
         $segundoApellido = mb_strtoupper($_POST['segundoApellido']);
         $direccion = mb_strtoupper($_POST['direccion']);
         $telefono = $_POST['telefono'];
+        $usuario = $_POST['usuario'];
+        $password = $_POST['password'];
 
-        $alumno->guardar($carnet,$primerNombre,$segundoNombre,$tercerNombre,$primerApellido,$segundoApellido,$direccion,$telefono);
+        $alumno->guardar($carnet,$primerNombre,$segundoNombre,$tercerNombre,$primerApellido,$segundoApellido,$direccion,$telefono,$usuario,$password);
         header("Location: ../vistas/alumno.php");
     }
 
