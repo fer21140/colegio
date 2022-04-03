@@ -133,20 +133,20 @@
 
         //Función para guardar un alumno
 
-        public function guardar($carnetg,$primerNombreg,$segundoNombreg,$tercerNombreg,$primerApellidog,$segundoApellidog,$direcciong,$telefonog){
+        public function guardar($carnetg,$primerNombreg,$segundoNombreg,$tercerNombreg,$primerApellidog,$segundoApellidog,$direcciong,$telefonog,$usuariog,$passwordg){
         
             //Instanciamos la clase conexión
             $conexion = new Conexion();
             //Conectamos a la base de datos
             $conexion->conectar();
             //Instrucción SQL
-            $sql = "insert into alumnos(carnet,primerNombre,segundoNombre,tercerNombre,primerApellido,segundoApellido,direccion,telefono)values(?,?,?,?,?,?,?,?)";
+            $sql = "insert into alumnos(carnet,primerNombre,segundoNombre,tercerNombre,primerApellido,segundoApellido,direccion,telefono,usuario,password)values(?,?,?,?,?,?,?,?,?,?)";
             //Preparamos la instrucción sql
             $stmt = $conexion->db->prepare($sql);
             
             //Enviamos los parámetros
             //i = integer, s = string, d= double...se colocan segun el tamaño de parametros
-            $stmt->bind_param('sssssssi',$carnetg,$primerNombreg,$segundoNombreg,$tercerNombreg,$primerApellidog,$segundoApellidog,$direcciong,$telefonog);
+            $stmt->bind_param('sssssssiss',$carnetg,$primerNombreg,$segundoNombreg,$tercerNombreg,$primerApellidog,$segundoApellidog,$direcciong,$telefonog,$usuariog,$passwordg);
               
             //Ejecutamos instrucción
             $stmt->execute();
@@ -265,8 +265,11 @@
                 $alumnoIndex->setSegundoApellido($fila['segundoApellido']);
                 $alumnoIndex->setDireccion($fila['direccion']);
                 $alumnoIndex->setTelefono($fila['telefono']);
+                $alumnoIndex->setUsuario($fila['usuario']);
+                $alumnoIndex->setClave($fila['password']);
                 $alumnoIndex->setEstado($fila['estado']);
                 $alumnoIndex->setFechaCommit($fila['fecha_commit']);
+               
     
             //Llenamos el array de resultados de usuarios
             array_push($resultadoAlumnos,$alumnoIndex);
@@ -307,6 +310,8 @@
                 $resultadoAlumno->setSegundoApellido($fila['segundoApellido']);
                 $resultadoAlumno->setDireccion($fila['direccion']);
                 $resultadoAlumno->setTelefono($fila['telefono']);
+                $resultadoAlumno->setUsuario($fila['usuario']);
+                $resultadoAlumno->setClave($fila['password']);
                 $resultadoAlumno->setEstado($fila['estado']);
                 $resultadoAlumno->setFechaCommit($fila['fecha_commit']);
                 
