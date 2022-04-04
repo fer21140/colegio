@@ -17,8 +17,10 @@
         $segundoApellido = mb_strtoupper($_POST['segundoApellido']);
         $direccion = mb_strtoupper($_POST['direccion']);
         $telefono = $_POST['telefono'];
+        $usuario = $_POST['usuario'];
+        $password = $_POST['password'];
 
-        $alumno->editar($carnet,$primerNombre,$segundoNombre,$tercerNombre,$primerApellido,$segundoApellido,$direccion,$telefono,$idEditar);
+        $alumno->editar($carnet,$primerNombre,$segundoNombre,$tercerNombre,$primerApellido,$segundoApellido,$direccion,$telefono,$usuario,$password,$idEditar);
         header("Location: ../vistas/alumno.php");
     }
 
