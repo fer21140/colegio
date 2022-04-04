@@ -13,6 +13,7 @@
         public $telefono;
         public $usuario;
         public $clave;
+        public $claveMaestra;//Primer contraseña, será utilizada para recuperar la clave si se olvida
         public $estado;
         public $fechaCommit;
         public $fotografia;
@@ -105,6 +106,14 @@
         public function setClave($_clave){
             $this->clave = $_clave;
         }
+        //Obtener clave maestra
+        public function getClaveMaestra(){
+            return $this->claveMaestra;
+        }
+        //Setear clave maestra
+        public function setClaveMaestra($_claveMaestra){
+            $this->claveMaestra = $_claveMaestra;
+        }
         //obtener fotografía
         public function getFotografia(){
             return $this->fotografia;
@@ -133,20 +142,20 @@
 
         //Función para guardar un alumno
 
-        public function guardar($carnetg,$primerNombreg,$segundoNombreg,$tercerNombreg,$primerApellidog,$segundoApellidog,$direcciong,$telefonog,$usuariog,$passwordg){
+        public function guardar($carnetg,$primerNombreg,$segundoNombreg,$tercerNombreg,$primerApellidog,$segundoApellidog,$direcciong,$telefonog,$usuariog,$passwordg,$claveMaestrag){
         
             //Instanciamos la clase conexión
             $conexion = new Conexion();
             //Conectamos a la base de datos
             $conexion->conectar();
             //Instrucción SQL
-            $sql = "insert into alumnos(carnet,primerNombre,segundoNombre,tercerNombre,primerApellido,segundoApellido,direccion,telefono,usuario,password)values(?,?,?,?,?,?,?,?,?,?)";
+            $sql = "insert into alumnos(carnet,primerNombre,segundoNombre,tercerNombre,primerApellido,segundoApellido,direccion,telefono,usuario,password,clave_maestra)values(?,?,?,?,?,?,?,?,?,?,?)";
             //Preparamos la instrucción sql
             $stmt = $conexion->db->prepare($sql);
             
             //Enviamos los parámetros
             //i = integer, s = string, d= double...se colocan segun el tamaño de parametros
-            $stmt->bind_param('sssssssiss',$carnetg,$primerNombreg,$segundoNombreg,$tercerNombreg,$primerApellidog,$segundoApellidog,$direcciong,$telefonog,$usuariog,$passwordg);
+            $stmt->bind_param('sssssssisss',$carnetg,$primerNombreg,$segundoNombreg,$tercerNombreg,$primerApellidog,$segundoApellidog,$direcciong,$telefonog,$usuariog,$passwordg,$claveMaestrag);
               
             //Ejecutamos instrucción
             $stmt->execute();
@@ -158,20 +167,20 @@
 
            //--------------------Función para editar alumno----------------------
 
-           public function editar($carnete,$primerNombree,$segundoNombree,$tercerNombree,$primerApellidoe,$segundoApellidoe,$direccione,$telefonoe,$idEditare){
+           public function editar($carnete,$primerNombree,$segundoNombree,$tercerNombree,$primerApellidoe,$segundoApellidoe,$direccione,$telefonoe,$usuarioe,$passworde,$idEditare){
         
             //Instanciamos la clase conexión
             $conexion = new Conexion();
             //Conectamos a la base de datos
             $conexion->conectar();
             //Instrucción SQL
-            $sql = "update alumnos set carnet=?,primerNombre=?,segundoNombre=?,tercerNombre=?,primerApellido=?,segundoApellido=?,direccion=?,telefono=? where id=?";
+            $sql = "update alumnos set carnet=?,primerNombre=?,segundoNombre=?,tercerNombre=?,primerApellido=?,segundoApellido=?,direccion=?,telefono=?,usuario=?,clave_maestra=? where id=?";
             //Preparamos la instrucción sql
             $stmt = $conexion->db->prepare($sql);
             
             //Enviamos los parámetros
             //i = integer, s = string, d= double...se colocan segun el tamaño de parametros
-            $stmt->bind_param('sssssssii',$carnete,$primerNombree,$segundoNombree,$tercerNombree,$primerApellidoe,$segundoApellidoe,$direccione,$telefonoe,$idEditare);
+            $stmt->bind_param('sssssssissi',$carnete,$primerNombree,$segundoNombree,$tercerNombree,$primerApellidoe,$segundoApellidoe,$direccione,$telefonoe,$usuarioe,$passworde,$idEditare);
               
             //Ejecutamos instrucción
             $stmt->execute();
@@ -267,6 +276,7 @@
                 $alumnoIndex->setTelefono($fila['telefono']);
                 $alumnoIndex->setUsuario($fila['usuario']);
                 $alumnoIndex->setClave($fila['password']);
+                $alumnoIndex->setClaveMaestra($fila['clave_maestra']);
                 $alumnoIndex->setEstado($fila['estado']);
                 $alumnoIndex->setFechaCommit($fila['fecha_commit']);
                
@@ -312,6 +322,7 @@
                 $resultadoAlumno->setTelefono($fila['telefono']);
                 $resultadoAlumno->setUsuario($fila['usuario']);
                 $resultadoAlumno->setClave($fila['password']);
+                $resultadoAlumno->setClaveMaestra($fila['clave_maestra']);
                 $resultadoAlumno->setEstado($fila['estado']);
                 $resultadoAlumno->setFechaCommit($fila['fecha_commit']);
                 
@@ -354,6 +365,7 @@
                 $resultadoAlumno->setFechaCommit($fila['fecha_commit']);
                 $resultadoAlumno->setUsuario($fila['usuario']);
                 $resultadoAlumno->setClave($fila['password']);
+                $resultadoAlumno->setClaveMaestra($fila['clave_maestra']);
                 
                
             }

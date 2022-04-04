@@ -18,7 +18,8 @@
         $usuario = $_POST['usuario'];
         $password = $_POST['password'];
 
-        $alumno->guardar($carnet,$primerNombre,$segundoNombre,$tercerNombre,$primerApellido,$segundoApellido,$direccion,$telefono,$usuario,$password);
+
+        $alumno->guardar($carnet,$primerNombre,$segundoNombre,$tercerNombre,$primerApellido,$segundoApellido,$direccion,$telefono,$usuario,$password,$password);
         header("Location: ../vistas/alumno.php");
     }
 

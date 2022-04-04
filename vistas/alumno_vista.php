@@ -63,6 +63,8 @@ include ("layout/nav.php");
                     $primerApellido = $resultado->getPrimerApellido();
                     $segundoApellido = $resultado->getSegundoApellido();
                     $telefono = $resultado->getTelefono();
+                    $usuario = $resultado->getUsuario();
+                    $password = $resultado->getClaveMaestra();
                     $direccion = $resultado->getDireccion();
                     $fechaCommit = $resultado->getFechaCommit();
                    
@@ -143,6 +145,25 @@ include ("layout/nav.php");
                         pattern="^[0-9]{1,20}" required minlength="1" maxlength="20" readonly>
                       </div>
                     </div>   
+
+                    <div class="col-sm-6">
+                      <!-- text input -->
+                      <div class="form-group">
+                        <label>Usuario</label>
+                        <input type="text" class="form-control" placeholder="Usuario" name="usuario" id="usuario" value="<?php echo $usuario; ?>"
+                        pattern="^[a-zA-ZáéíóúÁÉÍÓÚÑñ, ]{1,50}" required minlength="1" maxlength="50" readonly>
+                      </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                      <!-- text input -->
+                      <div class="form-group">
+                        <label>Contraseña maestra (Casos de recuperación de contraseña)</label>
+                        <input type="text" class="form-control" placeholder="Contraseña" name="password" id="password" value="<?php echo $password;?>"
+                        pattern="^[a-zA-ZáéíóúÁÉÍÓÚÑñ, ]{1,50}" required minlength="1" maxlength="50" readonly>
+                      </div>
+                    </div>
+           
                     
                     <div class="col-sm-6">
                       <!-- text input -->
