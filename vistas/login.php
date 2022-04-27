@@ -23,8 +23,8 @@
                         <i class="fas fa-lock"></i>
                         <input type="password" placeholder="Contraseña" name="password" id="password" required/>
                     </div>
-                    <input type="submit" value="Acceder" id="btnEntrar" name="btnEntrar" class="btn solid" />
-                    <p class="social-text">!Accede ahora!</p>
+                    <input type="submit" value="Iniciar sesión" id="btnEntrar" name="btnEntrar" class="btn solid" />
+                    <p class="social-text">!Ingresa tus credenciales!</p>
                 </form>
             </div>
         </div>
@@ -33,10 +33,10 @@
                 <div class="content">
                     <h3>Instituto Mixto Privado San Cristóbal A.C</h3>
                     <p>
-                        "Y Conoceréis la verdad, y la verdad os hará libres"
+                        "Bienaventurado el que alcanza la sabiduría y obtiene la inteligencia"
                     </p>
                 </div>
-                <img src="../img/logoPMT.svg" class="image" alt="" />
+                <img src="../img/ICONO_LOGIN.svg" class="image" alt="" />
             </div>
         </div>
     </div>

@@ -45,7 +45,39 @@
     </ul>
 
     <ul class="navbar-nav ml-auto"><a class="btn btn-primary" href="../crud/cerrarSesion.php">Cerrar sesión</a></ul>
-    <ul class="navbar-nav ml-auto"><a class="btn btn-success" href="../vistas/index.php">Menú principal</a></ul>
+  <?php
+
+include("../db/Conexion.php");
+          
+include("../clases/Alumno.php");
+include("../clases/Usuario.php");
+include("../clases/Contacto.php");
+include("../clases/Grado.php");
+include("../clases/Curso.php");
+include("../clases/Operacion.php");
+include("../clases/Matricula.php");
+include("../clases/Movimiento.php");
+include("../clases/Nota.php");
+include("../clases/Sueldo.php");
+include("../clases/Planilla.php");
+
+
+session_start();
+  
+    if(isset($_SESSION['usuario'])){
+      
+      $us = $_SESSION['usuario'];
+      $idRolUs = $us->getIdRol();
+
+      if($idRolUs==1){
+        echo "<ul class='navbar-nav ml-auto'><a class='btn btn-success' href='../vistas/index.php'>Menú principal</a></ul>";
+      }
+
+    }
+  
+  ?>  
+    
+  
   </nav>
   <!-- /.navbar -->
 
@@ -53,7 +85,7 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="https://m.facebook.com/PorEl9/" target="_blank" class="brand-link">
-      <img src="../app/AdminLTE-3.0.5/dist/img/cable.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+      <img src="../reportes/logo.jpg" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
       <span class="brand-text font-weight-light">IMP</span>
     </a>
@@ -71,22 +103,7 @@
           
           //Incluimos todas las clases
           
-          include("../db/Conexion.php");
           
-          include("../clases/Alumno.php");
-          include("../clases/Usuario.php");
-          include("../clases/Contacto.php");
-          include("../clases/Grado.php");
-          include("../clases/Curso.php");
-          include("../clases/Operacion.php");
-          include("../clases/Matricula.php");
-          include("../clases/Movimiento.php");
-          include("../clases/Nota.php");
-          include("../clases/Sueldo.php");
-          include("../clases/Planilla.php");
-          
-          
-          session_start();
 
           if(isset($_SESSION['usuario'])){
 

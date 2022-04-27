@@ -215,7 +215,7 @@
                     $idBim3=0;
   
                     $bimestre4=-1;
-                    $idBim4=0;
+                    $idBim4=0; 
   
                     //Recorremos los resultados
                     for($r=0;$r<sizeof($notaArrayBimestre);$r++){
