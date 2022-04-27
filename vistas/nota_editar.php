@@ -96,7 +96,7 @@ include("layout/nav.php");
                                 <div class="">
                                     <input type="submit" value="Editar" class="btn btn-primary" name="btnEditar" id="btnEditar">
                                     <a type="submit" class="btn btn-danger" href="nota.php?id_alumno=<?php echo $idAlumno;?>&anio=<?php echo $anio;?>&grado=<?php echo $grado;?>">Regresar</a>
-                                </div>
+                                </div> 
                             </form>
                         </div>
                         <!-- /.card-body -->
