@@ -20,7 +20,7 @@ include("layout/nav.php");
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Inscribir alumno</h1>
+                    <h1>Matricular o inscribir alumno</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -42,7 +42,7 @@ include("layout/nav.php");
                     <!-- general form elements disabled -->
                     <div class="card card-warning">
                         <div class="card-header">
-                            <h3 class="card-title">Ingresar información de la inscripción</h3>
+                            <h3 class="card-title">Ingresar información</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -181,6 +181,22 @@ include("layout/nav.php");
 
 
                    ?>
+
+<div class="col-sm-6">
+                                        <!-- text input -->
+                                        <div class="form-group">
+                                            <label>Número de pagos anuales</label>
+                                            <input type="number" class="form-control" placeholder="Cantidad de pagos anuales" name="numero_pagos" id="numero_pagos" pattern="^[0-9.]{1,10}" min="0" max="9999999999" required step="1" readonly value="10">
+                                        </div>
+                                    </div>
+
+                                    <script>
+                                        var input = document.getElementById('numero_pagos');
+                                        input.addEventListener('input', function() {
+                                            if (this.value.length > 10)
+                                                this.value = this.value.slice(0, 10);
+                                        })
+                                    </script>
 
                                 </div>
                                 <div class="">

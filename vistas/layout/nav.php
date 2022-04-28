@@ -186,7 +186,7 @@ session_start();
               <li class='nav-item'>
                 <a href='matricula.php' class='nav-link '>
                   <i class='far fa-circle nav-icon'></i>
-                  <p>Inscripciones</p>
+                  <p>Matrículas</p>
                 </a>
               </li>
             </ul>";

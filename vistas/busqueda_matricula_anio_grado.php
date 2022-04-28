@@ -93,6 +93,11 @@ include("../clases/Alumno.php");
                     <i class='fa fa-arrow-left'></i>
                     </a>";
                 }
+
+                echo "<a type='submit' href='matricula_pago.php?id=$id'class='btn bg-gradient-warning'>
+                <i class='fas fa-wallet'></i> 
+                </a>";
+
                 echo "<a type='submit' href='matricula_vista.php?id=$id'class='btn bg-gradient-success'>
                     <i class='fas fa-eye'></i> 
                     </a></td>";

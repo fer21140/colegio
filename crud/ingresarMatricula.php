@@ -17,10 +17,11 @@ if (isset($_POST['btnGuardar'])) {
                         $valorInscripcion = $_POST['valor_inscripcion'];
                         $valorMensual = $_POST['valor_mensual'];
                         $anio = $_POST['anio'];
+                        $numeroPagos = $_POST['numero_pagos'];
 
                         $matricula = new Matricula();
 
-                        $matricula->guardar($idAlumno, $idGrado, $valorInscripcion, $valorMensual, $anio);
+                        $matricula->guardar($idAlumno, $idGrado, $valorInscripcion, $valorMensual, $anio,$numeroPagos);
 
                         header("Location: ../vistas/matricula.php");
                     } else {
