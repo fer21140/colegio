@@ -20,7 +20,7 @@ include("layout/nav.php");
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Ver inscripción</h1>
+                    <h1>Ver matrícula</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -42,7 +42,7 @@ include("layout/nav.php");
                     <!-- general form elements disabled -->
                     <div class="card card-warning">
                         <div class="card-header">
-                            <h3 class="card-title">Ver información de la inscripción</h3>
+                            <h3 class="card-title">Ver información de la matrícula</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -58,6 +58,8 @@ include("layout/nav.php");
                             $anioM = $resMatricula->getAnio();
                             $valorInscripcionM = $resMatricula->getValorInscripcion();
                             $valorMensualM = $resMatricula->getValorMensual();
+                            $numeroPagos = $resMatricula->getNumeroPagos();
+                            $pagosAbonados = $resMatricula->getPagosAbonados();
                             
                         
                         ?>
@@ -69,7 +71,7 @@ include("layout/nav.php");
                                     <div class="col-sm-6">
                                         <!-- text input -->
                                         <div class="form-group">
-                                            <label>Seleccionar el alumno</label>
+                                            <label>Alumno</label>
                                             <select class="form-control selectAlumno" id="id_alumno" name="id_alumno" disabled="true">
                                                 
                                                 <?php
@@ -106,7 +108,7 @@ include("layout/nav.php");
                                     <div class="col-sm-6">
                                         <!-- text input -->
                                         <div class="form-group">
-                                            <label>Seleccionar el grado al que será inscrito el alumno</label>
+                                            <label>Grado académico</label>
                                             <select class="form-control selectGrado" id="grado" name="grado" disabled="true">
                                                 
                                                 <?php
@@ -144,7 +146,7 @@ include("layout/nav.php");
                                     <div class="col-sm-6">
                                         <!-- text input -->
                                         <div class="form-group">
-                                            <label>Seleccionar el valor de inscripción</label>
+                                            <label>Valor de inscripción (Q)</label>
                                             <select class="form-control selectInscripcion" id="valor_inscripcion" name="valor_inscripcion" disabled="true">
                                                 <option value="<?php echo $valorInscripcionM; ?>">(Q <?php echo $valorInscripcionM; ?>)</option>
                                                 <?php
@@ -171,7 +173,7 @@ include("layout/nav.php");
                                     <div class="col-sm-6">
                                         <!-- text input -->
                                         <div class="form-group">
-                                            <label>Seleccionar la cuota mensual</label>
+                                            <label>Cuota mensual (Q)</label>
                                             <select class="form-control selectCuota" id="valor_mensual" name="valor_mensual" disabled="true">
                                             <option value="<?php echo $valorMensualM; ?>">(Q <?php echo $valorMensualM; ?>)</option>
                                                 <?php
@@ -204,7 +206,7 @@ include("layout/nav.php");
                     echo "<div class='col-sm-6'>
                     
                     <div class='form-group'>
-                      <label>Seleccione el ciclo académico</label>
+                      <label>Ciclo académico</label>
                       <select class='form-control' name='anio' id='anio' disabled='true'>";
                       
                         echo "<option value='$anioM'>$anioM</option>";
@@ -221,6 +223,23 @@ include("layout/nav.php");
 
 
                    ?>
+
+                   
+<div class="col-sm-6">
+                                        <!-- text input -->
+                                        <div class="form-group">
+                                            <label>Número de pagos anuales</label>
+                                            <input type="number" class="form-control" placeholder="Cantidad de pagos anuales" name="numero_pagos" id="numero_pagos" pattern="^[0-9.]{1,10}" min="0" max="9999999999" required step="1" value="<?php echo $numeroPagos;?>" readonly>
+                                        </div>
+                                    </div>
+
+<div class="col-sm-6">
+                                        <!-- text input -->
+                                        <div class="form-group">
+                                            <label>Pagos abonados</label>
+                                            <input type="number" class="form-control" placeholder="Pagos abonados" name="pagos_abonados" id="pagos_abonados" pattern="^[0-9.]{1,10}" min="0" max="9999999999" required step="1" value="<?php echo $pagosAbonados;?>" readonly>
+                                        </div>
+                                    </div>
 
                                 </div>
                                 <div class="">

@@ -7,6 +7,8 @@
         public $idGrado;
         public $valorInscripcion;
         public $valorMensual;
+        public $numeroPagos;
+        public $pagosAbonados;
         public $estado;
         public $fechaCommit;
         public $anio;
@@ -51,6 +53,22 @@
         public function setValorMensual($_valorMensual){
             $this->valorMensual = $_valorMensual;
         }
+        //Obtener numero de pagos
+        public function getNumeroPagos(){
+            return $this->numeroPagos;
+        }
+        //Setear numero de pagos
+        public function setNumeroPagos($_numeroPagos){
+            $this->numeroPagos = $_numeroPagos;
+        }
+        //obtener numero de pagos abonados
+        public function getPagosAbonados(){
+            return $this->pagosAbonados;
+        }
+        //setear pagos abonados
+        public function setPagosAbonados($_pagosAbonados){
+            $this->pagosAbonados = $_pagosAbonados;
+        }
         //Obtener estado
         public function getEstado(){
             return $this->estado;
@@ -78,20 +96,20 @@
 
         //--------------------Función para guardar una matrícula-----------------------
 
-        public function guardar($idAlumnog,$idGradog,$valorInscripciong,$valorMensualg,$aniog){
+        public function guardar($idAlumnog,$idGradog,$valorInscripciong,$valorMensualg,$aniog,$numeroPagosg){
         
             //Instanciamos la clase conexión
             $conexion = new Conexion();
             //Conectamos a la base de datos
             $conexion->conectar();
             //Instrucción SQL
-            $sql = "insert into matricula(id_alumno,id_grado,valor_inscripcion,valor_mensual,anio)values(?,?,?,?,?)";
+            $sql = "insert into matricula(id_alumno,id_grado,valor_inscripcion,valor_mensual,anio,numero_pagos)values(?,?,?,?,?,?)";
             //Preparamos la instrucción sql
             $stmt = $conexion->db->prepare($sql);
             
             //Enviamos los parámetros
             //i = integer, s = string, d= double...se colocan segun el tamaño de parametros
-            $stmt->bind_param('iiddi',$idAlumnog,$idGradog,$valorInscripciong,$valorMensualg,$aniog);
+            $stmt->bind_param('iiddii',$idAlumnog,$idGradog,$valorInscripciong,$valorMensualg,$aniog,$numeroPagosg);
               
             //Ejecutamos instrucción
             $stmt->execute();
@@ -103,20 +121,20 @@
 
         //-----------------Función para editar una matrícula-----------------------
 
-        public function editar($idAlumnoe,$idGradoe,$valorInscripcione,$valorMensuale,$anioe,$idEditare){
+        public function editar($idAlumnoe,$idGradoe,$valorInscripcione,$valorMensuale,$anioe,$numeroPagose,$idEditare){
         
             //Instanciamos la clase conexión
             $conexion = new Conexion();
             //Conectamos a la base de datos
             $conexion->conectar();
             //Instrucción SQL
-            $sql = "update matricula set id_alumno=?,id_grado=?,valor_inscripcion=?,valor_mensual=?,anio=? where id=?";
+            $sql = "update matricula set id_alumno=?,id_grado=?,valor_inscripcion=?,valor_mensual=?,anio=?,numero_pagos=? where id=?";
             //Preparamos la instrucción sql
             $stmt = $conexion->db->prepare($sql);
             
             //Enviamos los parámetros
             //i = integer, s = string, d= double...se colocan segun el tamaño de parametros
-            $stmt->bind_param('iiddii',$idAlumnoe,$idGradoe,$valorInscripcione,$valorMensuale,$anioe,$idEditare);
+            $stmt->bind_param('iiddiii',$idAlumnoe,$idGradoe,$valorInscripcione,$valorMensuale,$anioe,$numeroPagose,$idEditare);
               
             //Ejecutamos instrucción
             $stmt->execute();
@@ -125,6 +143,81 @@
             $conexion->desconectar();
     
            }
+
+           //--------Función para abonar un pago-----------------------------------
+
+           public function abonarPago($idMatriculaAbonar){
+                 //Instanciamos la clase conexión
+            
+            $resMatricula = $this->buscarPorId($idMatriculaAbonar);
+            
+            $numeroPagosMatricula = $resMatricula->getNumeroPagos();
+            $pagosAbonadosMatricula = $resMatricula->getPagosAbonados();
+
+
+
+            if($pagosAbonadosMatricula < $numeroPagosMatricula){
+                
+                
+            $restante = $pagosAbonadosMatricula+1;
+                
+            $conexion = new Conexion();
+            //Conectamos a la base de datos
+            $conexion->conectar();
+            //Instrucción SQL
+            $sql = "update matricula set pagos_abonados=? where id=?";
+            //Preparamos la instrucción sql
+            $stmt = $conexion->db->prepare($sql);
+            
+            //Enviamos los parámetros
+            //i = integer, s = string, d= double...se colocan segun el tamaño de parametros
+            $stmt->bind_param('ii',$restante,$idMatriculaAbonar);
+              
+            //Ejecutamos instrucción
+            $stmt->execute();
+            
+            //Desconectamos la base de datos
+            $conexion->desconectar();
+                  
+            }
+
+           }
+
+           public function descontarPago($idMatriculaAbonar){
+            //Instanciamos la clase conexión
+       
+       $resMatricula = $this->buscarPorId($idMatriculaAbonar);
+       
+       $numeroPagosMatricula = $resMatricula->getNumeroPagos();
+       $pagosAbonadosMatricula = $resMatricula->getPagosAbonados();
+
+
+       if($pagosAbonadosMatricula >0){
+           
+           
+       $restante = $pagosAbonadosMatricula-1;
+           
+       $conexion = new Conexion();
+       //Conectamos a la base de datos
+       $conexion->conectar();
+       //Instrucción SQL
+       $sql = "update matricula set pagos_abonados=? where id=?";
+       //Preparamos la instrucción sql
+       $stmt = $conexion->db->prepare($sql);
+       
+       //Enviamos los parámetros
+       //i = integer, s = string, d= double...se colocan segun el tamaño de parametros
+       $stmt->bind_param('ii',$restante,$idMatriculaAbonar);
+         
+       //Ejecutamos instrucción
+       $stmt->execute();
+       
+       //Desconectamos la base de datos
+       $conexion->desconectar();
+             
+       }
+
+      }
 
            //--------------Función para desactivar una matrícula-------------
 
@@ -201,6 +294,8 @@
                 $resultadoMatricula->setIdGrado($fila['id_grado']);
                 $resultadoMatricula->setValorInscripcion($fila['valor_inscripcion']);
                 $resultadoMatricula->setValorMensual($fila['valor_mensual']);
+                $resultadoMatricula->setNumeroPagos($fila['numero_pagos']);
+                $resultadoMatricula->setPagosAbonados($fila['pagos_abonados']);
                 $resultadoMatricula->setEstado($fila['estado']);
                 $resultadoMatricula->setFechaCommit($fila['fecha_commit']);
                 $resultadoMatricula->setAnio($fila['anio']);
@@ -236,6 +331,8 @@
             $matriculaIndex->setIdGrado($fila['id_grado']);
             $matriculaIndex->setValorInscripcion($fila['valor_inscripcion']);
             $matriculaIndex->setValorMensual($fila['valor_mensual']);
+            $matriculaIndex->setNumeroPagos($fila['numero_pagos']);
+            $matriculaIndex->setPagosAbonados($fila['pagos_abonados']);
             $matriculaIndex->setEstado($fila['estado']);
             $matriculaIndex->setFechaCommit($fila['fecha_commit']);
             $matriculaIndex->setAnio($fila['anio']);
@@ -277,6 +374,8 @@
             $matriculaIndex->setIdGrado($fila['id_grado']);
             $matriculaIndex->setValorInscripcion($fila['valor_inscripcion']);
             $matriculaIndex->setValorMensual($fila['valor_mensual']);
+            $matriculaIndex->setNumeroPagos($fila['numero_pagos']);
+            $matriculaIndex->setPagosAbonados($fila['pagos_abonados']);
             $matriculaIndex->setEstado($fila['estado']);
             $matriculaIndex->setFechaCommit($fila['fecha_commit']);
             $matriculaIndex->setAnio($fila['anio']);

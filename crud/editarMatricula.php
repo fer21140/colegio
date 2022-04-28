@@ -17,12 +17,13 @@ if (isset($_POST['btnEditar'])) {
                         $valorInscripcion = $_POST['valor_inscripcion'];
                         $valorMensual = $_POST['valor_mensual'];
                         $anio = $_POST['anio'];
+                        $numeroPagos = $_POST['numero_pagos'];
 
                         $idEditar = $_REQUEST['id'];
 
                         $matricula = new Matricula();
 
-                       $matricula->editar($idAlumno,$idGrado,$valorInscripcion,$valorMensual,$anio,$idEditar);
+                       $matricula->editar($idAlumno,$idGrado,$valorInscripcion,$valorMensual,$anio,$numeroPagos,$idEditar);
                         header("Location: ../vistas/matricula.php");
                     
                 } else {
