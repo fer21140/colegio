@@ -1,20 +1,25 @@
 
-
+<link rel="stylesheet" href="../css/estiloLoginColegio.css" />
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../css/Login_1.css" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio de sesión</title>
+    <!-- <link rel="stylesheet" href="style2.css"> -->
 </head>
 <body>
-    <div class="container">
-        <div class="forms-container">
-            <div class="signin-signup"-->
+    <main>
+        <div class="row">
+            
+            <div class="colm-form">
+                <div class="form-container">
+
+
                 <form action="../crud/validarUsuario.php" class="sign-in-form" method="post">
-                    <h2 class="title">Bienvenido</h2>
+                <img src="../reportes/logo.jpg" width="100px" height="100px">    
+                <h2 class="title">Bienvenido</h2>
                     <div class="input-field">
                         <i class="fas fa-user"></i>
                         <input type="text" placeholder="Usuario" name="correo" id="correo" required/>
@@ -23,22 +28,17 @@
                         <i class="fas fa-lock"></i>
                         <input type="password" placeholder="Contraseña" name="password" id="password" required/>
                     </div>
-                    <input type="submit" value="Iniciar sesión" id="btnEntrar" name="btnEntrar" class="btn solid" />
+                    <input type="submit" class="btn-login" value="Iniciar sesión" id="btnEntrar" name="btnEntrar" class="btn solid" />
                     <p class="social-text">!Ingresa tus credenciales!</p>
                 </form>
-            </div>
-        </div>
-        <div class="panels-container">
-            <div class="panel left-panel">
-                <div class="content">
-                    <h3>Instituto Mixto Privado San Cristóbal A.C</h3>
-                    <p>
-                        "Bienaventurado el que alcanza la sabiduría y obtiene la inteligencia"
-                    </p>
+
+
+                
                 </div>
-                <img src="../img/ICONO_LOGIN.svg" class="image" alt="" />
+               
             </div>
         </div>
-    </div>
+    </main>
+   
 </body>
 </html>

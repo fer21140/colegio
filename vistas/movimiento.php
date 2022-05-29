@@ -393,6 +393,17 @@ $(document).ready(function(){
 
 </script>
 
+<script type="text/javascript">
+           //$(document).ready(function(e) { 
+           // Cuando le dás click muestra #content
+          
+           // Simular click
+           //$('#btnGenerar').click();
+           
+          //});
+       </script>
+
+
 
 <?php
 

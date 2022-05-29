@@ -374,6 +374,42 @@
    return $resultadoMovimientos;
    }
 
+   //Obtener el ultimo id
+    //---------------Buscar movimiento por id
+
+    public function obtenerUltimoId(){
+         
+        //Instanciamos la clase conexión
+         $conexion = new Conexion();
+         //Conectamos a la base de datos
+         $conexion->conectar();
+         //Declaramos el objeto contenedor del resultado
+         $resultadoMovimiento= new Movimiento();
+         
+         //Instrucción SQL
+        $sql = "select *from movimientos order by id desc limit 1";
+        //Ejecución de instrucción     
+        $ejecutar = mysqli_query($conexion->db, $sql);
+
+        while($fila = mysqli_fetch_array($ejecutar)){
+            
+            $resultadoMovimiento->setId($fila['id']);
+            $resultadoMovimiento->setIdOperacion($fila['id_operacion']);
+            $resultadoMovimiento->setIdUsuarioReceptor($fila['id_usuario_receptor']);
+            $resultadoMovimiento->setIdUsuarioOperacion($fila['id_usuario_operacion']);
+            $resultadoMovimiento->setTotal($fila['total']);
+            $resultadoMovimiento->setNumeroComprobante($fila['numero_comprobante']);
+            $resultadoMovimiento->setEstado($fila['estado']);
+            $resultadoMovimiento->setFechaCommit($fila['fecha_commit']);
+                       
+        }
+            //Nos desconectamos de la base de datos
+            $conexion->desconectar();
+            //Devolvemos el usuario encontrado
+            return $resultadoMovimiento;
+       }
+
+
     }
 
 

@@ -28,7 +28,17 @@
                 if($total>0){
                     $movimiento = new Movimiento();
                     $movimiento->guardar($idOperacion,$idUsuarioReceptor,$idUsuarioOperacion,$total,$numeroComprobante);
-                    header("Location: ../vistas/movimiento.php");
+                    
+                    $resMovimiento = $movimiento->obtenerUltimoId();
+
+                    $ultimoId = $resMovimiento->getId();
+
+                    echo "<script>window.open('../reportes/comprobante_pago.php?idMovimiento=$ultimoId','_blank');</script>";
+                    echo "<script>window.open('../vistas/movimiento.php','_self');</script>";
+                    
+
+                   // header("Location: ../vistas/movimiento.php");
+
                 }else{
                     //Imprimir mensaje para que el total sea mayor a 0
                     echo "<script>alert('¡El costo de la operación es inválido!');
