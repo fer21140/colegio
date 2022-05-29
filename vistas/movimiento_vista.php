@@ -20,6 +20,7 @@ include("layout/nav.php");
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
+
                     <h1>Ver movimiento</h1>
                 </div>
                 <div class="col-sm-6">
@@ -49,7 +50,7 @@ include("layout/nav.php");
 
                             <?php
                             $idEditar = $_REQUEST['id'];
-
+                            $idMov = $idEditar;
                             $movimiento = new Movimiento();
                             $resMovimiento = $movimiento->buscarPorId($idEditar);
 
@@ -184,6 +185,14 @@ include("layout/nav.php");
                                     <div class="col-sm-6">
                                         <!-- text input -->
                                         <div class="form-group">
+                                            <label>Identificador de transacción</label>
+                                            <input type="number" class="form-control" placeholder="Identificador de transacción" name="numero_movimiento" id="numero_movimiento" value="<?php echo $idEditar; ?>" required minlength="1" maxlength="100" readonly>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <!-- text input -->
+                                        <div class="form-group">
                                             <label>Nombre del usuario que realizó el movimiento</label>
                                             <input type="text" class="form-control" placeholder="Nombre del usuario que realizó la operación" value="<?php echo $nombreUsuarioOperacion; ?>" name="nombre_usuario_operacion" id="nombre_usuario_operacion" pattern="^[a-zA-ZáéíóúÁÉÍÓÚ ]{1,75}" required minlength="1" maxlength="75" readonly>
                                         </div>
@@ -204,6 +213,7 @@ include("layout/nav.php");
                                 </div>
                                 <div class="">
                                    <a type="submit" class="btn btn-danger" href="movimiento.php">Regresar</a>
+                                   <input type="button" id="btnGenerarComprobante" name="btnGenerarComprobante" class="btn btn-success" value="Generar comprobante">
                                 </div>
                             </form>
                         </div>
@@ -281,6 +291,13 @@ include("layout/footer.php");
         $('#id_tipo_operacion').change(function() {
 
             obtenerPrecioOperacion();
+        });
+
+        $('#btnGenerarComprobante').click(function() {
+            var numeroComprobante = document.getElementById('numero_movimiento').value;
+           
+           
+           window.open("../reportes/comprobante_pago.php?idMovimiento="+numeroComprobante,"_blank");
         });
 
     });
