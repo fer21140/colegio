@@ -174,13 +174,13 @@
             //Conectamos a la base de datos
             $conexion->conectar();
             //Instrucción SQL
-            $sql = "update alumnos set carnet=?,primerNombre=?,segundoNombre=?,tercerNombre=?,primerApellido=?,segundoApellido=?,direccion=?,telefono=?,usuario=?,clave_maestra=? where id=?";
+            $sql = "update alumnos set carnet=?,primerNombre=?,segundoNombre=?,tercerNombre=?,primerApellido=?,segundoApellido=?,direccion=?,telefono=?,usuario=?,clave_maestra=?,password=? where id=?";
             //Preparamos la instrucción sql
             $stmt = $conexion->db->prepare($sql);
             
             //Enviamos los parámetros
             //i = integer, s = string, d= double...se colocan segun el tamaño de parametros
-            $stmt->bind_param('sssssssissi',$carnete,$primerNombree,$segundoNombree,$tercerNombree,$primerApellidoe,$segundoApellidoe,$direccione,$telefonoe,$usuarioe,$passworde,$idEditare);
+            $stmt->bind_param('sssssssisssi',$carnete,$primerNombree,$segundoNombree,$tercerNombree,$primerApellidoe,$segundoApellidoe,$direccione,$telefonoe,$usuarioe,$passworde,$passworde,$idEditare);
               
             //Ejecutamos instrucción
             $stmt->execute();
@@ -373,6 +373,62 @@
                 $conexion->desconectar();
                 //Devolvemos el usuario encontrado
                 return $resultadoAlumno;
+           }
+
+           //Funcion para validar alumno existente
+
+           public function validarAlumnoExistente($usuario,$clave){
+         
+            //Instanciamos la clase conexión
+             $conexion = new Conexion();
+             //Conectamos a la base de datos
+             $conexion->conectar();
+             //Declaramos el objeto contenedor del resultado
+             $resultadoAlumno = new Alumno();
+             //Validador de exsistencia de alumno
+             $validador = 0;
+             
+             //Instrucción SQL
+            $sql = "select *from alumnos where usuario='" . $usuario . "' AND password='" . $clave . "'";
+            //Ejecución de instrucción     
+            $ejecutar = mysqli_query($conexion->db, $sql);
+    
+            while($fila = mysqli_fetch_array($ejecutar)){
+                
+                //notificamos que el alumno existe
+                $validador=1;
+
+                $resultadoAlumno->setId($fila['id']);
+                $resultadoAlumno->setCarnet($fila['carnet']);
+                $resultadoAlumno->setPrimerNombre($fila['primerNombre']);
+                $resultadoAlumno->setSegundoNombre($fila['segundoNombre']);
+                $resultadoAlumno->setTercerNombre($fila['tercerNombre']);
+                $resultadoAlumno->setPrimerApellido($fila['primerApellido']);
+                $resultadoAlumno->setSegundoApellido($fila['segundoApellido']);
+                $resultadoAlumno->setDireccion($fila['direccion']);
+                $resultadoAlumno->setTelefono($fila['telefono']);
+                $resultadoAlumno->setEstado($fila['estado']);
+                $resultadoAlumno->setFechaCommit($fila['fecha_commit']);
+                $resultadoAlumno->setUsuario($fila['usuario']);
+                $resultadoAlumno->setClave($fila['password']);
+                $resultadoAlumno->setClaveMaestra($fila['clave_maestra']);
+                
+                //rompemos el ciclo ya que lo hemos encontrado
+
+                break;
+               
+            }
+            //Guardamos el objeto usuario en sesión
+                if($validador==1){
+                  //---Inicializamos la sesión
+                   session_start();
+                  $_SESSION['alumno']=$resultadoAlumno;
+    
+                }
+                //Nos desconectamos de la base de datos
+                $conexion->desconectar();
+                //Devolvemos el usuario encontrado
+                return $validador;
            }
     
     
