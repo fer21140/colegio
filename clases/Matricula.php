@@ -393,6 +393,7 @@
         return $resultadoMatriculas;
         }
 
+        
 
         //---------------Validar si un alumno ya se encuentra inscrito--------------------
 

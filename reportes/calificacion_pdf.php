@@ -246,8 +246,10 @@ $pdf->SetFont('Arial','',10);
                     }
                   
                 }
-                  
-            
+                $anioEscolar = $_REQUEST['anio'];
+                $pdf->ln(2);
+                $pdf->SetFont('Arial','B',12);
+                $pdf->Cell(187,8,limitarCadena(utf8_decode("CICLO ESCOLAR ".$anioEscolar),50,"..."),0,1,'C');
  
 $pdf->Output();
 

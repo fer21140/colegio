@@ -25,6 +25,7 @@
                     </div>
                     <input type="submit" value="Iniciar sesión" id="btnEntrar" name="btnEntrar" class="btn solid" />
                     <p class="social-text">!Ingresa tus credenciales!</p>
+                    <p class="social-text">Si eres estudiante accede desde aquí</p>
                 </form>
             </div>
         </div>

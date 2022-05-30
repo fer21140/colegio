@@ -1,4 +1,3 @@
-
 <link rel="stylesheet" href="../css/estiloLoginColegio.css" />
 <!DOCTYPE html>
 <html lang="en">
@@ -17,15 +16,13 @@
                 <div class="form-container">
                 <hr>
                 <br>
-                <h4>Acceso profesores y administradores</h4>
+                <h4>Acceso estudiantes</h4>
                 <br>
                 <hr>
                 <br>
 
-                <form action="../crud/validarUsuario.php" class="sign-in-form" method="post">
-                <img src="../img/profesores.png" width="100px" height="100px">    
-                
-               
+                <form action="../crud/validarAlumno.php" class="sign-in-form" method="post">
+                <img src="../img/login_student.png" width="100px" height="100px">    
                 <h2 class="title">Bienvenido/a</h2>
                     <div class="input-field">
                         <i class="fas fa-user"></i>
@@ -38,7 +35,7 @@
                     <input type="submit" class="btn-login" value="Iniciar sesión" id="btnEntrar" name="btnEntrar" class="btn solid" />
                     <p class="social-text">!Ingresa tus credenciales!</p>
                     <br>
-                    <a href="estudiantes.php"><h3 class="social-text">Si eres estudiante accede desde aquí</h3></a>
+                    <a href="login.php"><h3 class="social-text">Si eres profesor accede desde aquí</h3></a>
                 </form>
 
 
