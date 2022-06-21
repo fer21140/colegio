@@ -35,6 +35,18 @@
                     <input type="submit" class="btn-login" value="Iniciar sesión" id="btnEntrar" name="btnEntrar" class="btn solid" />
                     <p class="social-text">!Ingresa tus credenciales!</p>
                     <br>
+
+
+                    <center><div>
+                    <h3>O descarga la aplicación</h3>
+                    <br>
+                    <img src="../img/android.png" width="50px" height="50px">
+                    <a href="android/instalacion.php"><h3 class="social-text">Descarga aquí</h3></a>
+                
+                </div>
+                </center>
+            
+                
                     <a href="login.php"><h3 class="social-text">Si eres profesor accede desde aquí</h3></a>
                 </form>
 
@@ -43,8 +55,20 @@
                 </div>
                
             </div>
+
+           
+                
+            
+
         </div>
+
+        
     </main>
-   
+
+ 
+       
+               
+            
+      
 </body>
 </html>
