@@ -195,7 +195,6 @@
             $usuario->setTelefono($fila['telefono']);
             $usuario->setFotografia($fila['fotografia']);
 
-
             break;//Rompemos ciclo debido a que no sirve de nada seguir buscando debido a que ya hay primera coincidencia
          }
     }
@@ -207,6 +206,8 @@
         //---Inicializamos la sesión
          session_start();
         $_SESSION['usuario']=$usuario;
+        //Guardamos en sesion si el usuario esta activo o no
+        $_SESSION['estado'] = $usuario->getEstado();
     
     }
     //Desconectamos la base de datos

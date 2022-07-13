@@ -423,6 +423,7 @@
                   //---Inicializamos la sesión
                    session_start();
                   $_SESSION['alumno']=$resultadoAlumno;
+                  $_SESSION['estado'] = $resultadoAlumno->getEstado();
     
                 }
                 //Nos desconectamos de la base de datos

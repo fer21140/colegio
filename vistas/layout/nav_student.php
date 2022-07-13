@@ -1,3 +1,18 @@
+<?php
+function limitarCadena($cadena, $limite, $sufijo){
+	// Si la longitud es mayor que el límite...
+	if(strlen($cadena) > $limite){
+		// Entonces corta la cadena y ponle el sufijo
+		return substr($cadena, 0, $limite) . $sufijo;
+	}
+	
+	// Si no, entonces devuelve la cadena normal
+	return $cadena;
+}
+
+
+?>
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="../app/AdminLTE-3.0.5/plugins/fontawesome-free/css/all.min.css">
@@ -110,9 +125,11 @@ session_start();
           $usuario = $_SESSION['alumno'];
           $nombre = $usuario->getPrimerNombre();
           $apellido = $usuario->getPrimerApellido();
+
+          $concatenacionNombreApellido = $nombre . " " . $apellido;
           
 
-          echo"<a href='#' class='d-block'>$nombre $apellido</a>";
+          echo"<a href='#' class='d-block'>" . limitarCadena($concatenacionNombreApellido,20,"...") ."</a>";
         ?>
         </div>
       </div>
@@ -124,7 +141,7 @@ session_start();
                with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview menu-open">
             <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <i class="fas fa-school" style="margin-right: 10px;"></i>
               <p>
                 MÓDULOS
                 <i class="right fas fa-angle-left"></i>
@@ -135,7 +152,7 @@ session_start();
             <ul class='nav nav-treeview'>
               <li class='nav-item'>
                 <a href='notas_alumno.php' class='nav-link '>
-                  <i class='far fa-circle nav-icon'></i>
+                  <i class='fas fa-award' style='margin-right:15px;'></i>
                   <p>Calificaciones</p>
                 </a>
               </li>
@@ -144,7 +161,7 @@ session_start();
             <ul class='nav nav-treeview'>
               <li class='nav-item'>
                 <a href='horarios_alumno.php' class='nav-link '>
-                  <i class='far fa-circle nav-icon'></i>
+                  <i class='fas fa-calendar' style='margin-right:15px;'></i>
                   <p>Horarios de estudio</p>
                 </a>
               </li>

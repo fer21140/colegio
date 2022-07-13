@@ -11,7 +11,16 @@
         $usuario = new Usuario();
 
         if($usuario->validarUsuarioExistente($correo,$password)==1){
-            header("Location: ../vistas/index.php");
+            session_start();
+            if($_SESSION['estado']==1){
+                header("Location: ../vistas/index.php"); 
+            }else{
+                //Destruimos la sesión para evitar que acceda una vez logeado
+               
+                session_destroy();
+                
+                echo "<script>alert('¡Usuario INACTIVO, debes ponerte en contacto con tu institución!'); window.location.href='../vistas/login.php';</script>";
+            }
         }else{
             echo "<script>alert('¡Usuario incorrecto!'); window.location.href='../vistas/login.php';</script>";
         }
