@@ -1,4 +1,19 @@
 
+  <?php
+function limitarCadena($cadena, $limite, $sufijo){
+	// Si la longitud es mayor que el límite...
+	if(strlen($cadena) > $limite){
+		// Entonces corta la cadena y ponle el sufijo
+		return substr($cadena, 0, $limite) . $sufijo;
+	}
+	
+	// Si no, entonces devuelve la cadena normal
+	return $cadena;
+}
+
+
+?>
+
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="../app/AdminLTE-3.0.5/plugins/fontawesome-free/css/all.min.css">
@@ -117,7 +132,9 @@ session_start();
           $apellido = $usuario->getApellidos();
           $rolPermisoMenu = $usuario->getIdRol();
 
-          echo"<a href='#' class='d-block'>$nombre $apellido</a>";
+          $concatenacionNombreApellido = $nombre . " " . $apellido;
+
+          echo"<a href='#' class='d-block'>" . limitarCadena($concatenacionNombreApellido,20,"...") ."</a>";
         ?>
         </div>
       </div>
@@ -129,7 +146,7 @@ session_start();
                with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview menu-open">
             <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <i class="fas fa-school" style="margin-right: 10px;"></i>
               <p>
                 MÓDULOS
                 <i class="right fas fa-angle-left"></i>
@@ -139,10 +156,13 @@ session_start();
           <?php
 
           if($rolPermisoMenu==1){
+
+            
+
             echo "<ul class='nav nav-treeview'>
               <li class='nav-item'>
                 <a href='alumno.php' class='nav-link '>
-                  <i class='far fa-circle nav-icon'></i>
+                  <i class='fas fa-users' style='margin-right:10px;'></i>
                   <p>Alumnos</p>
                 </a>
               </li>
@@ -156,7 +176,7 @@ session_start();
               echo "<ul class='nav nav-treeview'>
               <li class='nav-item'>
                 <a href='grado.php' class='nav-link '>
-                  <i class='far fa-circle nav-icon'></i>
+                  <i class='fas fa-graduation-cap' style='margin-right:10px;'></i>
                   <p>Grados académicos</p>
                 </a>
               </li>
@@ -171,7 +191,7 @@ session_start();
             echo "<ul class='nav nav-treeview'>
               <li class='nav-item'>
                 <a href='curso.php' class='nav-link '>
-                  <i class='far fa-circle nav-icon'></i>
+                  <i class='fas fa-book-reader' style='margin-right:15px;'></i>
                   <p>Cursos</p>
                 </a>
               </li>
@@ -185,7 +205,7 @@ session_start();
             echo "<ul class='nav nav-treeview'>
               <li class='nav-item'>
                 <a href='matricula.php' class='nav-link '>
-                  <i class='far fa-circle nav-icon'></i>
+                  <i class='fas fa-folder-open' style='margin-right:10px;'></i>
                   <p>Matrículas</p>
                 </a>
               </li>
@@ -195,7 +215,7 @@ session_start();
             <ul class='nav nav-treeview'>
               <li class='nav-item'>
                 <a href='nota.php' class='nav-link '>
-                  <i class='far fa-circle nav-icon'></i>
+                  <i class='fas fa-award' style='margin-right:15px;'></i>
                   <p>Calificaciones</p>
                 </a>
               </li>
@@ -205,7 +225,7 @@ session_start();
            echo "<ul class='nav nav-treeview'>
               <li class='nav-item'>
                 <a href='lista_alumnos.php' class='nav-link '>
-                  <i class='far fa-circle nav-icon'></i>
+                  <i class='fas fa-users' style='margin-right:10px;'></i>
                   <p>Listado de alumnos</p>
                 </a>
               </li>
@@ -214,7 +234,7 @@ session_start();
             echo "<ul class='nav nav-treeview'>
               <li class='nav-item'>
                 <a href='horarios.php' class='nav-link '>
-                  <i class='far fa-circle nav-icon'></i>
+                  <i class='fas fa-calendar' style='margin-right:15px;'></i>
                   <p>Horarios</p>
                 </a>
               </li>
@@ -226,7 +246,7 @@ session_start();
             echo "<ul class='nav nav-treeview'>
               <li class='nav-item'>
                 <a href='operacion.php' class='nav-link '>
-                  <i class='far fa-circle nav-icon'></i>
+                  <i class='fas fa-file-invoice-dollar' style='margin-right:10px;'></i>
                   <p>Operaciones monetarias</p>
                 </a>
               </li>
@@ -239,7 +259,7 @@ session_start();
             echo "<ul class='nav nav-treeview'>
               <li class='nav-item'>
                 <a href='movimiento.php' class='nav-link '>
-                  <i class='far fa-circle nav-icon'></i>
+                  <i class='fas fa-coins' style='margin-right:10px;'></i>
                   <p>Transacciones</p>
                 </a>
               </li>
@@ -251,7 +271,7 @@ session_start();
             echo "<ul class='nav nav-treeview'>
               <li class='nav-item'>
                 <a href='planilla.php' class='nav-link '>
-                  <i class='far fa-circle nav-icon'></i>
+                  <i class='fas fa-clipboard' style='margin-right:10px;'></i>
                   <p>Planilla</p>
                 </a>
               </li>
@@ -264,7 +284,7 @@ session_start();
             echo "<ul class='nav nav-treeview'>
               <li class='nav-item'>
                 <a href='sueldo.php' class='nav-link '>
-                  <i class='far fa-circle nav-icon'></i>
+                  <i class='fas fa-hand-holding-usd' style='margin-right:10px;'></i>
                   <p>Sueldos</p>
                 </a>
               </li>

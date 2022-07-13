@@ -11,7 +11,22 @@
         $alumno = new Alumno();
 
         if($alumno->validarAlumnoExistente($correo,$password)==1){
-            header("Location: ../vistas/student_dashboard.php");
+            
+
+            session_start();
+            if($_SESSION['estado']==1){
+                header("Location: ../vistas/student_dashboard.php");
+            }else{
+                //Destruimos la sesión para evitar que acceda una vez logeado
+               
+                session_destroy();
+                
+                echo "<script>alert('¡Estudiante INACTIVO, debes ponerte en contacto con tu institución educativa!'); window.location.href='../vistas/estudiantes.php';</script>";
+            }
+
+
+
+
         }else{
             echo "<script>alert('¡Usuario incorrecto!'); window.location.href='../vistas/estudiantes.php';</script>";
         }
